@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.2.1 — 2026-11-23 (correção de interface)
+
+- Ilustrações das páginas fixas e do 404 deixaram de herdar a largura do container (até 1152 px): agora têm limite de 9 rem (144 px), preservando a capa da home em 22 rem (352 px) e a ilustração dos guias em 112 px.
+- `width`/`height` adicionados ao `<img>` para reservar a proporção 1:1 e evitar salto de layout.
+- Site conectado aos gerenciadores locais existentes: monitor HTTP no Uptime Kuma, card no Grafana e collection `destrava_tech` no Directus (`docs/central-de-links.md`).
+
 ## 0.2.0 — 2026-11-23 (PUBLICADO 🟢)
 
 Expansão completa publicada em produção **após autorização explícita e separada do proprietário**. Deploy `dpl_EvtJP37VmYnSphswh29iAet7AFsD` no projeto `slydtx/destrava-tech`, aliasado a https://destrava-tech-rho.vercel.app. Validação no ar: home PT/EN/ES 200; guia 200; arquivo de verificação do Google 200 com a linha exata; `sitemap-index.xml` 200; `sitemap-0.xml` 200 com 60 URLs e 180 alternates; `robots.txt` e `ads.txt` 200; caminho inexistente retorna 404 com a página personalizada. Nenhum push ou merge foi feito; todo o código permanece em commits locais na branch `interface-motion`.

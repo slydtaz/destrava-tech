@@ -8,19 +8,24 @@ interface Props {
   class?: string;
   /** `true` usa loading="eager" para a capa; o padrão é lazy. */
   eager?: boolean;
+  /** Largura máxima da ilustração, em rem. Padrão 9rem (144px); a capa usa 22rem (352px). */
+  size?: number;
 }
 
-const { src, alt, class: className, eager = false } = Astro.props;
+const { src, alt, class: className, eager = false, size = 9 } = Astro.props;
 const decorative = !alt;
 ---
 
 <div
   class:list={['reveal', 'illustration', className]}
+  style={`--illustration-size: ${size}rem`}
   aria-hidden={decorative ? 'true' : undefined}
 >
   <img
     src={src}
     alt={alt ?? ''}
+    width="150"
+    height="150"
     loading={eager ? 'eager' : 'lazy'}
     decoding="async"
   />
@@ -31,10 +36,13 @@ const decorative = !alt;
     display: block;
     overflow: hidden;
     border-radius: var(--radius);
+    /* Sem este limite, a ilustração herdava a largura do container (até 1152px). */
+    inline-size: min(100%, var(--illustration-size, 9rem));
   }
 
   .illustration img {
     display: block;
     inline-size: 100%;
+    block-size: auto;
   }
 </style>

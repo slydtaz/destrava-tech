@@ -31,7 +31,9 @@ Atualizado: 2026-11-23
 
 13. ~~Validar no ar a verificação do Google e o sitemap~~ ✅ **FEITO (2026-11-23):** `/googlee2e464378dc22f96.html` 200 com a linha exata; `/sitemap-index.xml` 200; `/sitemap-0.xml` 200 com 60 URLs e 180 alternates `pt-BR`/`en`/`es`; `robots.txt`, `ads.txt`, home PT/EN/ES e guia 200; 404 personalizado retornado para caminho inexistente.
 
-14. **PENDENTE (quando a conta AdSense for confirmada em nome do responsável adulto 18+) — preencher o `pub-...` real em `public/ads.txt`**, hoje com valor de previsão (`pub-1903855512494155`). `SITE.adsEnabled` continua `false` até a aprovação.
+14. **PENDENTE — AdSense:** a conta já foi configurada e a revisão solicitada pelo proprietário (2026-11-23); falta a decisão do Google. Depois da aprovação, substituir em `public/ads.txt` o `pub-1903855512494155` (valor de previsão) pelo `pub-...` real da conta aprovada e só então ativar `SITE.adsEnabled`. Atualmente `false` — o site segue sem anúncios.
+
+16. **PENDENTE — Search Console:** a verificação de propriedade já foi feita pelo proprietário, mas ela apenas prova posse; **não** coloca o site na busca. Faltam: (a) enviar `sitemap-index.xml` em *Sitemaps*; (b) *Inspecionar qualquer URL* → home → *Solicitar indexação*; (c) aguardar dias/semanas. Métodos extras de verificação (tag HTML, Analytics, Tag Manager, DNS) são apenas reserva de posse, não etapa de indexação. Até 2026-11-23 a URL canônica `-rho` não aparecia nos resultados de busca consultados; existe outro projeto com nome parecido em `destrava-tech.vercel.app`.
 
 15. **PENDENTE (limpeza — requer sua confirmação) — excluir o projeto Vercel `slydtx/interface-motion`.** O CLI criou esse projeto por engano no primeiro deploy porque o worktree ainda não estava vinculado ao `destrava-tech`; ele contém apenas uma cópia da versão 0.2.0 e não afeta o site no ar. A exclusão é irreversível e o próprio CLI exige aprovação humana (`vercel project rm interface-motion --confirm-name interface-motion`). Se preferir, deixe o projeto lá.
 

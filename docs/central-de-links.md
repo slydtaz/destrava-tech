@@ -38,9 +38,23 @@ O arquivo de verificação do Google, `ads.txt`, `robots.txt` e `favicon.svg` v�
 
 | O quê | Link | Situação |
 |---|---|---|
-| 💰 Criar conta AdSense (18+) | https://adsense.google.com/start | ⏳ Pendente — responsável |
-| 🔍 Search Console | https://search.google.com/search-console | ⏳ Pendente — adicionar o site e enviar o sitemap |
+| 💰 AdSense | https://adsense.google.com/ | Configurado e com revisão solicitada — aguardando decisão do Google |
+| 🔍 Search Console | https://search.google.com/search-console | Propriedade verificada; falta enviar o sitemap e pedir indexação da home |
 | 📋 Regras do AdSense | https://support.google.com/adsense/answer/9724 | Consulta |
+
+Verificação de propriedade **não** indexa o site: ela só prova ao Google que você controla a URL. Depois dela, abra o Search Console → **Inspecionar qualquer URL** → cole `https://destrava-tech-rho.vercel.app/` → **Solicitar indexação**; e em **Sitemaps** envie `sitemap-index.xml`. Métodos extras de verificação (tag HTML, Analytics, Tag Manager, DNS) são apenas **redundância de posse**, não etapa de indexação. Ver detalhes em `docs/pending-actions.md`.
+
+## Gerenciadores locais (Service Hub — já rodando)
+
+| O quê | Link | O que foi conectado |
+|---|---|---|
+| 🟢 Uptime Kuma | http://localhost:3001/dashboard | Monitor HTTP `#6` "Destrava Tech (producao)", checagem a cada 60 s (`200-299`) |
+| 📊 Grafana | http://localhost:3000/d/service-hub-home/central-de-servicos | Painel "Central de Servicos" com o card **Destrava Tech** e links para Kuma/Directus |
+| 🗄️ Directus | http://localhost:8055/admin/content/destrava_tech | Collection `destrava_tech` (status, status_code, response_time, last_check, uptime_history) |
+
+Como usar: no **Kuma**, o monitor fica em *Dashboard*; o ícone de edição permite mudar intervalo e o menu *Status Pages* cria uma página pública. No **Grafana**, o card do site está no painel "Central de Servicos" (não há gráfico de tempo real: o plugin `json-api` do datasource antigo não está instalado, então o monitor real é o Kuma). No **Directus**, a collection `destrava_tech` recebe linhas com `POST /items/destrava_tech` usando um token de admin — é onde registrar histórico de checagens se quiser.
+
+Para iniciar/parar: `powershell -ExecutionPolicy Bypass -File C:\Users\MARY\service-hub\start-all.ps1` e `...\stop-all.ps1`. Estado: `...\health-check.ps1`. Credenciais ficam apenas em `C:\Users\MARY\service-hub\CREDENTIALS.txt` (nunca em chat, git ou código).
 
 ## Documentos do projeto (nesta pasta)
 
