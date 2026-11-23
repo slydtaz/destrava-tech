@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.2.1 — 2026-11-23 (correção de interface)
+## 0.2.1 — 2026-11-23 (PUBLICADO 🟢 — correção de interface)
+
+Deploy `dpl_4K16tto4FUt3G7yL9Br8t5JHE4vB`, aliasado a https://destrava-tech-rho.vercel.app; tamanhos confirmados no ar: 144 px nas páginas fixas, 352 px na capa, 112 px nos guias.
 
 - Ilustrações das páginas fixas e do 404 deixaram de herdar a largura do container (até 1152 px): agora têm limite de 9 rem (144 px), preservando a capa da home em 22 rem (352 px) e a ilustração dos guias em 112 px.
 - `width`/`height` adicionados ao `<img>` para reservar a proporção 1:1 e evitar salto de layout.
