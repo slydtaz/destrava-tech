@@ -144,6 +144,10 @@
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  /* O hover de `.card` em global.css tem especificidade maior; sem estes
+     dois seletores o recuo de 1px seria sobrescrito enquanto o botão é pressionado. */
+  .card:has(a:hover):active,
+  a.card:hover:active,
   .card:active,
   .button:active {
     transform: translateY(1px);
