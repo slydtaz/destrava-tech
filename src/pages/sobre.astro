@@ -1,14 +1,16 @@
 ---
 import Base from '../layouts/Base.astro';
+import Illustration from '../components/Illustration.astro';
 import { SITE } from '../site.config';
 ---
 
 <Base
   title="Sobre"
-  description="Quem faz o Destrava Tech, como os guias são produzidos e revisados, e como falar com a gente."
+  description="Quem faz o Destrava Tech, como os guias são produzidos, e como falar com a gente."
 >
   <div class="container">
     <section class="hero">
+      <Illustration src="/illustrations/about.svg" />
       <span class="kicker">Sobre o site</span>
       <h1>Por que o Destrava Tech existe</h1>
       <p class="lead">
@@ -29,10 +31,10 @@ import { SITE } from '../site.config';
 
         <h2>Como o conteúdo é produzido</h2>
         <p>
-          Os guias são produzidos com apoio de ferramentas de inteligência artificial e
-          <strong>revisados por uma pessoa</strong> antes de publicação. Quando um guia
-          afirma algo sobre golpes, regras de aplicativos ou segurança, citamos a fonte
-          (de preferência oficial) para você conferir por conta própria.
+          Os guias são produzidos com apoio de ferramentas de inteligência artificial.
+          Cada guia traz fontes citadas e data de atualização visível para você conferir,
+          principalmente quando afirma algo sobre golpes, regras de aplicativos ou
+          segurança — nesses casos, a fonte é de preferência oficial.
         </p>
         <p>
           Tecnologia muda rápido. Por isso todo guia mostra a data da última atualização.
