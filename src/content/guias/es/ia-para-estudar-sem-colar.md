@@ -1,5 +1,5 @@
 ---
-title: 'IA para estudar: cómo usarla sin copiar y sin aprender mal'
+title: 'IA para estudiar: cómo usarla sin copiar y sin aprender mal'
 description: 'Un método honesto para usar inteligencia artificial en el estudio: explicar, practicar y revisar — sin depender de ella en el examen y sin aceptar respuestas equivocadas.'
 pillar: ia
 lang: es
