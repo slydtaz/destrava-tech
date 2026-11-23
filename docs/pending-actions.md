@@ -10,9 +10,9 @@ Atualizado: 2026-11-23
 
 ## Responsável adulto (pai/mãe/responsável) — obrigatório para AdSense
 
-4. **Preencher os dados legais** (marcados em amarelo no site): nome do responsável, e-mail de contato, cidade/UF. Eles aparecem em Sobre, Contato, Privacidade e Termos.
+4. **Preencher os dados legais**: ✅ **e-mail de contato informado e publicado** (`macedoartur1250@gmail.com`, em Contato, Sobre, Privacidade e `site.config.ts`). Ainda faltam **nome completo do responsável, cidade/UF e foro** — não inventar; quando chegarem, atualizar Sobre, Privacidade e Termos.
 5. **Revisar os documentos legais** (Privacidade e Termos são rascunhos honestos, não parecer jurídico).
-6. **Criar a conta Google AdSense no nome do responsável** (18+ é regra oficial): https://adsense.google.com → seguir o cadastro com dados reais do adulto. Nunca usar dados falsos ou de terceiro.
+6. **Conta Google AdSense**: ✅ conta já criada pelo proprietário. Confirmar que está em nome do responsável adulto (18+ é regra oficial) e com dados reais. Nunca usar dados falsos ou de terceiros.
 7. **Enviar o site para revisão do AdSense** depois de publicado (a aprovação NÃO é garantida e pode levar dias/semanas; rejeição por "conteúdo de baixo valor" é comum em sites novos — o caminho é melhorar conteúdo e tentar de novo).
 8. **Configurar o Search Console** (grátis) com a conta Google do responsável, para acompanhar como o site aparece no Google.
 

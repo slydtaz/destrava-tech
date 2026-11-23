@@ -22,9 +22,9 @@ import { SITE } from '../site.config';
         <h2>1. Quem é o controlador dos dados</h2>
         <p>
           O site {SITE.name} é um projeto independente. O controlador dos dados pessoais é
-          o responsável legal pelo projeto:
-          <span class="placeholder-mark">[PREENCHER: nome completo do responsável adulto,
-          cidade/UF e e-mail de contato do encarregado]</span>.
+          o responsável legal pelo projeto. O nome completo, a cidade e o estado serão
+          publicados após a revisão final; o e-mail de contato é
+          <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
         </p>
 
         <h2>2. Quais dados coletamos hoje</h2>
@@ -66,8 +66,8 @@ import { SITE } from '../site.config';
           normalmente não há dados a excluir — mas você pode perguntar a qualquer momento.
         </p>
         <p>
-          Canal de atendimento: <span class="placeholder-mark">[PREENCHER: e-mail de
-          privacidade]</span>, assunto “Privacidade”.
+          Canal de atendimento: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>,
+          assunto “Privacidade”.
         </p>
 
         <h2>6. Crianças e adolescentes</h2>
