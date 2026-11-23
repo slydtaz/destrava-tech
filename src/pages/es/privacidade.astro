@@ -1,0 +1,97 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
+import { SITE } from '../../site.config';
+import { localizedPath, type Lang } from '../../i18n';
+
+const lang: Lang = 'es';
+---
+
+<Base
+  title="Política de Privacidad"
+  description="Cómo Destrava Tech trata los datos personales: recopilación mínima, sin registro y reglas para futuros anuncios (LGPD)."
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', Astro.url.pathname)} />
+
+    <section class="hero">
+      <span class="kicker">Documento legal · borrador</span>
+      <h1>Política de Privacidad</h1>
+      <p class="lead">
+        Última actualización: 23 de noviembre de 2026. Este documento es un borrador y será
+        revisado por el responsable legal del proyecto antes de su publicación definitiva.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>1. Quién es el responsable de los datos</h2>
+        <p>
+          El sitio {SITE.name} es un proyecto independiente. El responsable de los datos
+          personales es el representante legal del proyecto. El nombre completo, la ciudad y
+          el estado se publicarán tras la revisión final; el correo de contacto es
+          <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+        </p>
+
+        <h2>2. Qué datos recopilamos hoy</h2>
+        <p>
+          <strong>Ningún dato personal identificable.</strong> El sitio no tiene registro,
+          formularios, comentarios ni boletín. En esta fase no usamos cookies de seguimiento
+          ni herramientas de análisis de terceros.
+        </p>
+        <p>
+          Como cualquier sitio, el servidor de alojamiento registra datos técnicos de acceso
+          (como dirección IP, fecha/hora y página visitada) en registros operativos, usados
+          solo para la seguridad y el funcionamiento del servicio. Estos registros son
+          gestionados por el proveedor de alojamiento Vercel Inc. (<a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer" target="_blank">política de privacidad de Vercel</a>).
+        </p>
+
+        <h2>3. Fuentes y tipografía</h2>
+        <p>
+          Las fuentes tipográficas están alojadas por el propio sitio. No hacemos llamadas a
+          servidores externos de fuentes ni a redes sociales para mostrar esta página.
+        </p>
+
+        <h2>4. Anuncios (fase futura)</h2>
+        <p>
+          Cuando el sitio sea aprobado en Google AdSense, podrían mostrarse anuncios. En esa
+          fase:
+        </p>
+        <ul>
+          <li>Un aviso de cookies pedirá tu consentimiento <strong>antes</strong> de que se use cualquier cookie de anuncios, conforme a la LGPD;</li>
+          <li>Podrás rechazarlos y seguir navegando normalmente;</li>
+          <li>Google podría usar cookies para personalizar anuncios, conforme a la <a href="https://policies.google.com/technologies/ads?hl=es" rel="noopener noreferrer" target="_blank">política de publicidad de Google</a>;</li>
+          <li>Esta política se actualizará con la lista completa de cookies y finalidades antes de la activación.</li>
+        </ul>
+
+        <h2>5. Tus derechos (LGPD, art. 18)</h2>
+        <p>
+          Puedes solicitar confirmación del tratamiento, acceso, corrección, anonimización,
+          portabilidad o eliminación de datos personales, además de información sobre la
+          compartición. Como no recopilamos datos personales identificables en esta fase,
+          normalmente no hay datos que eliminar — pero puedes preguntar en cualquier momento.
+        </p>
+        <p>
+          Canal de atención: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>,
+          asunto “Privacidad”.
+        </p>
+
+        <h2>6. Niños y adolescentes</h2>
+        <p>
+          El contenido es libre y educativo, adecuado para todas las edades. No recopilamos
+          intencionalmente datos de niños. Si eres responsable y crees que un niño nos envió
+          datos, contacta para su eliminación inmediata.
+        </p>
+
+        <h2>7. Cambios</h2>
+        <p>
+          Esta política puede cambiar a medida que el sitio evoluciona (por ejemplo, al
+          activar anuncios). La fecha en la parte superior indica la última revisión. Los
+          cambios relevantes se destacarán en esta página.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>

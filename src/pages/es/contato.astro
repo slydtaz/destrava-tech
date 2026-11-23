@@ -1,0 +1,48 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
+import { SITE } from '../../site.config';
+import { localizedPath, type Lang } from '../../i18n';
+
+const lang: Lang = 'es';
+---
+
+<Base
+  title="Contacto"
+  description="Contacta con Destrava Tech: correcciones, sugerencias de guías y dudas sobre privacidad."
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', Astro.url.pathname)} />
+
+    <section class="hero">
+      <span class="kicker">Contacto</span>
+      <h1>Escríbenos</h1>
+      <p class="lead">
+        ¿Encontraste un paso desactualizado? ¿Tienes una duda que podría ser una buena guía?
+        Escríbenos.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>Correo electrónico</h2>
+        <p>
+          <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
+        </p>
+        <p>
+          Respondemos lo antes posible. Para solicitudes sobre tus datos personales (LGPD),
+          usa el asunto <strong>“Privacidad”</strong> — consulta la
+          <a href={localizedPath(lang, '/privacidade/')}>Política de Privacidad</a>.
+        </p>
+
+        <h2>Qué NO enviar</h2>
+        <p>
+          Nunca envíes contraseñas, códigos de verificación, números de tarjeta ni
+          documentos por correo. Ninguna empresa seria lo pide — y nosotros tampoco.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>

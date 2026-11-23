@@ -1,0 +1,67 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
+import { SITE } from '../../site.config';
+import { localizedPath, type Lang } from '../../i18n';
+
+const lang: Lang = 'en';
+---
+
+<Base
+  title="About"
+  description="Who is behind Destrava Tech, how the guides are written, and how to get in touch."
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', Astro.url.pathname)} />
+
+    <section class="hero">
+      <span class="kicker">About the site</span>
+      <h1>Why Destrava Tech exists</h1>
+      <p class="lead">
+        Many people get stuck on technology not because they lack ability, but because they lack
+        a decent explanation. This site exists to unblock them.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>What you'll find here</h2>
+        <p>
+          Practical guides in plain language about digital security, WhatsApp, artificial
+          intelligence and phones. Each guide starts from a real question — the kind we hear
+          from friends and family — and is written to be followed step by step, without
+          jargon.
+        </p>
+
+        <h2>How the content is produced</h2>
+        <p>
+          The guides are written with the help of artificial intelligence tools, with steps
+          you can check and sources cited when a guide makes a claim about scams, app rules
+          or security (preferably official ones), so you can verify it yourself.
+        </p>
+        <p>
+          Technology changes fast. That is why every guide shows the date of its last update.
+          If you find a step that differs on your device, <a href={localizedPath(lang, '/contato/')}>let us
+          know</a> — we will correct it and update the date.
+        </p>
+
+        <h2>Independence</h2>
+        <p>
+          Destrava Tech is an independent project. We are not affiliated with Google, Meta,
+          banks or phone manufacturers. In the future, the site may display Google AdSense ads
+          to stay free — always identified as advertising and respecting your privacy and
+          Brazilian law (LGPD).
+        </p>
+
+        <h2>Who is responsible</h2>
+        <p>
+          This is a young project, run by a technology student with the support of an adult
+          guardian. The guardian's full name will be published after the final review. For
+          contact: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>

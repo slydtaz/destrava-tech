@@ -1,0 +1,47 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
+import { SITE } from '../../site.config';
+import { localizedPath, type Lang } from '../../i18n';
+
+const lang: Lang = 'en';
+---
+
+<Base
+  title="Contact"
+  description="Contact Destrava Tech: corrections, guide suggestions and privacy questions."
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', Astro.url.pathname)} />
+
+    <section class="hero">
+      <span class="kicker">Contact</span>
+      <h1>Get in touch</h1>
+      <p class="lead">
+        Found an outdated step? Have a question that would make a good guide? Write to us.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>Email</h2>
+        <p>
+          <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
+        </p>
+        <p>
+          We reply as soon as we can. For requests about your personal data (LGPD), use the
+          subject <strong>“Privacy”</strong> — see the
+          <a href={localizedPath(lang, '/privacidade/')}>Privacy Policy</a>.
+        </p>
+
+        <h2>What NOT to send</h2>
+        <p>
+          Never send passwords, verification codes, card numbers or documents by email. No
+          serious company asks for that — and neither do we.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>

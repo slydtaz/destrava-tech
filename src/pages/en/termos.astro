@@ -1,0 +1,68 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
+import { SITE } from '../../site.config';
+import { localizedPath, type Lang } from '../../i18n';
+
+const lang: Lang = 'en';
+---
+
+<Base
+  title="Terms of Use"
+  description="Rules for using Destrava Tech: educational content, no guarantee of results, and limits of liability."
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', Astro.url.pathname)} />
+
+    <section class="hero">
+      <span class="kicker">Legal document · draft</span>
+      <h1>Terms of Use</h1>
+      <p class="lead">Last updated: November 23, 2026.</p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>1. What the site is</h2>
+        <p>
+          {SITE.name} publishes educational technology guides. The content is informative and
+          does not replace official support from apps, banks or manufacturers.
+        </p>
+
+        <h2>2. Use of the content</h2>
+        <p>
+          You may read it, share links and use the instructions for personal purposes.
+          Reproducing the full text on another site without authorization is not allowed.
+        </p>
+
+        <h2>3. No warranties</h2>
+        <p>
+          We do our best to keep the guides correct and up to date, but apps change without
+          notice. The steps may vary by version, device model or region. You use the
+          instructions at your own risk; always check before sensitive actions (deleting
+          data, transferring money, changing security settings).
+        </p>
+
+        <h2>4. Third-party content</h2>
+        <p>
+          We cite external sources as references. We do not control the content of those
+          sites and are not responsible for it. Trademarks mentioned (WhatsApp, Google, Pix,
+          etc.) belong to their respective owners; we have no affiliation with them.
+        </p>
+
+        <h2>5. Privacy</h2>
+        <p>
+          Data processing follows the <a href={localizedPath(lang, '/privacidade/')}>Privacy Policy</a>.
+        </p>
+
+        <h2>6. Jurisdiction and applicable law</h2>
+        <p>
+          These terms are governed by the laws of the Federative Republic of Brazil,
+          including the Internet Bill of Rights and the LGPD.
+          The competent court will be announced after the legal review of this document.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>
