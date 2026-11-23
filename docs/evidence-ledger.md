@@ -56,4 +56,4 @@ Fatos observados no build local e no navegador, não estimativas:
 | Sem overflow horizontal em 320/375/768/1024/1280/1440 px em home, índice, artigo e home EN | `scrollWidth === clientWidth` e varredura de `getBoundingClientRect()` | Alta (medido) |
 | Indexação real no Google e aprovação de conta não podem ser afirmadas sem publicar e sem ação do proprietário | Fora do escopo local | N/A — pendente |
 
-Nota: a URL canônica `https://destrava-tech-rho.vercel.app` refere-se à versão 0.1.1 já publicada na rodada anterior. A expansão 0.2.0 está pronta localmente e aguarda autorização separada; nenhuma validação online foi executada contra o ar nesta rodada.
+Nota: a URL canônica `https://destrava-tech-rho.vercel.app` recebeu a expansão 0.2.0 em 2026-11-23, após autorização explícita. A validação online foi executada contra o ar nesta rodada: arquivo de verificação do Google 200 com a linha exata, `sitemap-index.xml` 200, `sitemap-0.xml` 200 com 60 URLs/180 alternates, `robots.txt` e `ads.txt` 200, home PT/EN/ES e guia 200, 404 personalizado em caminho inexistente. Indexação no Google e aprovação de AdSense continuam fora do alcance local.

@@ -1,8 +1,8 @@
 # Changelog
 
-## 0.2.0 — 2026-11-23 (PRONTO — aguardando autorização final 🔒)
+## 0.2.0 — 2026-11-23 (PUBLICADO 🟢)
 
-Expansão completa construída e validada localmente; **não publicada**. Nada foi pushed, merged ou deployado nesta rodada.
+Expansão completa publicada em produção **após autorização explícita e separada do proprietário**. Deploy `dpl_EvtJP37VmYnSphswh29iAet7AFsD` no projeto `slydtx/destrava-tech`, aliasado a https://destrava-tech-rho.vercel.app. Validação no ar: home PT/EN/ES 200; guia 200; arquivo de verificação do Google 200 com a linha exata; `sitemap-index.xml` 200; `sitemap-0.xml` 200 com 60 URLs e 180 alternates; `robots.txt` e `ads.txt` 200; caminho inexistente retorna 404 com a página personalizada. Nenhum push ou merge foi feito; todo o código permanece em commits locais na branch `interface-motion`.
 
 - Home animada em capa de revista (preto/rosa), com estado final legível por padrão e em `prefers-reduced-motion`.
 - 14 guias em português, inglês e espanhol (42 páginas de artigo), com aviso visível de tradução automática e prevalência da versão PT nas páginas EN/ES.
@@ -14,7 +14,7 @@ Expansão completa construída e validada localmente; **não publicada**. Nada f
 - 20 tasks executadas em SDD, cada uma com build limpo, commit local e revisão task-scoped antes da próxima.
 - QA final aprovado em Chromium: 320/375/768/1024/1280/1440 px, 5 navegações, teclado/foco, reduced motion, skeleton em rede lenta, dois temas, console limpo — `docs/qa-report.md`.
 
-Pendente: autorização final separada do proprietário e as porteiras humanas em `docs/pending-actions.md`.
+Pendente: apenas as porteiras humanas em `docs/pending-actions.md` (dados legais, revisão editorial, Search Console e AdSense).
 
 ## 0.1.1 — 2026-11-23 (PUBLICADO 🟢)
 

@@ -1,7 +1,7 @@
 # 🎛️ Central de Links — Destrava Tech
 
 Modo de gerenciamento escolhido pelo proprietário: **Central de links** (acompanhar tudo diretamente pelos painéis).
-Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 (versão 0.1.1) · Expansão 0.2.0: **pronta e com QA aprovado, aguardando autorização final para publicar** 🔒
+Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 — versão 0.2.0 (expansão completa), publicada com autorização explícita do proprietário.
 
 ## O site
 
@@ -12,7 +12,7 @@ Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 (versão 0.1.
 | 🔒 Política de Privacidade | https://destrava-tech-rho.vercel.app/privacidade/ |
 | 🗺️ Sitemap (para o Google) | https://destrava-tech-rho.vercel.app/sitemap-index.xml |
 
-### Rotas da expansão 0.2.0 (disponíveis depois da publicação autorizada)
+### Rotas da expansão 0.2.0 (já no ar)
 
 | O quê | Caminho no site |
 |---|---|
@@ -23,14 +23,14 @@ Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 (versão 0.1.
 | 🔍 Verificação do Google | `/googlee2e464378dc22f96.html` |
 | 🗺️ Sitemap com hreflang | `/sitemap-index.xml` → `/sitemap-0.xml` (60 URLs, 180 alternates) |
 
-O arquivo de verificação do Google, `ads.txt`, `robots.txt` e `favicon.svg` vêm de `public/` e são copiados byte a byte; a 404, `sitemap-index.xml` e `sitemap-0.xml` são gerados pelo build. Tudo já está no build local e segue junto na publicação.
+O arquivo de verificação do Google, `ads.txt`, `robots.txt` e `favicon.svg` vêm de `public/` e são copiados byte a byte; a 404, `sitemap-index.xml` e `sitemap-0.xml` são gerados pelo build. Todos foram confirmados no ar após a publicação.
 
 ## Painéis de controle (sua conta Vercel: slydtx)
 
 | O quê | Link | Para quê |
 |---|---|---|
 | 📊 Dashboard do projeto | https://vercel.com/slydtx/destrava-tech | Visitas, desempenho, erros |
-| 🚀 Último deploy | https://vercel.com/slydtx/destrava-tech/BVT835r9Y3Bbz8njacd3UTBJi9j4 | Detalhes da publicação atual |
+| 🚀 Último deploy | https://vercel.com/slydtx/destrava-tech/EvtJP37VmYnSphswh29iAet7AFsD | Publicação da versão 0.2.0 (expansão) |
 | ⚙️ Configurações | https://vercel.com/slydtx/destrava-tech/settings | Domínio próprio, proteção, etc. |
 | 📈 Analytics | https://vercel.com/slydtx/destrava-tech/analytics | Visitas (ativar Web Analytics grátis se quiser — sem cookies) |
 

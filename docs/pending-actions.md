@@ -27,11 +27,13 @@ Atualizado: 2026-11-23
 
 ## Publicação desta rodada
 
-12. **PENDENTE — autorização explícita e separada do proprietário antes de publicar a expansão 0.2.0.** O QA final foi aprovado em 2026-11-23 (build limpo de 61 páginas, 20 tasks revisadas, zero requisição externa, WCAG AA nos dois temas). O agente não deve publicar no Vercel nem executar comandos de deploy sem essa confirmação. Nada desta rodada foi publicado.
+12. ~~Autorização explícita e separada do proprietário antes de publicar a expansão 0.2.0~~ ✅ **FEITO (2026-11-23):** confirmada após o QA aprovado; deploy `dpl_EvtJP37VmYnSphswh29iAet7AFsD` no projeto `slydtx/destrava-tech`, aliasado a https://destrava-tech-rho.vercel.app. Nenhum push ou merge.
 
-13. **PENDENTE (depois da autorização) — validar no ar:** `https://destrava-tech-rho.vercel.app/googlee2e464378dc22f96.html` (verificação do Google) e `https://destrava-tech-rho.vercel.app/sitemap-index.xml` (hreflang pt-BR/en/es).
+13. ~~Validar no ar a verificação do Google e o sitemap~~ ✅ **FEITO (2026-11-23):** `/googlee2e464378dc22f96.html` 200 com a linha exata; `/sitemap-index.xml` 200; `/sitemap-0.xml` 200 com 60 URLs e 180 alternates `pt-BR`/`en`/`es`; `robots.txt`, `ads.txt`, home PT/EN/ES e guia 200; 404 personalizado retornado para caminho inexistente.
 
 14. **PENDENTE (quando a conta AdSense for confirmada em nome do responsável adulto 18+) — preencher o `pub-...` real em `public/ads.txt`**, hoje com valor de previsão (`pub-1903855512494155`). `SITE.adsEnabled` continua `false` até a aprovação.
+
+15. **PENDENTE (limpeza — requer sua confirmação) — excluir o projeto Vercel `slydtx/interface-motion`.** O CLI criou esse projeto por engano no primeiro deploy porque o worktree ainda não estava vinculado ao `destrava-tech`; ele contém apenas uma cópia da versão 0.2.0 e não afeta o site no ar. A exclusão é irreversível e o próprio CLI exige aprovação humana (`vercel project rm interface-motion --confirm-name interface-motion`). Se preferir, deixe o projeto lá.
 
 ## Custos
 

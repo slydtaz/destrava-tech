@@ -26,6 +26,8 @@ Executado sobre `npm run preview` do build local de `efe45a2` (61 páginas), em 
 
 Nota sobre falso positivo: uma busca por texto cru no HTML da home PT encontra a string `translation-notice` porque o nome da classe está no CSS empacotado. A contagem no DOM (`querySelectorAll('.translation-notice').length`) é `0` em PT e `1` em cada página EN/ES — comportamento correto.
 
+**Validação no ar (após autorização, 2026-11-23):** deploy `dpl_EvtJP37VmYnSphswh29iAet7AFsD` em `slydtx/destrava-tech`, aliasado a `https://destrava-tech-rho.vercel.app`. HTTP 200 em `/`, `/en/`, `/es/`, guia PT, `/googlee2e464378dc22f96.html` (linha exata, 53 bytes), `/sitemap-index.xml`, `/sitemap-0.xml` (60 loc / 180 alternates), `/robots.txt` e `/ads.txt`; HTTP 404 com a página personalizada em caminho inexistente.
+
 > **Nota:** as seções abaixo, até "Veredito final", são registros do baseline 0.1.0/MVP. Números como "17 páginas/2,45s" e "1 warning" são históricos; os valores atuais da expansão 0.2.0 estão na tabela Task 19 no topo.
 
 ## Mapa requisito → teste → resultado
@@ -131,4 +133,4 @@ relatório da Task 7, fora do site. Nenhuma delas foi listada como fonte acima.
 
 ## Veredito final (expansão completa)
 
-**QA aprovado para publicação** — build limpo (61 páginas), 20 tasks concluídas e revisadas task a task, zero requisição externa, zero anúncio, zero erro de console, WCAG 2.2 AA verificado nos pares de texto e controles medidos, nos dois temas (exceto os dois tokens decorativos documentados acima). Restam apenas porteiras humanas externas ao código: preenchimento dos dados legais pendentes, configuração do Search Console pelo proprietário, revisão humana editorial e a autorização final separada para publicar. Nenhum deploy foi executado.
+**QA aprovado e publicado em 2026-11-23** — build limpo (61 páginas), 20 tasks concluídas e revisadas task a task, zero requisição externa, zero anúncio, zero erro de console, WCAG 2.2 AA verificado nos pares de texto e controles medidos, nos dois temas (exceto os dois tokens decorativos documentados acima). Publicação autorizada explicitamente e validada no ar: verificação do Google, sitemap com hreflang, robots, ads.txt, home PT/EN/ES, guia e 404. Restam apenas porteiras humanas externas ao código: dados legais pendentes, Search Console, titularidade AdSense e revisão editorial.
