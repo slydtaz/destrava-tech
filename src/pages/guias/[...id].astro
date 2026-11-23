@@ -1,104 +1,17 @@
 ---
-import { getCollection, render } from 'astro:content';
-import Base from '../../layouts/Base.astro';
-import ArticleCard from '../../components/ArticleCard.astro';
-import AdSlot from '../../components/AdSlot.astro';
-import { SITE, PILLARS } from '../../site.config';
+import { getCollection } from 'astro:content';
+import GuidePage from '../../components/GuidePage.astro';
+import { slugFromId } from '../../i18n';
 
 export async function getStaticPaths() {
-  const guias = await getCollection('guias', ({ data }) => !data.draft);
-  return guias.map((entry) => ({ params: { id: entry.id }, props: { entry } }));
+  const guias = await getCollection('guias', ({ data }) => !data.draft && data.lang === 'pt');
+  return guias.map((entry) => ({
+    params: { id: slugFromId(entry.id) },
+    props: { entry, lang: 'pt' as const },
+  }));
 }
 
-const { entry } = Astro.props;
-const { Content } = await render(entry);
-const { title, description, pillar, updated, sources } = entry.data;
-const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'UTC' });
-
-const all = await getCollection('guias', ({ data }) => !data.draft);
-const related = all
-  .filter((g) => g.id !== entry.id && g.data.pillar === pillar)
-  .slice(0, 3);
-
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Article',
-  headline: title,
-  description,
-  dateModified: updated.toISOString().slice(0, 10),
-  inLanguage: 'pt-BR',
-  author: { '@type': 'Organization', name: SITE.name },
-  publisher: { '@type': 'Organization', name: SITE.name },
-  mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,
-};
+const { entry, lang } = Astro.props;
 ---
 
-<Base title={title} description={description} jsonLd={jsonLd}>
-  <div class="reading-progress" aria-hidden="true"></div>
-  <div class="container">
-    <article>
-      <header class="article-header">
-        <span class="badge">{PILLARS[pillar].label}</span>
-        <h1>{title}</h1>
-        <div class="article-meta">
-          <span>
-            Atualizado em
-            <time datetime={updated.toISOString().slice(0, 10)}>{fmt.format(updated)}</time>
-          </span>
-          <span>·</span>
-          <span>{SITE.name}</span>
-        </div>
-      </header>
-
-      <div class="article-body">
-        <Content />
-      </div>
-
-      <section class="sources" aria-labelledby="fontes">
-        <h2 id="fontes">{sources && sources.length > 0 ? 'Fontes consultadas' : 'Sobre as fontes'}</h2>
-        {
-          sources && sources.length > 0 ? (
-            <ul>
-              {sources.map((s) => (
-                <li>
-                  <a href={s.url} rel="noopener noreferrer" target="_blank">
-                    {s.name}<span class="visually-hidden"> (abre em nova aba)</span>
-                  </a>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>Este guia usa passos gerais dos aplicativos. Confira sempre o suporte oficial.</p>
-          )
-        }
-        <p>
-          Os passos podem variar um pouco conforme a versão do aplicativo e o modelo do
-          aparelho. Encontrou algo diferente? <a href="/contato/">Avise a gente</a>.
-        </p>
-      </section>
-
-      <AdSlot slot="artigo-fim" />
-    </article>
-
-    {
-      related.length > 0 && (
-        <section class="related section" aria-labelledby="relacionados">
-          <div class="section-head">
-            <h2 id="relacionados">Continue por aqui</h2>
-          </div>
-          <ul class="card-grid">
-            {related.map((g) => (
-              <ArticleCard
-                id={g.id}
-                title={g.data.title}
-                description={g.data.description}
-                pillar={g.data.pillar}
-                updated={g.data.updated}
-              />
-            ))}
-          </ul>
-        </section>
-      )
-    }
-  </div>
-</Base>
+<GuidePage entry={entry} lang={lang} />

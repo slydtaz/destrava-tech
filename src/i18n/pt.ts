@@ -36,6 +36,17 @@ const dict = {
   'article.aboutSources': 'Sobre as fontes',
   'article.related': 'Continue por aqui',
   'article.newTab': 'abre em nova aba',
+  'article.example': 'Exemplo do passo',
+  'article.exampleText': 'Os passos deste guia aparecem abaixo.',
+  'article.sourceLanguage': 'Texto em português',
+  'article.sourcesFallback': 'Este guia usa passos gerais dos aplicativos. Confira sempre o suporte oficial.',
+  'article.stepsNote': 'Os passos podem variar um pouco conforme a versão do aplicativo e o modelo do aparelho. Encontrou algo diferente?',
+  'article.reportLink': 'Avise a gente',
+
+  'pillar.seguranca': 'Segurança digital',
+  'pillar.whatsapp': 'WhatsApp',
+  'pillar.ia': 'IA na prática',
+  'pillar.celular': 'Celular',
 
   'guides.kicker': 'Biblioteca de guias',
   'guides.title': 'Todos os guias',
