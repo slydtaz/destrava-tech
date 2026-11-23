@@ -1,23 +1,37 @@
 ---
 import Base from '../layouts/Base.astro';
+import Illustration from '../components/Illustration.astro';
+import { LANGS, localizedPath, t } from '../i18n';
 ---
 
-<Base
-  title="Página não encontrada"
-  description="A página que você procura não existe ou mudou de endereço."
->
+<Base title={t('pt', 'notfound.title')} description={t('pt', 'notfound.lead')}>
   <div class="container">
     <section class="hero">
-      <span class="kicker">Erro 404</span>
-      <h1>Essa página não existe (ou mudou de lugar)</h1>
-      <p class="lead">
-        O endereço pode ter sido digitado errado ou o guia foi movido. Sem drama: dá para
-        voltar para o caminho principal.
-      </p>
-      <p class="error-actions">
-        <a class="button" href="/">Voltar ao início</a>
-        <a class="button secondary" href="/guias/">Ver todos os guias</a>
-      </p>
+      <Illustration src="/illustrations/notfound.svg" />
+      <span class="kicker">{t('pt', 'notfound.kicker')}</span>
+      <h1>{t('pt', 'notfound.title')}</h1>
+      <p class="lead">{t('pt', 'notfound.lead')}</p>
     </section>
+
+    {
+      LANGS.map((lang) => (
+        <section class="section">
+          <div class="section-head">
+            <h2>{t(lang, `lang.${lang}`)}</h2>
+            <span class="kicker">{t(lang, 'notfound.kicker')}</span>
+          </div>
+          <h3>{t(lang, 'notfound.title')}</h3>
+          <p class="lead">{t(lang, 'notfound.lead')}</p>
+          <p class="error-actions">
+            <a class="button" href={localizedPath(lang, '/')}>
+              {t(lang, 'notfound.home')}
+            </a>
+            <a class="button secondary" href={localizedPath(lang, '/guias/')}>
+              {t(lang, 'notfound.guides')}
+            </a>
+          </p>
+        </section>
+      ))
+    }
   </div>
 </Base>
