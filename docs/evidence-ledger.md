@@ -40,3 +40,20 @@ Data da pesquisa: 2026-11-23 · Fase 2 (pesquisa de mercado) · Modo simplificad
 
 - OpenCode v2.4.0 · Git 2.55.0 · Node v24.19.0 (≥22.20 ✅) · npm 11.17.0 · npx 11.17.0 · winget 1.29.380
 - Nada a instalar. Workspace estava vazio.
+
+## Expansão 0.2.0 — evidências técnicas (verificado 2026-11-23)
+
+Fatos observados no build local e no navegador, não estimativas:
+
+| Fato | Como foi verificado | Confiança |
+|---|---|---|
+| Build gera 61 páginas; `sitemap-index.xml` com 60 URLs e 180 `<xhtml:link>` (60 por hreflang: `pt-BR`, `en`, `es`); zero `/guias/pt/` | `npm run build` + inspeção programática de `dist/sitemap-0.xml` | Alta (executado) |
+| Config `sitemap({ i18n: ... })` é o mecanismo que gera os alternates; as tags `<link rel="alternate">` do `Base.astro` não alimentam o XML | Context7 `/withastro/docs` + leitura de `node_modules/@astrojs/sitemap/dist/utils/parse-i18n-url.js` e `generate-sitemap.js` | Alta (código-fonte instalado) |
+| Paridade de 80 chaves em `pt.ts`, `en.ts` e `es.ts`; nenhum link `/guias/pt/` em `src/` ou `dist/` | Contagem por arquivo e busca em árvore | Alta (executado) |
+| Contraste AA: corpo 19,06:1 (ambos os temas); links `#be185d` 5,78:1 no claro e `#f472b6` 7,51:1 no escuro | Cálculo de luminância sRGB sobre `getComputedStyle` no Chromium | Alta (medido) |
+| Zero requisição a origem externa, zero `.ad-slot`/`.consent-bar`, zero erro/warning de console | `performance.getEntriesByType('resource')` filtrado por origem + logs do Playwright | Alta (medido) |
+| `prefers-reduced-motion` mantém estado final visível; skeleton aparece só em navegação cliente lenta e some ao concluir | `browser_emulate_media` + CDP `Network.emulateNetworkConditions` (500 ms) | Alta (medido) |
+| Sem overflow horizontal em 320/375/768/1024/1280/1440 px em home, índice, artigo e home EN | `scrollWidth === clientWidth` e varredura de `getBoundingClientRect()` | Alta (medido) |
+| Indexação real no Google e aprovação de conta não podem ser afirmadas sem publicar e sem ação do proprietário | Fora do escopo local | N/A — pendente |
+
+Nota: a URL canônica `https://destrava-tech-rho.vercel.app` refere-se à versão 0.1.1 já publicada na rodada anterior. A expansão 0.2.0 está pronta localmente e aguarda autorização separada; nenhuma validação online foi executada contra o ar nesta rodada.

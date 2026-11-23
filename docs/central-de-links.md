@@ -1,7 +1,7 @@
 # 🎛️ Central de Links — Destrava Tech
 
 Modo de gerenciamento escolhido pelo proprietário: **Central de links** (acompanhar tudo diretamente pelos painéis).
-Atualizado: 2026-11-23 · Status: **PUBLICADO** 🟢
+Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 (versão 0.1.1) · Expansão 0.2.0: **pronta e com QA aprovado, aguardando autorização final para publicar** 🔒
 
 ## O site
 
@@ -11,6 +11,19 @@ Atualizado: 2026-11-23 · Status: **PUBLICADO** 🟢
 | 📚 Todos os guias | https://destrava-tech-rho.vercel.app/guias/ |
 | 🔒 Política de Privacidade | https://destrava-tech-rho.vercel.app/privacidade/ |
 | 🗺️ Sitemap (para o Google) | https://destrava-tech-rho.vercel.app/sitemap-index.xml |
+
+### Rotas da expansão 0.2.0 (disponíveis depois da publicação autorizada)
+
+| O quê | Caminho no site |
+|---|---|
+| 🏠 Home EN / ES | `/en/` · `/es/` |
+| 📚 Índice de guias EN / ES | `/en/guias/` · `/es/guias/` |
+| 📄 Páginas fixas EN / ES | `/en/{sobre,contato,privacidade,termos}/` · `/es/{sobre,contato,privacidade,termos}/` |
+| ❌ 404 personalizada | qualquer caminho inexistente |
+| 🔍 Verificação do Google | `/googlee2e464378dc22f96.html` |
+| 🗺️ Sitemap com hreflang | `/sitemap-index.xml` → `/sitemap-0.xml` (60 URLs, 180 alternates) |
+
+As quatro rotas de verificação/SEO e os arquivos públicos já estão no build local e serão copiados na publicação.
 
 ## Painéis de controle (sua conta Vercel: slydtx)
 

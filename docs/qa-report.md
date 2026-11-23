@@ -2,6 +2,30 @@
 
 Data: 2026-11-23 · Ambiente: Windows, Node v24.19.0, Astro 5 · Navegador de teste: Chromium 157 (Playwright)
 
+## QA final da expansão — Task 19 (2026-11-23)
+
+Executado sobre `npm run preview` do build local de `efe45a2` (61 páginas), em Chromium 157 via Playwright. Nenhuma dependência, pacote, plugin ou skill nova. Nenhuma requisição a origem externa.
+
+| Verificação | Resultado | Evidência |
+|---|---|---|
+| Build final | ✅ | `npm run build` limpo: 61 páginas em 8,11s; `sitemap-index.xml` criado; `git diff --check` limpo |
+| Responsividade 320 / 375 / 768 / 1024 / 1280 / 1440 px | ✅ | Em `/`, `/guias/`, `/guias/golpe-do-pix-sinais-de-alerta/` e `/en/`: `scrollWidth === clientWidth` e nenhum elemento com `right > vw+1` ou `left < -1` |
+| 5 navegações consecutivas | ✅ | `/` → `/guias/` → artigo PT → artigo EN → artigo ES → `/`: `lang` = `pt-BR`/`en`/`es`; 0 requisições externas em cada; aviso de tradução apenas nas versões EN/ES |
+| Teclado e foco | ✅ | 1º Tab = "Pular para o conteúdo"; `outline: solid 3px` nos 6 primeiros controles; nenhum alvo invisível |
+| Controle de tema | ✅ | Botão 44×44 px, `aria-label` "Alternar tema claro e escuro"; clique alterna `data-theme` e grava `dt-theme`; preferência persistiu após navegação cliente |
+| Contraste nos dois temas | ✅ | Corpo 19,06:1 em claro e escuro; links de conteúdo 5,78:1 (claro, `#be185d`) e 7,51:1 (escuro, `#f472b6`); todos ≥ 4,5:1 |
+| `prefers-reduced-motion` | ✅ | Estado final visível em `.swap`, `.cover-word`, `.illustration`, `.how-line` e exemplo animado (`opacity: 1`, `transform: none`, `visibility: visible`); `scroll-behavior: auto` |
+| Skeleton em rede lenta | ✅ | Navegação cliente com latência CDP de 500 ms: `hidden=false` e `[data-skeleton-status]` presente durante o carregamento; ao concluir, `hidden=true` e status removido |
+| Zero requisição externa / anúncios | ✅ | `performance.getEntriesByType('resource')` filtrado por origem → `[]`; ausência de `.ad-slot` e `.consent-bar`; `SITE.adsEnabled = false` |
+| Console do navegador | ✅ | 0 erros e 0 warnings |
+| Paridade i18n | ✅ | 80/80/80 chaves em `pt.ts`/`en.ts`/`es.ts`; `/guias/pt/` ausente em `src/` e `dist/`; avisos de tradução no DOM exclusivamente em EN/ES |
+| `hreflang` no HTML | ✅ | `x-default`, `pt-BR`, `en`, `es` apontando para as URLs canônicas corretas na home |
+| Sitemap i18n | ✅ | 60 `<loc>` e 180 `<xhtml:link>` (60 por idioma: `pt-BR`, `en`, `es`); zero `/guias/pt/` |
+| 404 personalizada | ✅ | `/404.html`: H1 "Essa página não existe (ou mudou de lugar)", 1 ilustração decorativa e os 6 links exatos (`/`, `/guias/`, `/en/`, `/en/guias/`, `/es/`, `/es/guias/`) |
+| Arquivos públicos no `dist` | ✅ | `ads.txt`, `robots.txt`, `favicon.svg` e `googlee2e464378dc22f96.html` presentes e byte-idênticos ao `public/` |
+
+Nota sobre falso positivo: uma busca por texto cru no HTML da home PT encontra a string `translation-notice` porque o nome da classe está no CSS empacotado. A contagem no DOM (`querySelectorAll('.translation-notice').length`) é `0` em PT e `1` em cada página EN/ES — comportamento correto.
+
 ## Mapa requisito → teste → resultado
 
 | # | Requisito (PRD) | Teste executado | Resultado | Evidência |
@@ -103,6 +127,6 @@ relatório da Task 7, fora do site. Nenhuma delas foi listada como fonte acima.
 - Lighthouse/axe automatizado: não executado nesta rodada; contraste e semântica verificados manualmente via script. Recomenda-se rodar antes do deploy final.
 - Validação com usuários reais: conceito não validado (registrado no PRD).
 
-## Veredito do MVP
+## Veredito final (expansão completa)
 
-**Aprovado para revisão do proprietário** — pendente: preenchimento dos placeholders legais, revisão humana dos artigos e decisão de publicação.
+**QA aprovado para publicação** — build limpo (61 páginas), 20 tasks concluídas e revisadas task a task, zero requisição externa, zero anúncio, zero erro de console, WCAG 2.2 AA verificado nos pontos críticos e nos dois temas. Restam apenas porteiras humanas externas ao código: preenchimento dos dados legais pendentes, configuração do Search Console pelo proprietário, revisão humana editorial e a autorização final separada para publicar. Nenhum deploy foi executado.

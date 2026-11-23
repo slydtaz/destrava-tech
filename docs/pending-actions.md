@@ -4,7 +4,7 @@ Atualizado: 2026-11-23
 
 ## Você (proprietário) — antes de enviar ao AdSense
 
-1. **PENDENTE — Ler e revisar os 10 guias** (em `src/content/guias/`). Corrigir o que não bater com sua experiência real. O Google valoriza conteúdo útil e original — sua revisão é o que garante isso.
+1. **PENDENTE — Ler e revisar os 14 guias** (em `src/content/guias/`; 4 novos: celular no exterior, IA para traduzir, Wi-Fi público e falso suporte no WhatsApp). Corrigir o que não bater com sua experiência real. O Google valoriza conteúdo útil e original — sua revisão é o que garante isso. A versão PT prevalece; EN/ES são traduções automáticas com aviso visível.
 2. **PENDENTE — Decidir o nome definitivo do site** ("Destrava Tech" é nome de trabalho).
 3. ~~Escolher a hospedagem gratuita e autorizar a publicação~~ ✅ **FEITO (2026-11-23, rodada anterior):** publicado na Vercel → https://destrava-tech-rho.vercel.app
 
@@ -27,7 +27,11 @@ Atualizado: 2026-11-23
 
 ## Publicação desta rodada
 
-12. **PENDENTE — autorização explícita do proprietário antes de publicar esta rodada** (conteúdo honesto e ajustes de acessibilidade). O agente não deve publicar no Vercel nem executar comandos de deploy sem essa confirmação, dada depois do QA. Nada desta rodada foi publicado.
+12. **PENDENTE — autorização explícita e separada do proprietário antes de publicar a expansão 0.2.0.** O QA final foi aprovado em 2026-11-23 (build limpo de 61 páginas, 20 tasks revisadas, zero requisição externa, WCAG AA nos dois temas). O agente não deve publicar no Vercel nem executar comandos de deploy sem essa confirmação. Nada desta rodada foi publicado.
+
+13. **PENDENTE (depois da autorização) — validar no ar:** `https://destrava-tech-rho.vercel.app/googlee2e464378dc22f96.html` (verificação do Google) e `https://destrava-tech-rho.vercel.app/sitemap-index.xml` (hreflang pt-BR/en/es).
+
+14. **PENDENTE (quando a conta AdSense for confirmada em nome do responsável adulto 18+) — preencher o `pub-...` real em `public/ads.txt`**, hoje com valor de previsão (`pub-1903855512494155`). `SITE.adsEnabled` continua `false` até a aprovação.
 
 ## Custos
 
