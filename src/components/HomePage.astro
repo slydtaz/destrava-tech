@@ -1,0 +1,377 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ArticleCard from './ArticleCard.astro';
+import Illustration from './Illustration.astro';
+import TranslationNotice from './TranslationNotice.astro';
+import { SITE, PILLARS, type PillarKey } from '../site.config';
+import { localizedPath, slugFromId, t, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+
+// Mesmo filtro dos artigos: só guias do idioma atual, sem misturar prefixos.
+const guias = (await getCollection('guias', ({ data }) => !data.draft && data.lang === lang)).sort(
+  (a, b) => b.data.updated.valueOf() - a.data.updated.valueOf()
+);
+const latest = guias.slice(0, 6);
+const pillarKeys = Object.keys(PILLARS) as PillarKey[];
+const titleWords = t(lang, 'home.title').split(' ');
+const howSteps = [t(lang, 'home.how1'), t(lang, 'home.how2'), t(lang, 'home.how3')];
+---
+
+<Base
+  title={SITE.name}
+  description={t(lang, 'home.metaDescription')}
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container cover">
+    {lang !== 'pt' && <TranslationNotice lang={lang} ptHref="/" />}
+
+    <section class="hero cover-hero" aria-labelledby="cover-title">
+      <div class="cover-grid">
+        <div class="cover-copy">
+          <span class="kicker">{t(lang, 'home.kicker')}</span>
+          <h1 id="cover-title" class="cover-title">
+            {
+              titleWords.map((word, i) => (
+                <Fragment><span class="cover-word" style={`--i: ${i}`}>{word}</span>{i < titleWords.length - 1 ? ' ' : ''}</Fragment>
+              ))
+            }
+          </h1>
+          <p class="swap" aria-hidden="true">
+            <span class="swap-from">{t(lang, 'home.swapFrom')}</span>
+            <span class="swap-to">{t(lang, 'home.swapTo')}</span>
+          </p>
+          <p class="lead">{t(lang, 'home.lead')}</p>
+          <p class="cover-actions">
+            <a class="button" href={localizedPath(lang, '/guias/')}>{t(lang, 'home.cta')}</a>
+          </p>
+        </div>
+        <div class="cover-art">
+          <Illustration src="/illustrations/home-cover.svg" eager />
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="pilares">
+      <div class="section-head">
+        <h2 id="pilares">{t(lang, 'home.pillars')}</h2>
+      </div>
+      <ul class="pillar-grid">
+        {
+          pillarKeys.map((key) => (
+            <li>
+              <a class="card pillar-card cover-pillar" href={localizedPath(lang, `/guias/#${key}`)}>
+                <div class="pillar-art">
+                  <Illustration src={`/illustrations/pillar-${key}.svg`} />
+                </div>
+                <h3>{t(lang, `pillar.${key}`)}</h3>
+                <p>{t(lang, `pillar.${key}.description`)}</p>
+                <p class="card-meta">
+                  {guias.filter((g) => g.data.pillar === key).length} {t(lang, 'guides.count')}
+                </p>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="como-funciona">
+      <div class="section-head">
+        <h2 id="como-funciona">{t(lang, 'home.how')}</h2>
+      </div>
+      <p class="how-intro">{t(lang, 'home.howLine')}</p>
+      <div class="how-flow">
+        <div class="how-track" aria-hidden="true">
+          <span class="how-line"></span>
+          <span class="how-node"></span>
+          <span class="how-node"></span>
+          <span class="how-node"></span>
+        </div>
+        <ol class="how-steps">
+          {howSteps.map((step) => <li>{step}</li>)}
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="recentes">
+      <div class="section-head">
+        <h2 id="recentes">{t(lang, 'home.recent')}</h2>
+        <a href={localizedPath(lang, '/guias/')}>{t(lang, 'home.cta')}</a>
+      </div>
+      <ul class="card-grid">
+        {
+          latest.map((g) => (
+            <ArticleCard
+              id={slugFromId(g.id)}
+              title={g.data.title}
+              description={g.data.description}
+              pillar={g.data.pillar}
+              updated={g.data.updated}
+              lang={lang}
+            />
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="confianca">
+      <div class="section-head">
+        <h2 id="confianca">{t(lang, 'home.trust')}</h2>
+      </div>
+      <ul class="trust-list">
+        <li>{t(lang, 'home.trust1')}</li>
+        <li>{t(lang, 'home.trust2')}</li>
+        <li>{t(lang, 'home.trust3')}</li>
+        <li>
+          {t(lang, 'home.trust4Text')}<a href={localizedPath(lang, '/privacidade/')}>{t(lang, 'home.trust4Link')}</a>.
+        </li>
+      </ul>
+    </section>
+  </div>
+</Base>
+
+<style>
+  .cover-hero {
+    border-block-end: 1px solid var(--color-border);
+  }
+
+  .cover-grid {
+    display: grid;
+    gap: var(--space-8);
+    align-items: center;
+  }
+
+  @media (min-width: 56rem) {
+    .cover-grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+      gap: var(--space-12);
+    }
+  }
+
+  .cover-copy {
+    min-inline-size: 0;
+  }
+
+  .cover-title {
+    font-family: var(--font-display);
+    font-size: clamp(2.1rem, 7.5vw, 4.75rem);
+    font-weight: 700;
+    line-height: 1.04;
+    letter-spacing: -0.02em;
+    max-inline-size: 18ch;
+    margin-block: var(--space-3) var(--space-4);
+  }
+
+  .cover-word {
+    display: inline-block;
+  }
+
+  .swap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-3);
+    margin-block: 0 var(--space-6);
+    font-family: var(--font-display);
+    font-size: clamp(1.3rem, 3.5vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .swap-from {
+    color: var(--color-secondary);
+    text-decoration: line-through;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 3px;
+  }
+
+  .swap-to {
+    color: var(--color-accent-text);
+    font-weight: 700;
+  }
+
+  .cover-actions {
+    margin-block-end: 0;
+  }
+
+  .cover-art {
+    inline-size: 100%;
+    max-inline-size: 22rem;
+    margin-inline: auto;
+  }
+
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-4);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .pillar-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-6);
+    }
+
+    .pillar-grid li:nth-child(even) {
+      margin-block-start: var(--space-8);
+    }
+  }
+
+  .cover-pillar {
+    min-block-size: 100%;
+    cursor: pointer;
+  }
+
+  .pillar-art {
+    max-inline-size: 9rem;
+    margin-block-end: var(--space-2);
+  }
+
+  .how-intro {
+    max-inline-size: var(--measure);
+    color: var(--color-secondary);
+  }
+
+  .how-flow {
+    max-inline-size: 46rem;
+  }
+
+  .how-track {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    block-size: 1.25rem;
+    margin-block-end: var(--space-2);
+  }
+
+  .how-line {
+    position: absolute;
+    inset-inline: 16.666%;
+    inset-block-start: 0.5625rem;
+    block-size: 2px;
+    background: var(--color-accent);
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+
+  .how-node {
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    border-radius: 50%;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 3px var(--color-background);
+    justify-self: center;
+    align-self: center;
+  }
+
+  .how-steps {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .trust-list {
+    display: grid;
+    gap: var(--space-4);
+    max-inline-size: var(--measure);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .trust-list li {
+    padding-inline-start: var(--space-4);
+    border-inline-start: 2px solid var(--color-accent);
+  }
+
+  .trust-list a {
+    font-weight: 600;
+  }
+
+  /* Estado final sempre legível. O movimento só melhora o que já pode ser lido. */
+  @media (prefers-reduced-motion: no-preference) {
+    @keyframes word-in {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    .cover-word {
+      animation: word-in 160ms ease both;
+      animation-delay: calc(var(--i, 0) * 15ms);
+    }
+  }
+
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @media (prefers-reduced-motion: no-preference) {
+      @keyframes swap-out {
+        from {
+          opacity: 1;
+          transform: none;
+        }
+        to {
+          opacity: 0.4;
+          transform: translateY(-4px);
+        }
+      }
+
+      @keyframes swap-in {
+        from {
+          opacity: 0.4;
+          transform: translateY(4px);
+        }
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+
+      @keyframes draw-line {
+        from {
+          transform: scaleX(0);
+        }
+        to {
+          transform: scaleX(1);
+        }
+      }
+
+      .swap-from {
+        animation: swap-out 200ms ease both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+      }
+
+      .swap-to {
+        animation: swap-in 200ms ease both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 40%;
+      }
+
+      .how-line {
+        animation: draw-line 200ms ease both;
+        animation-timeline: view();
+        animation-range: entry 0% cover 30%;
+      }
+    }
+  }
+</style>
