@@ -13,7 +13,7 @@ Executado sobre `npm run preview` do build local de `efe45a2` (61 páginas), em 
 | 5 navegações consecutivas | ✅ | `/` → `/guias/` → artigo PT → artigo EN → artigo ES → `/`: `lang` = `pt-BR`/`en`/`es`; 0 requisições externas em cada; aviso de tradução apenas nas versões EN/ES |
 | Teclado e foco | ✅ | 1º Tab = "Pular para o conteúdo"; `outline: solid 3px` nos 6 primeiros controles; nenhum alvo invisível |
 | Controle de tema | ✅ | Botão 44×44 px, `aria-label` "Alternar tema claro e escuro"; clique alterna `data-theme` e grava `dt-theme`; preferência persistiu após navegação cliente |
-| Contraste nos dois temas | ✅ | Corpo 19,06:1 em claro e escuro; links de conteúdo 5,78:1 (claro, `#be185d`) e 7,51:1 (escuro, `#f472b6`); todos ≥ 4,5:1 |
+| Contraste nos dois temas | ✅ | Corpo 19,06:1 em claro e escuro; links de conteúdo 5,78:1 (claro, `#be185d`) e 7,51:1 (escuro, `#f472b6`). Pares de texto e controles medidos ≥ 4,5:1 — exceto os dois tokens decorativos documentados em "Contraste WCAG 2.x" |
 | `prefers-reduced-motion` | ✅ | Estado final visível em `.swap`, `.cover-word`, `.illustration`, `.how-line` e exemplo animado (`opacity: 1`, `transform: none`, `visibility: visible`); `scroll-behavior: auto` |
 | Skeleton em rede lenta | ✅ | Navegação cliente com latência CDP de 500 ms: `hidden=false` e `[data-skeleton-status]` presente durante o carregamento; ao concluir, `hidden=true` e status removido |
 | Zero requisição externa / anúncios | ✅ | `performance.getEntriesByType('resource')` filtrado por origem → `[]`; ausência de `.ad-slot` e `.consent-bar`; `SITE.adsEnabled = false` |
@@ -25,6 +25,8 @@ Executado sobre `npm run preview` do build local de `efe45a2` (61 páginas), em 
 | Arquivos públicos no `dist` | ✅ | `ads.txt`, `robots.txt`, `favicon.svg` e `googlee2e464378dc22f96.html` presentes e byte-idênticos ao `public/` |
 
 Nota sobre falso positivo: uma busca por texto cru no HTML da home PT encontra a string `translation-notice` porque o nome da classe está no CSS empacotado. A contagem no DOM (`querySelectorAll('.translation-notice').length`) é `0` em PT e `1` em cada página EN/ES — comportamento correto.
+
+> **Nota:** as seções abaixo, até "Veredito final", são registros do baseline 0.1.0/MVP. Números como "17 páginas/2,45s" e "1 warning" são históricos; os valores atuais da expansão 0.2.0 estão na tabela Task 19 no topo.
 
 ## Mapa requisito → teste → resultado
 
@@ -129,4 +131,4 @@ relatório da Task 7, fora do site. Nenhuma delas foi listada como fonte acima.
 
 ## Veredito final (expansão completa)
 
-**QA aprovado para publicação** — build limpo (61 páginas), 20 tasks concluídas e revisadas task a task, zero requisição externa, zero anúncio, zero erro de console, WCAG 2.2 AA verificado nos pontos críticos e nos dois temas. Restam apenas porteiras humanas externas ao código: preenchimento dos dados legais pendentes, configuração do Search Console pelo proprietário, revisão humana editorial e a autorização final separada para publicar. Nenhum deploy foi executado.
+**QA aprovado para publicação** — build limpo (61 páginas), 20 tasks concluídas e revisadas task a task, zero requisição externa, zero anúncio, zero erro de console, WCAG 2.2 AA verificado nos pares de texto e controles medidos, nos dois temas (exceto os dois tokens decorativos documentados acima). Restam apenas porteiras humanas externas ao código: preenchimento dos dados legais pendentes, configuração do Search Console pelo proprietário, revisão humana editorial e a autorização final separada para publicar. Nenhum deploy foi executado.

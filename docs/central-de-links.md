@@ -23,7 +23,7 @@ Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 (versão 0.1.
 | 🔍 Verificação do Google | `/googlee2e464378dc22f96.html` |
 | 🗺️ Sitemap com hreflang | `/sitemap-index.xml` → `/sitemap-0.xml` (60 URLs, 180 alternates) |
 
-As quatro rotas de verificação/SEO e os arquivos públicos já estão no build local e serão copiados na publicação.
+O arquivo de verificação do Google, `ads.txt`, `robots.txt` e `favicon.svg` vêm de `public/` e são copiados byte a byte; a 404, `sitemap-index.xml` e `sitemap-0.xml` são gerados pelo build. Tudo já está no build local e segue junto na publicação.
 
 ## Painéis de controle (sua conta Vercel: slydtx)
 

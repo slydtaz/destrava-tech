@@ -32,7 +32,7 @@ Data da pesquisa: 2026-11-23 · Fase 2 (pesquisa de mercado) · Modo simplificad
 ## Desconhecidos (pendentes do proprietário)
 
 - Tema do site (nicho).
-- Idade do proprietário / existência de conta AdSense.
+- Idade do proprietário / titularidade 18+ da conta AdSense já criada (item histórico da Fase 2; confirmação pendente em `docs/pending-actions.md`).
 - Orçamento para domínio próprio (~R$ 40/ano .com.br) ou início grátis.
 - Quem escreverá/validará o conteúdo original.
 
