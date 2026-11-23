@@ -24,6 +24,33 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
 <!doctype html>
 <html lang="pt-BR">
   <head>
+    <script is:inline>
+      // Aplica o tema antes de qualquer CSS para evitar flash de tema claro.
+      // is:inline é essencial: Astro não pode mover este script para o bundle.
+      (() => {
+        let theme = 'light';
+        try {
+          let saved = null;
+          try {
+            saved = localStorage.getItem('dt-theme');
+          } catch {
+            // localStorage bloqueado (modo privado / política do navegador).
+          }
+          if (saved === 'dark' || saved === 'light') {
+            theme = saved;
+          } else {
+            try {
+              theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            } catch {
+              // Sem matchMedia, mantém o fallback claro.
+            }
+          }
+        } catch {
+          theme = 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+    </script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>

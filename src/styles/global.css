@@ -37,6 +37,42 @@
   --measure: 68ch;
   --radius: 0.5rem;
   --header-height: 4.25rem;
+
+  /* Borda reforçada só para controles: a borda decorativa não atinge 3:1. */
+  --color-border-control: #71717a;
+}
+
+/* ---------- Tema escuro ----------
+   O atributo é aplicado pelo script inline no <head>, antes de qualquer CSS. */
+[data-theme='dark'] {
+  --color-primary: #fafafa;
+  --color-on-primary: #09090b;
+  --color-secondary: #94a3b8;
+  --color-on-secondary: #09090b;
+  --color-accent: #ec4899;
+  --color-on-accent: #000000;
+  /* Rosa claro: 7.51:1 sobre #09090b (o #be185d claro daria ~2:1). */
+  --color-accent-text: #f472b6;
+  --color-background: #09090b;
+  --color-foreground: #fafafa;
+  --color-card: #18181b;
+  --color-card-foreground: #fafafa;
+  --color-muted: #27272a;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #3f3f46;
+  --color-destructive: #f87171;
+  --color-ring: #ffffff;
+  --color-border-control: #64748b;
+}
+
+/* Superfícies claras dentro do tema escuro (consent-bar usa primary como fundo)
+   e texto sobre o accent precisam de ajustes próprios. */
+[data-theme='dark'] .button:hover {
+  color: #09090b;
+}
+
+[data-theme='dark'] .consent-bar a {
+  color: #be185d;
 }
 
 /* ---------- Reset básico ---------- */
@@ -245,6 +281,48 @@ a:hover {
 
 .menu-button:hover {
   border-color: var(--color-primary);
+}
+
+/* ---------- Alternador de tema ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  font: inherit;
+  color: var(--color-primary);
+  background: var(--color-card);
+  border: 1px solid var(--color-border-control);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-primary);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+[data-theme='dark'] .theme-toggle .icon-sun {
+  display: none;
+}
+
+[data-theme='dark'] .theme-toggle .icon-moon {
+  display: block;
 }
 
 .site-nav {
@@ -469,9 +547,16 @@ a.card:hover {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-accent-text);
-  background: color-mix(in srgb, var(--color-accent) 12%, white);
+  background: color-mix(in srgb, var(--color-accent) 10%, white);
   border: 1px solid color-mix(in srgb, var(--color-accent) 35%, white);
   border-radius: 999px;
+}
+
+/* No escuro o badge precisa de fundo escuro: misturar com branco daria
+   texto rosa claro sobre rosa claro. */
+[data-theme='dark'] .badge {
+  background: color-mix(in srgb, var(--color-accent) 18%, black);
+  border-color: color-mix(in srgb, var(--color-accent) 35%, black);
 }
 
 .pillar-card {

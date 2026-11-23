@@ -21,6 +21,51 @@ Data: 2026-11-23 · Ambiente: Windows, Node v24.19.0, Astro 5 · Navegador de te
 | 13 | Console limpo | Logs do navegador | ✅ Aprovado | 0 erros; 1 warning era do script de teste (canvas), não do site |
 | 14 | Fontes locais (privacidade) | Nenhuma chamada a fonts.googleapis.com | ✅ Aprovado | @fontsource empacotado no build |
 
+## Contraste WCAG 2.x — tema claro/escuro (Task 4)
+
+Medição feita com script Node descartável fora do repo (sem dependência nova), pela fórmula
+`(Lclaro + 0.05) / (Lescurado + 0.05)`, com `L = 0.2126R + 0.7152G + 0.0722B` em sRGB linearizado
+(limiar `0.04045`). Valores de `color-mix` convertidos para hexadecimal antes do cálculo.
+
+| Tema | Par | Cores (fundo / texto) | Razão | Mínimo | Resultado |
+|---|---|---|---|---|---|
+| claro | fundo / texto | #fafafa / #09090b | 19.06:1 | 4.5:1 | OK |
+| escuro | fundo / texto | #09090b / #fafafa | 19.06:1 | 4.5:1 | OK |
+| claro | fundo / secondary | #fafafa / #3f3f46 | 10.01:1 | 4.5:1 | OK |
+| escuro | fundo / secondary | #09090b / #94a3b8 | 7.76:1 | 4.5:1 | OK |
+| claro | fundo / muted-foreground | #fafafa / #475569 | 7.26:1 | 4.5:1 | OK |
+| escuro | fundo / muted-foreground | #09090b / #94a3b8 | 7.76:1 | 4.5:1 | OK |
+| claro | cartão / texto do cartão | #ffffff / #09090b | 19.90:1 | 4.5:1 | OK |
+| escuro | cartão / texto do cartão | #18181b / #fafafa | 16.97:1 | 4.5:1 | OK |
+| claro | cartão / muted-foreground | #ffffff / #475569 | 7.58:1 | 4.5:1 | OK |
+| escuro | cartão / muted-foreground | #18181b / #94a3b8 | 6.91:1 | 4.5:1 | OK |
+| claro | fundo / accent-text | #fafafa / #be185d | 5.78:1 | 4.5:1 | OK |
+| escuro | fundo / accent-text | #09090b / #f472b6 | 7.51:1 | 4.5:1 | OK |
+| claro | accent / on-accent | #ec4899 / #000000 | 5.95:1 | 4.5:1 | OK |
+| escuro | accent / on-accent | #ec4899 / #000000 | 5.95:1 | 4.5:1 | OK |
+| claro | borda / fundo (token do brief) | #e4e4e7 / #fafafa | 1.22:1 | 3:1 | **FALHA** |
+| escuro | borda / fundo (token do brief) | #3f3f46 / #09090b | 1.91:1 | 3:1 | **FALHA** |
+| claro | borda de controle / fundo | #71717a / #fafafa | 4.63:1 | 3:1 | OK |
+| escuro | borda de controle / fundo | #64748b / #09090b | 4.18:1 | 3:1 | OK |
+| claro | borda de controle / cartão | #71717a / #ffffff | 4.83:1 | 3:1 | OK |
+| escuro | borda de controle / cartão | #64748b / #18181b | 3.72:1 | 3:1 | OK |
+| claro | primary / on-primary | #18181b / #ffffff | 17.72:1 | 4.5:1 | OK |
+| escuro | primary / on-primary | #fafafa / #09090b | 19.06:1 | 4.5:1 | OK |
+| claro | muted / texto | #e8ecf0 / #09090b | 16.76:1 | 4.5:1 | OK |
+| escuro | muted / texto | #27272a / #fafafa | 14.27:1 | 4.5:1 | OK |
+| claro | badge fundo / badge texto | #fdedf5 / #be185d | 5.35:1 | 4.5:1 | OK |
+| escuro | badge fundo / badge texto | #2a0d1c / #f472b6 | 6.76:1 | 4.5:1 | OK |
+| claro | consent-bar / link | #18181b / #fbcfe8 | 12.82:1 | 4.5:1 | OK |
+| escuro | consent-bar / link | #fafafa / #be185d | 5.78:1 | 4.5:1 | OK |
+| claro | hover do botão / texto | #be185d / #ffffff | 6.04:1 | 4.5:1 | OK |
+| escuro | hover do botão / texto | #f472b6 / #09090b | 7.51:1 | 4.5:1 | OK |
+
+Nota: os pares "borda / fundo (token do brief)" usam os valores exigidos no brief
+(`--color-border` claro `#e4e4e7`, escuro `#3f3f46`) e ficam abaixo de 3:1 — o valor claro já era
+assim antes desta task. Para não mascarar o achado, o token `--color-border-control` foi criado
+somente para contornos de controles e passa em ambos os temas. A mudança do token decorativo
+exige decisão de design fora do escopo desta task.
+
 ## Bug encontrado e corrigido (registro de recuperação de falha)
 
 - **Sintoma:** header não escondia ao rolar para baixo no Chromium 157.
