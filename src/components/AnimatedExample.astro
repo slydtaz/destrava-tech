@@ -73,7 +73,7 @@ const { label, variant = 'line' } = Astro.props;
     transform: translateX(0);
   }
 
-  .animated-example-content > :last-child {
+  .animated-example-content > :global(:last-child) {
     margin-block-end: 0;
   }
 

@@ -20,7 +20,7 @@ const decorative = !alt;
 >
   <img
     src={src}
-    {...(decorative ? {} : { alt })}
+    alt={alt ?? ''}
     loading={eager ? 'eager' : 'lazy'}
     decoding="async"
   />
