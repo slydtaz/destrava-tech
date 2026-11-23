@@ -22,6 +22,14 @@ const locales: Record<Lang, string> = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' };
 const fmt = new Intl.DateTimeFormat(locales[lang], { dateStyle: 'long', timeZone: 'UTC' });
 const dateIso = updated.toISOString().slice(0, 10);
 
+const exampleKey = {
+  seguranca: 'example.seguranca',
+  whatsapp: 'example.whatsapp',
+  ia: 'example.ia',
+  celular: 'example.celular',
+} as const;
+const exampleVariant = pillar === 'seguranca' || pillar === 'ia' ? 'steps' : 'line';
+
 // Apenas guias do idioma atual: o mesmo filtro evita links errados nos relacionados.
 const guias = await getCollection('guias', ({ data }) => !data.draft && data.lang === lang);
 const related = guias
@@ -77,8 +85,8 @@ const jsonLd = {
         <Content />
       </div>
 
-      <AnimatedExample label={t(lang, 'article.example')} variant="steps">
-        <p>{t(lang, 'article.exampleText')}</p>
+      <AnimatedExample label={t(lang, 'article.example')} variant={exampleVariant}>
+        <p>{t(lang, exampleKey[pillar])}</p>
       </AnimatedExample>
 
       <section class="sources" aria-labelledby="fontes">
