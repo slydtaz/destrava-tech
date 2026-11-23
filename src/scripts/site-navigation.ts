@@ -50,6 +50,7 @@ export async function setupNavigation(): Promise<Cleanup> {
       button?.removeAttribute('aria-expanded');
     }
     requestAnimationFrame(() => header.classList.remove('is-measuring'));
+    syncExpanded();
   };
 
   const onResize = () => {
@@ -114,7 +115,7 @@ export function setupPageLifecycle(): void {
         cleanups.push(cleanup);
       })
       .catch(() => {
-        // Sem polyfill, o menu segue com o comportamento nativo do navegador.
+        console.warn('Não foi possível carregar o polyfill do menu; a navegação seguirá sem os ajustes de JavaScript.');
       });
     setupTableScroll();
   });
