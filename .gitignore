@@ -1,8 +1,11 @@
 node_modules/
 dist/
 .astro/
+.vercel/
 .playwright-mcp/
 *.log
 home-desktop.png
 home-mobile.png
 home-mobile-menu.png
+.vercel
+.env*

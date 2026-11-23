@@ -8,7 +8,7 @@ export const SITE = {
   description:
     'Guias práticos de tecnologia em português simples: segurança digital, WhatsApp, inteligência artificial e celular. Passo a passo testável, sem jargão.',
   // Provisório — trocar pela URL real após o deploy.
-  url: 'https://destrava-tech.pages.dev',
+  url: 'https://destrava-tech-rho.vercel.app',
   locale: 'pt-BR',
   adsEnabled: false,
   // Preencher com o e-mail de contato do responsável antes de publicar.

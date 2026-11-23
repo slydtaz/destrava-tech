@@ -2,11 +2,11 @@
 
 Atualizado: 2026-11-23
 
-## Você (proprietário) — antes de publicar
+## Você (proprietário) — antes de enviar ao AdSense
 
 1. **Ler e revisar os 10 guias** (em `src/content/guias/`). Corrigir o que não bater com sua experiência real. O Google valoriza conteúdo útil e original — sua revisão é o que garante isso.
 2. **Decidir o nome definitivo do site** ("Destrava Tech" é nome de trabalho).
-3. **Escolher a hospedagem gratuita** (Cloudflare Pages ou Vercel) e autorizar a publicação.
+3. ~~Escolher a hospedagem gratuita e autorizar a publicação~~ ✅ **FEITO (2026-11-23):** publicado na Vercel → https://destrava-tech-rho.vercel.app
 
 ## Responsável adulto (pai/mãe/responsável) — obrigatório para AdSense
 
@@ -18,7 +18,7 @@ Atualizado: 2026-11-23
 
 ## Agente — depois das aprovações acima
 
-9. Publicar na hospedagem escolhida (ação externa — só com autorização explícita).
+9. ~~Publicar na hospedagem escolhida~~ ✅ **FEITO:** Vercel, projeto `slydtx/destrava-tech`, verificado no ar (artigo/sitemap/robots/404/canonical OK).
 10. Quando a conta AdSense for aprovada: receber o código do publisher (`ca-pub-...`), configurar `ads.txt`, ativar `SITE.adsEnabled`, integrar o código de anúncio **atrás do banner de consentimento LGPD** e atualizar a Política de Privacidade com a lista de cookies.
 11. Atualizar `portfolio-registry.json` e configurar monitoramento conforme a escolha do proprietário na Central de Gerenciamento.
 

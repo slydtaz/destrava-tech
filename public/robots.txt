@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://destrava-tech.pages.dev/sitemap-index.xml
+Sitemap: https://destrava-tech-rho.vercel.app/sitemap-index.xml
