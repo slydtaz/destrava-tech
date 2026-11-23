@@ -3,25 +3,20 @@ import { getCollection } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
 import { PILLARS, type PillarKey } from '../../site.config';
+import { slugFromId, t } from '../../i18n';
 
-const guias = (await getCollection('guias', ({ data }) => !data.draft)).sort(
+const guias = (await getCollection('guias', ({ data }) => !data.draft && data.lang === 'pt')).sort(
   (a, b) => b.data.updated.valueOf() - a.data.updated.valueOf()
 );
 const pillarKeys = Object.keys(PILLARS) as PillarKey[];
 ---
 
-<Base
-  title="Todos os guias"
-  description="Guias práticos de tecnologia em português simples: segurança digital, WhatsApp, inteligência artificial e celular."
->
+<Base title={t('pt', 'guides.title')} description={t('pt', 'guides.lead')} lang="pt">
   <div class="container">
     <section class="hero">
-      <span class="kicker">Biblioteca de guias</span>
-      <h1>Todos os guias</h1>
-      <p class="lead">
-        Escolha um tema abaixo. Cada guia mostra a data da última atualização e as fontes
-        consultadas.
-      </p>
+      <span class="kicker">{t('pt', 'guides.kicker')}</span>
+      <h1>{t('pt', 'guides.title')}</h1>
+      <p class="lead">{t('pt', 'guides.lead')}</p>
     </section>
 
     {
@@ -31,17 +26,18 @@ const pillarKeys = Object.keys(PILLARS) as PillarKey[];
         return (
           <section class="section" id={key} aria-labelledby={`h-${key}`}>
             <div class="section-head">
-              <h2 id={`h-${key}`}>{PILLARS[key].label}</h2>
-              <p>{PILLARS[key].description}</p>
+              <h2 id={`h-${key}`}>{t('pt', `pillar.${key}`)}</h2>
+              <p>{t('pt', `pillar.${key}.description`)}</p>
             </div>
             <ul class="card-grid">
               {items.map((g) => (
                 <ArticleCard
-                  id={g.id}
+                  id={slugFromId(g.id)}
                   title={g.data.title}
                   description={g.data.description}
                   pillar={g.data.pillar}
                   updated={g.data.updated}
+                  lang="pt"
                 />
               ))}
             </ul>

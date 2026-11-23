@@ -47,6 +47,11 @@ const dict = {
   'pillar.ia': 'AI in practice',
   'pillar.celular': 'Phone',
 
+  'pillar.seguranca.description': 'Scams, passwords and everyday protection',
+  'pillar.whatsapp.description': 'Features, privacy and Meta AI',
+  'pillar.ia.description': 'Artificial intelligence for study and tasks',
+  'pillar.celular.description': 'Storage, battery, data and apps',
+
   'guides.kicker': 'Guide library',
   'guides.title': 'All guides',
   'guides.lead': 'Choose a topic below. Each guide shows the date of the last update and the sources consulted.',
