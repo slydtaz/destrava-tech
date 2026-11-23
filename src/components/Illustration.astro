@@ -1,0 +1,40 @@
+---
+interface Props {
+  /** Caminho local, ex.: /illustrations/pillar-ia.svg */
+  src: string;
+  /** Texto alternativo real. Ausente/vazio torna a imagem decorativa (aria-hidden no wrapper). */
+  alt?: string;
+  /** Classes adicionais no wrapper, somadas a `reveal` e `illustration`. */
+  class?: string;
+  /** `true` usa loading="eager" para a capa; o padrão é lazy. */
+  eager?: boolean;
+}
+
+const { src, alt, class: className, eager = false } = Astro.props;
+const decorative = !alt;
+---
+
+<div
+  class:list={['reveal', 'illustration', className]}
+  aria-hidden={decorative ? 'true' : undefined}
+>
+  <img
+    src={src}
+    {...(decorative ? {} : { alt })}
+    loading={eager ? 'eager' : 'lazy'}
+    decoding="async"
+  />
+</div>
+
+<style>
+  .illustration {
+    display: block;
+    overflow: hidden;
+    border-radius: var(--radius);
+  }
+
+  .illustration img {
+    display: block;
+    inline-size: 100%;
+  }
+</style>
