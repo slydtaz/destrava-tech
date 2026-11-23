@@ -1,10 +1,10 @@
 ---
 // Skeleton honesto: fica oculto até a navegação passar de 300 ms.
 // O texto sr-only é criado pelo JS só enquanto o overlay está visível.
-// `transition:persist` entra na Task 3, junto com o ClientRouter.
+// `transition:persist` mantém o mesmo nó entre trocas do ClientRouter.
 ---
 
-<div class="nav-skeleton" hidden aria-hidden="true">
+<div class="nav-skeleton" hidden aria-hidden="true" transition:persist>
   <span class="nav-skeleton-block nav-skeleton-title"></span>
   <span class="nav-skeleton-block nav-skeleton-line"></span>
   <span class="nav-skeleton-block nav-skeleton-line"></span>

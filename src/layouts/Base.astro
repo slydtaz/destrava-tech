@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '@fontsource-variable/public-sans';
 import '@fontsource-variable/libre-bodoni';
 import '../styles/global.css';
@@ -36,6 +37,7 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
     <meta property="og:url" content={canonical} />
     <meta property="og:locale" content="pt_BR" />
     <meta name="generator" content={Astro.generator} />
+    <ClientRouter fallback="swap" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
@@ -48,73 +50,10 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
     <Footer />
     <ConsentBar />
     <script>
+      import { setupPageLifecycle } from '../scripts/site-navigation';
       import { setupSkeleton } from '../scripts/skeleton';
 
-      // Navegação: mede se a linha cabe inline; senão usa popover nativo.
-      // Guia modern-web-guidance (navbar): um único <nav>, popover só no layout recolhido.
-      const header = document.querySelector<HTMLElement>('.site-header');
-      const inner = header?.querySelector<HTMLElement>('.header-inner');
-      const menu = document.getElementById('site-menu');
-      if (header && inner && menu) {
-        // Polyfill carregado SOMENTE se o navegador não tem popover nativo.
-        if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
-          import('@oddbird/popover-polyfill');
-        }
-        let lastWidth = 0;
-        const sync = () => {
-          const wasOpen = menu.matches(':is(:popover-open, .\\:popover-open)');
-          header.classList.add('is-measuring');
-          header.classList.add('is-wide');
-          menu.removeAttribute('popover');
-          const wide = inner.scrollWidth <= inner.clientWidth;
-          if (!wide) {
-            header.classList.remove('is-wide');
-            menu.setAttribute('popover', 'auto');
-            if (wasOpen) menu.showPopover();
-          }
-          requestAnimationFrame(() => header.classList.remove('is-measuring'));
-        };
-        const ro = new ResizeObserver(() => {
-          const w = inner.clientWidth;
-          const collapsed = !header.classList.contains('is-wide');
-          // Recolhido: só re-mede quando a largura cresce (evita thrashing).
-          if (collapsed && w <= lastWidth) {
-            lastWidth = w;
-            return;
-          }
-          lastWidth = w;
-          sync();
-        });
-        ro.observe(inner);
-        ro.observe(menu);
-        sync();
-      }
-
-      // Esconder header ao rolar para baixo — fallback JS.
-      // Roda SEMPRE: navegadores podem suportar container-type: scroll-state mas
-      // ainda não suportar a query 'scrolled' (verificado no Chromium 157), e nesse
-      // caso a regra CSS nunca esconderia o header. O JS e a regra CSS aplicam o
-      // mesmo transform, então coexistem sem conflito nos navegadores completos.
-      {
-        const bar = document.querySelector<HTMLElement>('.site-header');
-        if (bar) {
-          let lastY = scrollY;
-          addEventListener(
-            'scroll',
-            () => {
-              const y = Math.max(
-                0,
-                Math.min(scrollY, document.documentElement.scrollHeight - innerHeight)
-              );
-              if (y === lastY) return;
-              bar.classList.toggle('is-hidden', y > lastY && y > bar.offsetHeight);
-              lastY = y;
-            },
-            { passive: true }
-          );
-        }
-      }
-
+      setupPageLifecycle();
       setupSkeleton();
     </script>
   </body>
