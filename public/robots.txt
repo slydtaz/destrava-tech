@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://destrava-tech.pages.dev/sitemap-index.xml

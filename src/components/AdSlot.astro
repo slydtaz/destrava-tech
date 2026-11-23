@@ -1,0 +1,24 @@
+---
+// Espaço de anúncio reservado. Enquanto SITE.adsEnabled = false, NÃO renderiza nada
+// (nem caixa vazia) — o site fica limpo e sem chamadas de rede a serviços de anúncio.
+// Quando a conta AdSense do responsável for aprovada:
+// 1. configurar o código do publisher no <head> (via ConsentBar, após consentimento);
+// 2. preencher data-ad-client e data-ad-slot abaixo;
+// 3. ativar SITE.adsEnabled e o banner de consentimento.
+import { SITE } from '../site.config';
+
+interface Props {
+  slot: string;
+  label?: string;
+}
+const { slot, label = 'Publicidade' } = Astro.props;
+---
+
+{
+  SITE.adsEnabled && (
+    <aside class="ad-slot" aria-label={label}>
+      {/* TODO(ads): <ins class="adsbygoogle" data-ad-client="ca-pub-XXXX" data-ad-slot={slot} /> */}
+      <p class="ad-placeholder">Espaço de anúncio reservado — configurar após aprovação do AdSense.</p>
+    </aside>
+  )
+}

@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config';
+---
+
+<Base
+  title="Termos de Uso"
+  description="Regras de uso do Destrava Tech: conteúdo educativo, sem garantia de resultado, e limites de responsabilidade."
+>
+  <div class="container">
+    <section class="hero">
+      <span class="kicker">Documento legal · rascunho</span>
+      <h1>Termos de Uso</h1>
+      <p class="lead">Última atualização: 23 de novembro de 2026.</p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>1. O que é o site</h2>
+        <p>
+          O {SITE.name} publica guias educativos de tecnologia. O conteúdo é informativo e
+          não substitui suporte oficial de aplicativos, bancos ou fabricantes.
+        </p>
+
+        <h2>2. Uso do conteúdo</h2>
+        <p>
+          Você pode ler, compartilhar links e usar as instruções para fins pessoais.
+          Reproduzir o texto integral em outro site sem autorização não é permitido.
+        </p>
+
+        <h2>3. Sem garantias</h2>
+        <p>
+          Fazemos o possível para manter os guias corretos e atualizados, mas aplicativos
+          mudam sem aviso. Os passos podem variar por versão, modelo de aparelho ou região.
+          O uso das instruções é por sua conta e risco; revise sempre antes de ações
+          sensíveis (apagar dados, transferir dinheiro, alterar configurações de segurança).
+        </p>
+
+        <h2>4. Conteúdo de terceiros</h2>
+        <p>
+          Citamos fontes externas como referência. Não controlamos o conteúdo desses sites
+          e não nos responsabilizamos por eles. Marcas citadas (WhatsApp, Google, Pix etc.)
+          pertencem aos seus respectivos donos; não temos vínculo com elas.
+        </p>
+
+        <h2>5. Privacidade</h2>
+        <p>
+          O tratamento de dados segue a <a href="/privacidade/">Política de Privacidade</a>.
+        </p>
+
+        <h2>6. Foro e lei aplicável</h2>
+        <p>
+          Estes termos são regidos pelas leis da República Federativa do Brasil,
+          incluindo o Marco Civil da Internet e a LGPD.
+          <span class="placeholder-mark">[PREENCHER: foro da comarca do responsável, se
+          aplicável — revisar juridicamente antes de publicar]</span>
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>

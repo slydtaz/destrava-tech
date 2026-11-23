@@ -1,0 +1,20 @@
+---
+import { PILLARS, type PillarKey } from '../site.config';
+
+interface Props {
+  id: string;
+  title: string;
+  description: string;
+  pillar: PillarKey;
+  updated: Date;
+}
+const { id, title, description, pillar, updated } = Astro.props;
+const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' });
+---
+
+<li class="card">
+  <span class="badge">{PILLARS[pillar].label}</span>
+  <h3><a href={`/guias/${id}/`}>{title}</a></h3>
+  <p>{description}</p>
+  <p class="card-meta">Atualizado em <time datetime={updated.toISOString().slice(0, 10)}>{fmt.format(updated)}</time></p>
+</li>

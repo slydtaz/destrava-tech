@@ -1,0 +1,90 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../site.config';
+---
+
+<Base
+  title="Política de Privacidade"
+  description="Como o Destrava Tech trata dados pessoais: coleta mínima, sem cadastro, e regras para anúncios futuros (LGPD)."
+>
+  <div class="container">
+    <section class="hero">
+      <span class="kicker">Documento legal · rascunho</span>
+      <h1>Política de Privacidade</h1>
+      <p class="lead">
+        Última atualização: 23 de novembro de 2026. Este documento é um rascunho e será
+        revisado pelo responsável legal antes da publicação definitiva.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>1. Quem é o controlador dos dados</h2>
+        <p>
+          O site {SITE.name} é um projeto independente. O controlador dos dados pessoais é
+          o responsável legal pelo projeto:
+          <span class="placeholder-mark">[PREENCHER: nome completo do responsável adulto,
+          cidade/UF e e-mail de contato do encarregado]</span>.
+        </p>
+
+        <h2>2. Quais dados coletamos hoje</h2>
+        <p>
+          <strong>Nenhum dado pessoal identificável.</strong> O site não tem cadastro,
+          formulários, comentários nem newsletter. Não usamos cookies de rastreamento nem
+          ferramentas de analytics de terceiros nesta fase.
+        </p>
+        <p>
+          Como qualquer site, o servidor de hospedagem registra dados técnicos de acesso
+          (como endereço IP, data/hora e página acessada) em logs operacionais, usados
+          apenas para segurança e funcionamento do serviço. Esses logs são gerenciados pelo
+          provedor de hospedagem <span class="placeholder-mark">[PREENCHER: provedor de
+          hospedagem definido no deploy]</span>.
+        </p>
+
+        <h2>3. Fontes e tipografia</h2>
+        <p>
+          As fontes tipográficas são hospedadas pelo próprio site. Não fazemos chamadas a
+          servidores externos de fontes nem a redes sociais para exibir esta página.
+        </p>
+
+        <h2>4. Anúncios (fase futura)</h2>
+        <p>
+          Quando o site for aprovado no Google AdSense, poderão ser exibidos anúncios.
+          Nessa fase:
+        </p>
+        <ul>
+          <li>Um aviso de cookies pedirá seu consentimento <strong>antes</strong> de qualquer cookie de anúncio ser usado, conforme a LGPD;</li>
+          <li>Você poderá recusar e continuar navegando normalmente;</li>
+          <li>O Google poderá usar cookies para personalizar anúncios, conforme a <a href="https://policies.google.com/technologies/ads?hl=pt-BR" rel="noopener noreferrer" target="_blank">política de publicidade do Google</a>;</li>
+          <li>Esta política será atualizada com a lista completa de cookies e finalidades antes da ativação.</li>
+        </ul>
+
+        <h2>5. Seus direitos (LGPD, art. 18)</h2>
+        <p>
+          Você pode solicitar confirmação de tratamento, acesso, correção, anonimização,
+          portabilidade ou eliminação de dados pessoais, além de informações sobre
+          compartilhamento. Como não coletamos dados pessoais identificáveis nesta fase,
+          normalmente não há dados a excluir — mas você pode perguntar a qualquer momento.
+        </p>
+        <p>
+          Canal de atendimento: <span class="placeholder-mark">[PREENCHER: e-mail de
+          privacidade]</span>, assunto “Privacidade”.
+        </p>
+
+        <h2>6. Crianças e adolescentes</h2>
+        <p>
+          O conteúdo é livre e educativo, adequado a todas as idades. Não coletamos
+          intencionalmente dados de crianças. Se você é responsável e acredita que uma
+          criança nos enviou dados, entre em contato para eliminação imediata.
+        </p>
+
+        <h2>7. Alterações</h2>
+        <p>
+          Esta política pode mudar conforme o site evolui (por exemplo, ao ativar
+          anúncios). A data no topo indica a última revisão. Mudanças relevantes serão
+          destacadas nesta página.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>

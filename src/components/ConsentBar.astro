@@ -1,0 +1,40 @@
+---
+// Banner de consentimento (LGPD) — só aparece quando anúncios/analytics forem ativados.
+// Hoje o site NÃO usa cookies de terceiros nem rastreamento, então nada é exibido
+// (guia content-first-noise-reduction: não mostrar banner sem necessidade real).
+import { SITE } from '../site.config';
+---
+
+{
+  SITE.adsEnabled && (
+    <div class="consent-bar" role="region" aria-label="Aviso de cookies">
+      <p>
+        Usamos cookies de anúncios (Google AdSense) para manter o site gratuito. Você pode
+        aceitar ou recusar. Saiba mais na{' '}
+        <a href="/privacidade/">Política de Privacidade</a>.
+      </p>
+      <button type="button" class="consent-reject" data-consent="reject">Recusar</button>
+      <button type="button" class="consent-accept" data-consent="accept">Aceitar</button>
+    </div>
+  )
+}
+
+<script>
+  // Guarda apenas a escolha de consentimento (dado não sensível).
+  const bar = document.querySelector<HTMLElement>('.consent-bar');
+  if (bar) {
+    const KEY = 'dt-consent';
+    const saved = localStorage.getItem(KEY);
+    if (saved) {
+      bar.remove();
+    } else {
+      bar.addEventListener('click', (e) => {
+        const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-consent]');
+        if (!btn) return;
+        localStorage.setItem(KEY, btn.dataset.consent === 'accept' ? 'accepted' : 'rejected');
+        bar.remove();
+        // TODO(ads): carregar o script do AdSense SOMENTE aqui, se 'accepted'.
+      });
+    }
+  }
+</script>

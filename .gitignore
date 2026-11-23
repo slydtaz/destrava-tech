@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.playwright-mcp/
+*.log
+home-desktop.png
+home-mobile.png
+home-mobile-menu.png

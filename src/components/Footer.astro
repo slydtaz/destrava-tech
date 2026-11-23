@@ -1,0 +1,22 @@
+---
+import { SITE } from '../site.config';
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <strong>{SITE.name}</strong>
+      <p>Tecnologia explicada sem complicação.<br />© {year} — Guias com data de atualização e fontes citadas.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Rodapé">
+      <ul>
+        <li><a href="/guias/">Guias</a></li>
+        <li><a href="/sobre/">Sobre</a></li>
+        <li><a href="/contato/">Contato</a></li>
+        <li><a href="/privacidade/">Privacidade</a></li>
+        <li><a href="/termos/">Termos</a></li>
+      </ul>
+    </nav>
+  </div>
+</footer>

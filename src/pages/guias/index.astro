@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+import { PILLARS, type PillarKey } from '../../site.config';
+
+const guias = (await getCollection('guias', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.updated.valueOf() - a.data.updated.valueOf()
+);
+const pillarKeys = Object.keys(PILLARS) as PillarKey[];
+---
+
+<Base
+  title="Todos os guias"
+  description="Guias práticos de tecnologia em português simples: segurança digital, WhatsApp, inteligência artificial e celular."
+>
+  <div class="container">
+    <section class="hero">
+      <span class="kicker">Biblioteca de guias</span>
+      <h1>Todos os guias</h1>
+      <p class="lead">
+        Escolha um tema abaixo. Cada guia mostra a data da última atualização e as fontes
+        consultadas.
+      </p>
+    </section>
+
+    {
+      pillarKeys.map((key) => {
+        const items = guias.filter((g) => g.data.pillar === key);
+        if (items.length === 0) return null;
+        return (
+          <section class="section" id={key} aria-labelledby={`h-${key}`}>
+            <div class="section-head">
+              <h2 id={`h-${key}`}>{PILLARS[key].label}</h2>
+              <p>{PILLARS[key].description}</p>
+            </div>
+            <ul class="card-grid">
+              {items.map((g) => (
+                <ArticleCard
+                  id={g.id}
+                  title={g.data.title}
+                  description={g.data.description}
+                  pillar={g.data.pillar}
+                  updated={g.data.updated}
+                />
+              ))}
+            </ul>
+          </section>
+        );
+      })
+    }
+  </div>
+</Base>

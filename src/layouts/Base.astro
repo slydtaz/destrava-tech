@@ -1,0 +1,115 @@
+---
+import '@fontsource-variable/public-sans';
+import '@fontsource-variable/libre-bodoni';
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ConsentBar from '../components/ConsentBar.astro';
+import { SITE } from '../site.config';
+
+interface Props {
+  title: string;
+  description: string;
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, jsonLd } = Astro.props;
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.name} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content="pt_BR" />
+    <meta name="generator" content={Astro.generator} />
+    {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
+  </head>
+  <body>
+    <a href="#content" class="skip-link visually-hidden">Pular para o conteúdo</a>
+    <Header currentPath={Astro.url.pathname} />
+    <main id="content" tabindex="-1">
+      <slot />
+    </main>
+    <Footer />
+    <ConsentBar />
+    <script>
+      // Navegação: mede se a linha cabe inline; senão usa popover nativo.
+      // Guia modern-web-guidance (navbar): um único <nav>, popover só no layout recolhido.
+      const header = document.querySelector<HTMLElement>('.site-header');
+      const inner = header?.querySelector<HTMLElement>('.header-inner');
+      const menu = document.getElementById('site-menu');
+      if (header && inner && menu) {
+        // Polyfill carregado SOMENTE se o navegador não tem popover nativo.
+        if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
+          import('@oddbird/popover-polyfill');
+        }
+        let lastWidth = 0;
+        const sync = () => {
+          const wasOpen = menu.matches(':is(:popover-open, .\\:popover-open)');
+          header.classList.add('is-measuring');
+          header.classList.add('is-wide');
+          menu.removeAttribute('popover');
+          const wide = inner.scrollWidth <= inner.clientWidth;
+          if (!wide) {
+            header.classList.remove('is-wide');
+            menu.setAttribute('popover', 'auto');
+            if (wasOpen) menu.showPopover();
+          }
+          requestAnimationFrame(() => header.classList.remove('is-measuring'));
+        };
+        const ro = new ResizeObserver(() => {
+          const w = inner.clientWidth;
+          const collapsed = !header.classList.contains('is-wide');
+          // Recolhido: só re-mede quando a largura cresce (evita thrashing).
+          if (collapsed && w <= lastWidth) {
+            lastWidth = w;
+            return;
+          }
+          lastWidth = w;
+          sync();
+        });
+        ro.observe(inner);
+        ro.observe(menu);
+        sync();
+      }
+
+      // Esconder header ao rolar para baixo — fallback JS.
+      // Roda SEMPRE: navegadores podem suportar container-type: scroll-state mas
+      // ainda não suportar a query 'scrolled' (verificado no Chromium 157), e nesse
+      // caso a regra CSS nunca esconderia o header. O JS e a regra CSS aplicam o
+      // mesmo transform, então coexistem sem conflito nos navegadores completos.
+      {
+        const bar = document.querySelector<HTMLElement>('.site-header');
+        if (bar) {
+          let lastY = scrollY;
+          addEventListener(
+            'scroll',
+            () => {
+              const y = Math.max(
+                0,
+                Math.min(scrollY, document.documentElement.scrollHeight - innerHeight)
+              );
+              if (y === lastY) return;
+              bar.classList.toggle('is-hidden', y > lastY && y > bar.offsetHeight);
+              lastY = y;
+            },
+            { passive: true }
+          );
+        }
+      }
+    </script>
+  </body>
+</html>
