@@ -49,6 +49,12 @@
 html {
   container-type: scroll-state;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--space-4));
+}
+
+/* Âncoras de seção param abaixo do header sticky. */
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -338,7 +344,7 @@ main {
   padding-block: var(--space-8) var(--space-16);
 }
 
-main:focus {
+main:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -402,12 +408,25 @@ main:focus {
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
+  position: relative;
   transition: border-color 180ms ease, transform 180ms ease;
 }
 
-.card:hover {
+/* O título é o único link do card; o ::after torna o card inteiro clicável. */
+.card h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.card:has(a:hover) {
   border-color: var(--color-primary);
   transform: translateY(-2px);
+}
+
+.card:has(a:focus-visible) {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 3px;
 }
 
 .card h3 {
@@ -498,6 +517,13 @@ main:focus {
   color: var(--color-primary);
 }
 
+/* Botões lado a lado em telas estreitas (404 e afins). */
+.error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
 /* ---------- Artigo ---------- */
 .article-header {
   padding-block: var(--space-8) var(--space-6);
@@ -558,6 +584,9 @@ main:focus {
 }
 
 .article-body table {
+  display: block;
+  overflow-x: auto;
+  max-inline-size: 100%;
   border-collapse: collapse;
   inline-size: 100%;
   margin-block: 1em;
@@ -651,6 +680,15 @@ main:focus {
   color: var(--color-secondary);
 }
 
+/* Links que ficam sozinhos em uma linha: área de toque mínima de 24px. */
+.section-head > a,
+.sources a,
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+}
+
 /* ---------- Banner de consentimento (LGPD) ----------
    Só renderiza quando SITE.adsEnabled = true.
    Barra pequena, não-modal (< 15% da viewport), com botões claros. */
@@ -713,6 +751,9 @@ main:focus {
 
 /* ---------- Responsivo ---------- */
 @media (max-width: 40rem) {
+  main {
+    padding-block-end: var(--space-8);
+  }
   .section {
     padding-block: var(--space-8);
   }

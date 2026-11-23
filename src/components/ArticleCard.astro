@@ -9,7 +9,7 @@ interface Props {
   updated: Date;
 }
 const { id, title, description, pillar, updated } = Astro.props;
-const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' });
+const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'UTC' });
 ---
 
 <li class="card">

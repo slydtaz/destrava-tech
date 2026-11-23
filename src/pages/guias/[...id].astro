@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { title, description, pillar, updated, sources } = entry.data;
-const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' });
+const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long', timeZone: 'UTC' });
 
 const all = await getCollection('guias', ({ data }) => !data.draft);
 const related = all
