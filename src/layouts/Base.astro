@@ -9,21 +9,33 @@ import NavigationSkeleton from '../components/NavigationSkeleton.astro';
 import Footer from '../components/Footer.astro';
 import ConsentBar from '../components/ConsentBar.astro';
 import { SITE } from '../site.config';
+import { LANGS, alternateUrl, t } from '../i18n';
+import type { Lang } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
   jsonLd?: Record<string, unknown>;
+  lang?: Lang;
+  path?: string;
 }
 
-const { title, description, jsonLd } = Astro.props;
+const {
+  title,
+  description,
+  jsonLd,
+  lang = 'pt',
+  path = Astro.url.pathname,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+const ogLocale: Record<Lang, string> = { pt: 'pt_BR', en: 'en_US', es: 'es_ES' };
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={lang === 'pt' ? 'pt-BR' : lang}>
   <head>
+    <meta charset="utf-8" />
     <script is:inline>
       // Aplica o tema antes de qualquer CSS para evitar flash de tema claro.
       // is:inline é essencial: Astro não pode mover este script para o bundle.
@@ -51,32 +63,37 @@ const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
         document.documentElement.dataset.theme = theme;
       })();
     </script>
-    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" hreflang="x-default" href={alternateUrl('pt', path)} />
+    {
+      LANGS.map((l) => (
+        <link rel="alternate" hreflang={l === 'pt' ? 'pt-BR' : l} href={alternateUrl(l, path)} />
+      ))
+    }
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content={ogLocale[lang]} />
     <meta name="generator" content={Astro.generator} />
     <ClientRouter fallback="swap" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
-    <a href="#content" class="skip-link visually-hidden">Pular para o conteúdo</a>
-    <Header currentPath={Astro.url.pathname} />
+    <a href="#content" class="skip-link visually-hidden">{t(lang, 'skip.link')}</a>
+    <Header lang={lang} currentPath={path} />
     <NavigationSkeleton />
     <main id="content" tabindex="-1">
       <slot />
     </main>
-    <Footer />
-    <ConsentBar />
+    <Footer lang={lang} />
+    <ConsentBar lang={lang} />
     <script>
       import { setupPageLifecycle } from '../scripts/site-navigation';
       import { setupSkeleton } from '../scripts/skeleton';

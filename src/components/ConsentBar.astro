@@ -3,18 +3,25 @@
 // Hoje o site NÃO usa cookies de terceiros nem rastreamento, então nada é exibido
 // (guia content-first-noise-reduction: não mostrar banner sem necessidade real).
 import { SITE } from '../site.config';
+import { localizedPath, t } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
 ---
 
 {
   SITE.adsEnabled && (
-    <div class="consent-bar" role="region" aria-label="Aviso de cookies">
+    <div class="consent-bar" role="region" aria-label={t(lang, 'consent.label')}>
       <p>
-        Usamos cookies de anúncios (Google AdSense) para manter o site gratuito. Você pode
-        aceitar ou recusar. Saiba mais na{' '}
-        <a href="/privacidade/">Política de Privacidade</a>.
+        {t(lang, 'consent.text')}{' '}
+        <a href={localizedPath(lang, '/privacidade/')}>{t(lang, 'consent.privacy')}</a>.
       </p>
-      <button type="button" class="consent-reject" data-consent="reject">Recusar</button>
-      <button type="button" class="consent-accept" data-consent="accept">Aceitar</button>
+      <button type="button" class="consent-reject" data-consent="reject">{t(lang, 'consent.reject')}</button>
+      <button type="button" class="consent-accept" data-consent="accept">{t(lang, 'consent.accept')}</button>
     </div>
   )
 }

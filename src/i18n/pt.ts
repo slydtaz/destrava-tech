@@ -5,6 +5,8 @@ const dict = {
   'nav.guides': 'Guias',
   'nav.about': 'Sobre',
   'nav.contact': 'Contato',
+  'nav.main': 'Navegação principal',
+  'nav.menu': 'Menu',
 
   'footer.tagline': 'Tecnologia explicada sem complicação.',
   'footer.rights': '© {year} — Guias com data de atualização e fontes citadas.',
@@ -13,6 +15,7 @@ const dict = {
   'footer.contact': 'Contato',
   'footer.privacy': 'Privacidade',
   'footer.terms': 'Termos',
+  'footer.nav': 'Rodapé',
 
   'skip.link': 'Pular para o conteúdo',
 
@@ -59,7 +62,9 @@ const dict = {
   'notfound.home': 'Voltar ao início',
   'notfound.guides': 'Ver todos os guias',
 
-  'consent.text': 'Usamos cookies de anúncios (Google AdSense) para manter o site gratuito. Você pode aceitar ou recusar. Saiba mais na Política de Privacidade.',
+  'consent.label': 'Aviso de cookies',
+  'consent.text': 'Usamos cookies de anúncios (Google AdSense) para manter o site gratuito. Você pode aceitar ou recusar. Saiba mais na',
+  'consent.privacy': 'Política de Privacidade',
   'consent.accept': 'Aceitar',
   'consent.reject': 'Recusar',
 } satisfies Record<string, string>;
