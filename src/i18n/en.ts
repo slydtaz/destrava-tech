@@ -1,0 +1,66 @@
+// Interface text in English. Machine-translated from the canonical Portuguese.
+const dict = {
+  'nav.home': 'Home',
+  'nav.guides': 'Guides',
+  'nav.about': 'About',
+  'nav.contact': 'Contact',
+
+  'footer.tagline': 'Technology explained without complications.',
+  'footer.rights': '© {year} — Guides with update dates and cited sources.',
+  'footer.guides': 'Guides',
+  'footer.about': 'About',
+  'footer.contact': 'Contact',
+  'footer.privacy': 'Privacy',
+  'footer.terms': 'Terms',
+
+  'skip.link': 'Skip to content',
+
+  'theme.toggle': 'Switch between light and dark theme',
+  'theme.light': 'Light theme',
+  'theme.dark': 'Dark theme',
+
+  'lang.label': 'Language',
+  'lang.pt': 'Portuguese',
+  'lang.en': 'English',
+  'lang.es': 'Spanish',
+
+  'translation.notice': 'This page was translated automatically. The Portuguese version is the original and prevails if there is any difference.',
+  'translation.link': 'View the Portuguese version',
+
+  'article.updated': 'Updated on',
+  'article.sources': 'Sources consulted',
+  'article.aboutSources': 'About the sources',
+  'article.related': 'Keep reading',
+  'article.newTab': 'opens in a new tab',
+
+  'guides.kicker': 'Guide library',
+  'guides.title': 'All guides',
+  'guides.lead': 'Choose a topic below. Each guide shows the date of the last update and the sources consulted.',
+  'guides.count': 'guides',
+
+  'home.kicker': 'Practical guides · Plain Portuguese',
+  'home.title': 'Technology explained without complications',
+  'home.lead': 'Real step-by-step help for everyday life: protect yourself from scams, use WhatsApp better, make the most of artificial intelligence and fix phone problems. No jargon, no filler, with sources and an update date.',
+  'home.cta': 'See all guides',
+  'home.pillars': 'Where to start',
+  'home.how': 'How it works',
+  'home.howLine': 'Each guide shows its steps, the sources and the date of the last update.',
+  'home.recent': 'Recent guides',
+  'home.trust': 'How this site works',
+  'home.trust1': 'Straightforward content. Each guide is written to answer a real question and includes steps you can check.',
+  'home.trust2': 'Sources cited. When a guide makes a claim about security or app rules, it points to the official source so you can check it.',
+  'home.trust3': 'Update date shown. Technology changes fast; you always know when the guide was last updated.',
+  'home.trust4': 'Respect for your privacy. The site does not ask for sign-up and does not use cookies; the server records only technical access data. See the Privacy Policy.',
+
+  'notfound.kicker': 'Error 404',
+  'notfound.title': 'This page does not exist (or has moved)',
+  'notfound.lead': 'The address may have been typed wrong or the guide may have moved. No problem: you can go back to the main path.',
+  'notfound.home': 'Back to home',
+  'notfound.guides': 'See all guides',
+
+  'consent.text': 'We use advertising cookies (Google AdSense) to keep the site free. You can accept or decline. Learn more in the Privacy Policy.',
+  'consent.accept': 'Accept',
+  'consent.reject': 'Decline',
+} satisfies Record<string, string>;
+
+export default dict;

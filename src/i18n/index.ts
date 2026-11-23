@@ -1,5 +1,8 @@
 // Rotas e idioma: funções puras, compartilhadas por páginas e componentes.
 import { SITE } from '../site.config';
+import pt from './pt';
+import en from './en';
+import es from './es';
 
 export type Lang = 'pt' | 'en' | 'es';
 
@@ -43,4 +46,11 @@ export function slugFromId(id: string): string {
 
 export function alternateUrl(lang: Lang, pathname: string): string {
   return `${SITE.url}${localizedPath(lang, pathname)}`;
+}
+
+// Textos da interface. O português é a fonte das chaves e do fallback.
+const dicts: Record<Lang, Partial<Record<keyof typeof pt, string>>> = { pt, en, es };
+
+export function t(lang: Lang, key: keyof typeof pt): string {
+  return dicts[lang][key] ?? pt[key];
 }
