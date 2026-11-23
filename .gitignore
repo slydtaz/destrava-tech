@@ -9,3 +9,6 @@ home-mobile.png
 home-mobile-menu.png
 .vercel
 .env*
+
+# Worktrees locais (SDD)
+.worktrees/
