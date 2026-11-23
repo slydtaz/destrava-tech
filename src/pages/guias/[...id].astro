@@ -46,7 +46,7 @@ const jsonLd = {
             <time datetime={updated.toISOString().slice(0, 10)}>{fmt.format(updated)}</time>
           </span>
           <span>·</span>
-          <span>Equipe {SITE.name}</span>
+          <span>{SITE.name}</span>
         </div>
       </header>
 
@@ -54,26 +54,28 @@ const jsonLd = {
         <Content />
       </div>
 
-      {
-        sources && sources.length > 0 && (
-          <section class="sources" aria-labelledby="fontes">
-            <h2 id="fontes">Fontes consultadas</h2>
+      <section class="sources" aria-labelledby="fontes">
+        <h2 id="fontes">{sources && sources.length > 0 ? 'Fontes consultadas' : 'Sobre as fontes'}</h2>
+        {
+          sources && sources.length > 0 ? (
             <ul>
               {sources.map((s) => (
                 <li>
                   <a href={s.url} rel="noopener noreferrer" target="_blank">
-                    {s.name}
+                    {s.name}<span class="visually-hidden"> (abre em nova aba)</span>
                   </a>
                 </li>
               ))}
             </ul>
-            <p>
-              Os passos podem variar um pouco conforme a versão do aplicativo e o modelo do
-              aparelho. Encontrou algo diferente? <a href="/contato/">Avise a gente</a>.
-            </p>
-          </section>
-        )
-      }
+          ) : (
+            <p>Este guia usa passos gerais dos aplicativos. Confira sempre o suporte oficial.</p>
+          )
+        }
+        <p>
+          Os passos podem variar um pouco conforme a versão do aplicativo e o modelo do
+          aparelho. Encontrou algo diferente? <a href="/contato/">Avise a gente</a>.
+        </p>
+      </section>
 
       <AdSlot slot="artigo-fim" />
     </article>
