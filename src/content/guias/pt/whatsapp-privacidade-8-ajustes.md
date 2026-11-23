@@ -2,6 +2,7 @@
 title: 'WhatsApp: 8 ajustes de privacidade que valem 5 minutos'
 description: 'Passo a passo para revisar foto de perfil, visto por último, grupos, chamadas e backups no WhatsApp — e reduzir golpes e exposição sem perder praticidade.'
 pillar: whatsapp
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'Central de Ajuda do WhatsApp — Privacidade'

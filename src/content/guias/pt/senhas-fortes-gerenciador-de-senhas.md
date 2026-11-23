@@ -2,6 +2,7 @@
 title: 'Senhas fortes sem decorar tudo: o jeito certo de usar gerenciadores'
 description: 'Por que repetir senhas é perigoso, como criar senhas fortes que você lembra e como um gerenciador de senhas resolve o problema sem complicação.'
 pillar: seguranca
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'SERPRO — Cinco hábitos simples para se proteger de golpes digitais (2026)'

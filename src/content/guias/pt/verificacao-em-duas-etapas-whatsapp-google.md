@@ -2,6 +2,7 @@
 title: 'Verificação em duas etapas: proteja WhatsApp e Google em 5 minutos'
 description: 'Passo a passo para ativar a verificação em duas etapas no WhatsApp e na conta Google, com PIN e e-mail de recuperação — a trava que impede o roubo de conta.'
 pillar: seguranca
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'Central de Ajuda do WhatsApp'

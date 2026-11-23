@@ -2,6 +2,7 @@
 title: 'Meta AI no WhatsApp: como usar, o que ela sabe e cuidados de privacidade'
 description: 'Guia prático da inteligência artificial dentro do WhatsApp: como chamar a Meta AI, boas perguntas para o dia a dia e o que nunca compartilhar com ela.'
 pillar: whatsapp
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'Central de Ajuda do WhatsApp — Como conversar com a Meta AI'

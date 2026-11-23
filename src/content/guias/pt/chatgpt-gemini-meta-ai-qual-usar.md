@@ -2,6 +2,7 @@
 title: 'ChatGPT, Gemini ou Meta AI: qual usar para cada tarefa'
 description: 'Comparação honesta das três IAs mais populares no Brasil: onde cada uma se destaca, o que todas fazem mal e como escolher sem pagar nada.'
 pillar: ia
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'ChatGPT (OpenAI) — site oficial'

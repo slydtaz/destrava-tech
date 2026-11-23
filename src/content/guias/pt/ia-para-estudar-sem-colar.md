@@ -2,6 +2,7 @@
 title: 'IA para estudar: como usar sem colar e sem aprender errado'
 description: 'Um método honesto para usar inteligência artificial nos estudos: explicar, praticar e revisar — sem depender dela na prova e sem engolir respostas erradas.'
 pillar: ia
+lang: pt
 updated: 2026-11-23
 ---
 

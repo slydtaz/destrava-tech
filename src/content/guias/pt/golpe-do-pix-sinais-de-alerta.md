@@ -2,6 +2,7 @@
 title: 'Golpe do Pix: 7 sinais de alerta e o que fazer para se proteger'
 description: 'Aprenda a reconhecer os golpes mais comuns com Pix no Brasil, os sinais que denunciam uma fraude e as medidas que realmente protegem seu dinheiro.'
 pillar: seguranca
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'Banco do Brasil — Golpes do Pix: saiba como se proteger'

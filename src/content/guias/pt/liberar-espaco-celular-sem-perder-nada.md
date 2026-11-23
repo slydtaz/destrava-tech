@@ -2,6 +2,7 @@
 title: 'Celular sem espaço: como liberar armazenamento sem apagar o que importa'
 description: 'Passo a passo seguro para liberar espaço no Android e no iPhone: WhatsApp, fotos, apps e caches — na ordem certa, sem perder nada importante.'
 pillar: celular
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'Suporte do Google Android — ajuda oficial'

@@ -2,6 +2,7 @@
 title: 'Dados móveis e bateria: 7 ajustes que realmente funcionam'
 description: 'Configurações práticas para a internet do celular durar mais e a bateria chegar ao fim do dia — sem apps milagrosos e sem mitos.'
 pillar: celular
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'Suporte do Google Android — ajuda oficial'

@@ -2,6 +2,7 @@
 title: 'Golpe do WhatsApp: clonagem, código de verificação e falso parente'
 description: 'Entenda como os golpes de WhatsApp funcionam de verdade, como proteger sua conta com verificação em duas etapas e o que fazer se ela for roubada.'
 pillar: seguranca
+lang: pt
 updated: 2026-11-23
 sources:
   - name: 'Banco BMG — Golpe do WhatsApp: saiba como identificar e proteger seus dados'
