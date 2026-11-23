@@ -66,6 +66,28 @@ assim antes desta task. Para não mascarar o achado, o token `--color-border-con
 somente para contornos de controles e passa em ambos os temas. A mudança do token decorativo
 exige decisão de design fora do escopo desta task.
 
+## Fontes públicas validadas — guias novos (Task 7)
+
+Pesquisa documental feita em 2026-11-23. Todas as URLs abaixo responderam com sucesso no `webfetch`
+desta data e tiveram o conteúdo conferido. São apenas referências: nenhum texto de terceiros foi
+copiado para o site. Quando uma fonte não cobre um passo, o guia usa a seção honesta "Sobre as fontes".
+
+| Guia (slug) | Fonte | URL | Checado em | O que a fonte efetivamente cobre | Status |
+|---|---|---|---|---|---|
+| `celular-no-exterior-sem-gastar-muito` | Apple Support — "Use eSIM while traveling internationally with your iPhone" | https://support.apple.com/en-us/118227 | 2026-11-23 | Roaming da operadora atual, passes de viagem, eSIM local ou internacional pré-paga, conferência de desbloqueio do aparelho e escolha da linha usada para dados. | ✅ HTTP 200 |
+| `celular-no-exterior-sem-gastar-muito` | Apple Support — "Set up eSIM on iPhone" | https://support.apple.com/en-us/118669 | 2026-11-23 | O que é eSIM, requisitos do aparelho e formas de ativação: transferência, ativação pela operadora, QR code, link e ajuste manual. | ✅ HTTP 200 |
+| `ia-para-traduzir-textos-com-seguranca` | Google Translate Help — "How Google protects your privacy & keeps you in control" | https://support.google.com/translate/answer/10400210?hl=en | 2026-11-23 | Controles de privacidade da conta Google; Translate aparece entre os serviços cobertos; orienta a revisar e excluir atividade salva e alerta que atividade também pode ficar no navegador. | ✅ HTTP 200 |
+| `ia-para-traduzir-textos-com-seguranca` | Google Translate Help — "Translate written words" | https://support.google.com/translate/answer/6142478?hl=en | 2026-11-23 | Passos para traduzir texto no app e no navegador, recomendação de escrever frases completas para dar contexto e opções de ouvir, compartilhar e inverter a tradução. | ✅ HTTP 200 |
+| `wifi-publico-como-proteger-seus-dados` | CISA — "Best Practices for Using Public Wi-Fi Tip Card" | https://www.cisa.gov/resources-tools/resources/best-practices-using-public-wi-fi-tip-card | 2026-11-23 | Riscos de redes Wi-Fi públicas e referência ao cartão de boas práticas. A própria página informa que o conteúdo está arquivado (revisão de 2020). | ✅ HTTP 200 |
+| `wifi-publico-como-proteger-seus-dados` | Android Help — "Connect to Wi-Fi networks on your Android device" | https://support.google.com/android/answer/9075847?hl=en | 2026-11-23 | Como conectar, redes salvas e reconexão automática, troca de rede pelo painel, remoção de rede salva e leitura da força do sinal. | ✅ HTTP 200 |
+| `wifi-publico-como-proteger-seus-dados` | NIC.br / Cidadão na Rede — "Redes Públicas" | https://cidadaonarede.nic.br/pt/videos/redes-publicas | 2026-11-23 | Em português: redes públicas não garantem privacidade, existem redes WiFi falsas, conferir cadeado/HTTPS e usar dados móveis para informações sigilosas. | ✅ HTTP 200 |
+| `golpe-de-falso-suporte-no-whatsapp` | WhatsApp Help Center — "About suspicious messages and scams" | https://faq.whatsapp.com/2286952358121083 | 2026-11-23 | Sinais de mensagem suspeita (link, pedido de dados ou dinheiro, promessa de emprego, imitação de conhecido), confirmação da identidade por chamada e encaminhamento para bloqueio e denúncia. | ✅ HTTP 200 |
+| `golpe-de-falso-suporte-no-whatsapp` | WhatsApp Help Center — "How to block and report someone" | https://faq.whatsapp.com/1142481766359885 | 2026-11-23 | Passos para bloquear e denunciar contato ou número desconhecido no Android, iOS e Web, e o que é enviado ao WhatsApp numa denúncia. | ✅ HTTP 200 |
+| `golpe-de-falso-suporte-no-whatsapp` | WhatsApp Help Center — "Account security tips" | https://faq.whatsapp.com/1095301557782068 | 2026-11-23 | Camadas extras de proteção da conta: verificação em duas etapas, senha, passkey, bloqueio de app, bloqueio de conversas e backup criptografado. | ✅ HTTP 200 |
+
+Nota: as URLs testadas que falharam ou não serviram de referência ficam registradas apenas no
+relatório da Task 7, fora do site. Nenhuma delas foi listada como fonte acima.
+
 ## Bug encontrado e corrigido (registro de recuperação de falha)
 
 - **Sintoma:** header não escondia ao rolar para baixo no Chromium 157.
