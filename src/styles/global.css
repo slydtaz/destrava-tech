@@ -296,7 +296,7 @@ a:hover {
   color: var(--color-primary);
 }
 
-.site-menu a[aria-current='page'] {
+.site-menu a:is([aria-current='page'], [aria-current='location']) {
   background: var(--color-primary);
   color: var(--color-on-primary);
 }
@@ -419,7 +419,10 @@ main:focus:not(:focus-visible) {
   inset: 0;
 }
 
-.card:has(a:hover) {
+/* O card do artigo tem um único link no título; o card do pilar é ele mesmo
+   um <a>, por isso o seletor direto também precisa entrar aqui. */
+.card:has(a:hover),
+a.card:hover {
   border-color: var(--color-primary);
   transform: translateY(-2px);
 }
@@ -744,7 +747,7 @@ main:focus:not(:focus-visible) {
   .menu-button {
     border: 1px solid CanvasText;
   }
-  .site-menu a[aria-current='page'] {
+  .site-menu a:is([aria-current='page'], [aria-current='location']) {
     outline: 2px solid Highlight;
   }
 }
