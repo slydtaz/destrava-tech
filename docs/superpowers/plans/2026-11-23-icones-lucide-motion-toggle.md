@@ -119,9 +119,9 @@
 
 **Interfaces:**
 - Consumes: Tasks 1–3.
-- Produces: versão 0.2.3 registrada (sem deploy), QA com evidências.
+- Produces: versão 0.2.3 registrada e publicada em 2026-11-24 (`dpl_7bvyYkgAEeM19Kpsc4YYBKeTUFgy`), QA com evidências.
 
-- [x] **Step 1: registrar versão 0.2.3** no changelog como `PREPARADO — aguardando autorização de deploy`, descrevendo ícones Lucide, botão de animações e a decisão de padrão ligado.
+- [x] **Step 1: registrar versão 0.2.3** no changelog descrevendo ícones Lucide, botão de animações e a decisão de padrão ligado; status atualizado para PUBLICADO após autorização separada em 2026-11-24.
 
 - [x] **Step 2: QA final** — build exit 0, `git diff --check` limpo, i18n paritário, sitemap 60/180 intacto, responsividade 320/390/768/1280 px sem overflow, reduced motion com padrão ligado, botão desligado sem conteúdo invisível, persistência PT/EN/ES, tema + movimento juntos, console limpo, zero requisição externa, zero anúncios/cookies.
 

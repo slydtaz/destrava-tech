@@ -4,7 +4,7 @@ Data: 2026-11-23 · Ambiente: Windows, Node v24.19.0, Astro 5 · Navegador de te
 
 ## QA dos ícones Lucide e do botão de animações — 0.2.3 (2026-11-23 a 2026-11-24)
 
-Executado sobre `npm run preview` do build local do código final desta rodada, commit `eab0f35` (61 páginas), em Chromium via `agent-browser`. As verificações de `c615b4e` foram refeitas depois das correções de revisão, e o build final passou também após os ajustes de persistência e de fallback de revelação. Os commits seguintes desta rodada são só documentação e não alteram o código verificado. Rodada **preparada, sem deploy**: o site no ar continua 0.2.2. Zero dependência, pacote, CDN, requisição externa ou alteração de sitemap; `SITE.adsEnabled` continua `false`.
+Executado sobre `npm run preview` do build local do código final desta rodada, commit `eab0f35` (61 páginas), em Chromium via `agent-browser`. As verificações de `c615b4e` foram refeitas depois das correções de revisão, e o build final passou também após os ajustes de persistência e de fallback de revelação. Os commits seguintes desta rodada são só documentação e não alteram o código verificado. Após autorização explícita, o mesmo código foi publicado em 2026-11-24 como deploy `dpl_7bvyYkgAEeM19Kpsc4YYBKeTUFgy` e conferido no ar (linha "Deploy" abaixo). Zero dependência, pacote, CDN, requisição externa ou alteração de sitemap; `SITE.adsEnabled` continua `false`.
 
 | Verificação | Resultado | Evidência |
 |---|---|---|
@@ -24,7 +24,7 @@ Executado sobre `npm run preview` do build local do código final desta rodada, 
 | Foco e teclado | ✅ | 1º Tab = link "Pular para o conteúdo", `outline: solid 3px` |
 | Contraste dos textos animados | ✅ | `.swap-from` e `.swap-to` mantêm `opacity: 1` em todo o ciclo; movimento apenas por `translate`, sem queda de contraste |
 | Console e rede | ✅ | 0 erros; 0 requisições a origem externa nas quatro páginas medidas |
-| Deploy | ⏸ | Não autorizado nesta rodada — nenhum ID novo, alias inalterado |
+| Deploy | ✅ | `dpl_7bvyYkgAEeM19Kpsc4YYBKeTUFgy`, production, alias canônico inalterado; conferido no ar em 2026-11-24 |
 
 Nota honesta: a decisão de ligar animações por padrão sobrescreve `prefers-reduced-motion`. Isso está registrado no desenho aprovado; o botão oferece a saída e o estado final do conteúdo continua sempre visível.
 

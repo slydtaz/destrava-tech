@@ -73,4 +73,4 @@ Conclusão: a preferência de movimento reduzido do sistema/navegador do proprie
 
 ## Status
 
-Aprovado pelo proprietário, virado no plano `docs/superpowers/plans/2026-11-23-icones-lucide-motion-toggle.md` e implementado em quatro tarefas (commits `b8e0c81`, `dd61b39`, `b28361a`, `80e3adf`). Preparado como 0.2.3, sem deploy autorizado nesta rodada.
+Aprovado pelo proprietário, virado no plano `docs/superpowers/plans/2026-11-23-icones-lucide-motion-toggle.md` e implementado em quatro tarefas (commits `b8e0c81`, `dd61b39`, `b28361a`, `80e3adf`). Registrado como 0.2.3 e publicado em 2026-11-24 após autorização separada do proprietário, com o deploy `dpl_7bvyYkgAEeM19Kpsc4YYBKeTUFgy`.
