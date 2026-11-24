@@ -19,12 +19,27 @@ const pillarKeys = Object.keys(PILLARS) as PillarKey[];
       <p class="lead">{t('pt', 'guides.lead')}</p>
     </section>
 
+    <nav class="pillar-filter" aria-label={t('pt', 'guides.filterLabel')}>
+      <button type="button" data-pillar-filter="all" aria-pressed="true">
+        {t('pt', 'guides.filterAll')}
+      </button>
+      {
+        pillarKeys
+          .filter((key) => guias.some((g) => g.data.pillar === key))
+          .map((key) => (
+            <button type="button" data-pillar-filter={key} aria-pressed="false">
+              {t('pt', `pillar.${key}`)}
+            </button>
+          ))
+      }
+    </nav>
+
     {
       pillarKeys.map((key) => {
         const items = guias.filter((g) => g.data.pillar === key);
         if (items.length === 0) return null;
         return (
-          <section class="section" id={key} aria-labelledby={`h-${key}`}>
+          <section class="section" id={key} data-pillar-section={key} aria-labelledby={`h-${key}`}>
             <div class="section-head">
               <h2 id={`h-${key}`}>{t('pt', `pillar.${key}`)}</h2>
               <p>{t('pt', `pillar.${key}.description`)}</p>

@@ -44,6 +44,10 @@ const dict = {
   'article.sourcesFallback': 'This guide uses general app steps. Always check the official support.',
   'article.stepsNote': 'The steps may vary slightly depending on the app version and the device model. Found something different?',
   'article.reportLink': 'Let us know',
+  'article.toc': 'On this page',
+  'article.copyLink': 'Copy link to this guide',
+  'article.copied': 'Link copied',
+  'article.copyFailed': 'Could not copy the link',
 
   'pillar.seguranca': 'Digital security',
   'pillar.whatsapp': 'WhatsApp',
@@ -59,6 +63,9 @@ const dict = {
   'guides.title': 'All guides',
   'guides.lead': 'Choose a topic below. Each guide shows the date of the last update and the sources consulted.',
   'guides.count': 'guides',
+  'guides.filterLabel': 'Filter guides by topic',
+  'guides.filterAll': 'All topics',
+  'ui.backToTop': 'Back to top',
 
   'home.metaDescription': 'Practical technology guides in plain language: digital security, WhatsApp, artificial intelligence and phones. Step-by-step instructions you can check, without jargon.',
   'home.kicker': 'Practical guides · Plain Portuguese',

@@ -95,14 +95,35 @@ const ogLocale: Record<Lang, string> = { pt: 'pt_BR', en: 'en_US', es: 'es_ES' }
     </main>
     <Footer lang={lang} />
     <ConsentBar lang={lang} />
+    <button
+      class="back-to-top"
+      type="button"
+      data-back-to-top
+      aria-label={t(lang, 'ui.backToTop')}
+      title={t(lang, 'ui.backToTop')}
+      hidden
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M12 19 V6 M5 13 L12 6 L19 13"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        ></path>
+      </svg>
+    </button>
     <script>
       import { setupPageLifecycle } from '../scripts/site-navigation';
       import { setupSkeleton } from '../scripts/skeleton';
       import { setupReveal } from '../scripts/reveal';
+      import { setupGuideTools } from '../scripts/guide-tools';
 
       setupPageLifecycle();
       setupSkeleton();
       setupReveal();
+      setupGuideTools();
     </script>
   </body>
 </html>

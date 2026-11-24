@@ -15,7 +15,8 @@ interface Props {
 }
 
 const { entry, lang } = Astro.props;
-const { Content } = await render(entry);
+const { Content, headings } = await render(entry);
+const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const { title, description, pillar, updated, sources } = entry.data;
 const slug = slugFromId(entry.id);
 const locales: Record<Lang, string> = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' };
@@ -63,6 +64,21 @@ const jsonLd = {
       )
     }
 
+    {
+      toc.length > 1 && (
+        <nav class="toc" aria-labelledby="toc-title">
+          <h2 id="toc-title">{t(lang, 'article.toc')}</h2>
+          <ol>
+            {toc.map((heading) => (
+              <li class={`toc-depth-${heading.depth}`}>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
     <article>
       <header class="article-header">
         <span class="badge">{t(lang, `pillar.${pillar}`)}</span>
@@ -75,6 +91,17 @@ const jsonLd = {
           <span>·</span>
           <span>{SITE.name}</span>
         </div>
+        <button
+          class="copy-link"
+          type="button"
+          data-copy-link
+          data-label-original={t(lang, 'article.copyLink')}
+          data-label-copied={t(lang, 'article.copied')}
+          data-label-failed={t(lang, 'article.copyFailed')}
+        >
+          <span data-copy-label>{t(lang, 'article.copyLink')}</span>
+        </button>
+        <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
         <div class="article-visual">
           <Illustration src={`/illustrations/guide-${slug}.svg`} />
         </div>
