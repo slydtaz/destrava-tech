@@ -2,9 +2,9 @@
 
 Data: 2026-11-23 · Ambiente: Windows, Node v24.19.0, Astro 5 · Navegador de teste: Chromium 157 (Playwright)
 
-## QA dos ícones Lucide e do botão de animações — 0.2.3 (2026-11-23)
+## QA dos ícones Lucide e do botão de animações — 0.2.3 (2026-11-23 a 2026-11-24)
 
-Executado sobre `npm run preview` do build local de `80e3adf` (61 páginas), em Chromium via `agent-browser`. Rodada **preparada, sem deploy**: o site no ar continua 0.2.2. Zero dependência, pacote, CDN, requisição externa ou alteração de sitemap; `SITE.adsEnabled` continua `false`.
+Executado sobre `npm run preview` do build local do código final desta rodada, commit `eab0f35` (61 páginas), em Chromium via `agent-browser`. As verificações de `c615b4e` foram refeitas depois das correções de revisão, e o build final passou também após os ajustes de persistência e de fallback de revelação. Os commits seguintes desta rodada são só documentação e não alteram o código verificado. Rodada **preparada, sem deploy**: o site no ar continua 0.2.2. Zero dependência, pacote, CDN, requisição externa ou alteração de sitemap; `SITE.adsEnabled` continua `false`.
 
 | Verificação | Resultado | Evidência |
 |---|---|---|
@@ -18,6 +18,8 @@ Executado sobre `npm run preview` do build local de `80e3adf` (61 páginas), em 
 | Movimento ligado | ✅ | Sob reduced motion emulado: `data-motion='on'`, `.card` com `animationName: 'reveal-up'`, barra `display: block` e transição de página com `animation ... !important` vencendo a regra injetada pelo ClientRouter |
 | Movimento desligado | ✅ | Após clique: `data-motion='off'`, `animationName: 'none'`, `opacity: 1` em `.card` e `.section-head` — nada invisível |
 | Persistência | ✅ | `off` preservado em `/`, `/en/guias/`, `/es/sobre/` e artigo PT; `dt-theme='dark'` + `dt-motion='off'` sobreviveram a duas navegações com fundo `rgb(9,9,11)` |
+| Persistência sem armazenamento | ✅ | Com `setItem` bloqueado, `off` sobreviveu à navegação client-side para `/en/`, com `aria-pressed='false'` e `dt-motion` ausente |
+| Fallback de revelação | ✅ | Sem `animation-timeline: view()`, ligar e desligar alterna `has-reveal-fallback`; desligado mantém `opacity: 1` no conteúdo |
 | Responsividade | ✅ | `scrollWidth === clientWidth` em 320, 390, 768 e 1280 px; ajuste fino no header em 320 px |
 | Foco e teclado | ✅ | 1º Tab = link "Pular para o conteúdo", `outline: solid 3px` |
 | Contraste dos textos animados | ✅ | `.swap-from` e `.swap-to` mantêm `opacity: 1` em todo o ciclo; movimento apenas por `translate`, sem queda de contraste |
