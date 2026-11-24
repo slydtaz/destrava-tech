@@ -71,6 +71,6 @@ Conclusão: a preferência de movimento reduzido do sistema/navegador do proprie
 - Nenhuma requisição em runtime: os SVG entram no bundle como texto.
 - Botão no header ao lado do tema; `localStorage` com padrão ligado e estados `on`/`off`, conforme decisão do proprietário.
 
-## Pendente
+## Status
 
-Aprovação do proprietário para virar plano e implementar.
+Aprovado pelo proprietário, virado no plano `docs/superpowers/plans/2026-11-23-icones-lucide-motion-toggle.md` e implementado em quatro tarefas (commits `b8e0c81`, `dd61b39`, `b28361a`, `80e3adf`). Preparado como 0.2.3, sem deploy autorizado nesta rodada.

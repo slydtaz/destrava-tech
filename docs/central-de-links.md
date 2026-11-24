@@ -1,7 +1,7 @@
 # 🎛️ Central de Links — Destrava Tech
 
 Modo de gerenciamento escolhido pelo proprietário: **Central de links** (acompanhar tudo diretamente pelos painéis).
-Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 — versão 0.2.2 (interface viva), publicada com autorização explícita do proprietário.
+Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 — versão 0.2.2 (interface viva), publicada com autorização explícita do proprietário. A versão 0.2.3 (ícones Lucide + botão de animações) está **preparada e commitada localmente, sem deploy autorizado**; o ID do último deploy e o alias abaixo permanecem os mesmos.
 
 ## O site
 

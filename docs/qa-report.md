@@ -2,6 +2,29 @@
 
 Data: 2026-11-23 · Ambiente: Windows, Node v24.19.0, Astro 5 · Navegador de teste: Chromium 157 (Playwright)
 
+## QA dos ícones Lucide e do botão de animações — 0.2.3 (2026-11-23)
+
+Executado sobre `npm run preview` do build local de `80e3adf` (61 páginas), em Chromium via `agent-browser`. Rodada **preparada, sem deploy**: o site no ar continua 0.2.2. Zero dependência, pacote, CDN, requisição externa ou alteração de sitemap; `SITE.adsEnabled` continua `false`.
+
+| Verificação | Resultado | Evidência |
+|---|---|---|
+| Build e diff | ✅ | `npm run build` exit 0, 61 páginas; `git diff --check` limpo |
+| Paridade i18n | ✅ | 90/90/90 chaves em `pt.ts`/`en.ts`/`es.ts` (3 novas: `motion.toggle`, `motion.on`, `motion.off`) |
+| Sitemap | ✅ | `dist/sitemap-0.xml` com 60 `<loc>` e 180 `<xhtml:link>` — byte-idêntico ao publicado |
+| Ícones Lucide | ✅ | 24 SVGs com `viewBox="0 0 24 24"`, sem `width`/`height` no `<svg>`, sem hex, traço por token; claro `rgb(24,24,27)` → escuro `rgb(250,250,250)`, detalhe `rgb(236,72,153)` |
+| Decores | ✅ | Logo `zap`, marcadores `chevron-right`, exemplo `arrow-right`/`check`, voltar ao topo `arrow-up`, copiar link `link`/`check`; zero `clip-path: polygon` nos componentes |
+| Alinhamento | ✅ | 5 ilustrações inline com `dx=0` e `dw=0`; 3 marcadores com `dx=0, dy=0`; logo 26×26 px |
+| Botão de animações | ✅ | 44×44 px, `aria-pressed`, `data-motion`, ícones `play`/`pause`; padrão `on` mesmo com `prefers-reduced-motion: reduce` |
+| Movimento ligado | ✅ | Sob reduced motion emulado: `data-motion='on'`, `.card` com `animationName: 'reveal-up'` e barra `display: block` |
+| Movimento desligado | ✅ | Após clique: `data-motion='off'`, `animationName: 'none'`, `opacity: 1` em `.card` e `.section-head` — nada invisível |
+| Persistência | ✅ | `off` preservado em `/`, `/en/guias/`, `/es/sobre/` e artigo PT; `dt-theme='dark'` + `dt-motion='off'` sobreviveram a duas navegações com fundo `rgb(9,9,11)` |
+| Responsividade | ✅ | `scrollWidth === clientWidth` em 320, 390, 768 e 1280 px; ajuste fino no header em 320 px |
+| Foco e teclado | ✅ | 1º Tab = link "Pular para o conteúdo", `outline: solid 3px` |
+| Console e rede | ✅ | 0 erros; 0 requisições a origem externa nas quatro páginas medidas |
+| Deploy | ⏸ | Não autorizado nesta rodada — nenhum ID novo, alias inalterado |
+
+Nota honesta: a decisão de ligar animações por padrão sobrescreve `prefers-reduced-motion`. Isso está registrado no desenho aprovado; o botão oferece a saída e o estado final do conteúdo continua sempre visível.
+
 ## QA da interface viva — 0.2.2 (2026-11-23)
 
 Executado sobre `npm run preview` do build local de `35e5fe4` (61 páginas), em Chromium via `agent-browser`. Nenhuma dependência, pacote, plugin ou skill de projeto nova; `SITE.adsEnabled` continua `false`.

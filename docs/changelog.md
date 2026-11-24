@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.3 - 2026-11-23 (PREPARADO — aguardando autorização de deploy)
+
+Nada foi publicado nesta rodada. O site no ar continua sendo a 0.2.2 (`dpl_45hn5XCYCMqLizgqmvE2EVQs2VMu`). Commits locais na branch `interface-motion`: `b8e0c81`, `dd61b39`, `b28361a`, `80e3adf`.
+
+- Os 24 SVGs e os decores feitos à mão foram trocados por ícones da Lucide copiados inline como texto: sem pacote, CDN ou requisição em runtime. Traços usam `--color-primary` e um detalhe `--color-accent`, acompanhando claro/escuro. Avisos ISC (Lucide) e MIT (Feather) em `docs/third-party-credits.md`.
+- Causa de "não vejo animações" investigada: no ar as animações funcionavam; com `prefers-reduced-motion: reduce` o CSS as desligava de propósito. Por decisão do proprietário, **animações agora ligadas por padrão**, sobrescrevendo a preferência do sistema; o botão no header permite desligar.
+- Novo botão de animações ao lado do tema, 44×44 px, `aria-pressed` e rótulos em PT/EN/ES. Estado em `dt-motion`, aplicado antes da pintura e preservado no ClientRouter. Movimento desligado mantém todo o conteúdo visível.
+- Header em telas de 320 px sem overflow: controles de 44 px preservados e seletor de idioma reduzido para 36 px (acima do mínimo WCAG de 24 px).
+- Sitemap intocado (60 URLs / 180 alternates), `SITE.adsEnabled` continua `false`, zero dependência nova. Build limpo (61 páginas).
+
 ## 0.2.2 — 2026-11-23 (PUBLICADO 🟢)
 
 Deploy `dpl_45hn5XCYCMqLizgqmvE2EVQs2VMu`, aliasado a https://destrava-tech-rho.vercel.app. Validação no ar: 200 em `/`, `/guias/`, guia PT, `/en/guias/`, `/es/guias/`, `sitemap-index.xml`, `sitemap-0.xml` e `robots.txt`; tema escuro persistiu entre páginas e idiomas, 5 SVGs inline sem `<img>`, barra de progresso, filtro e sumário presentes; console limpo.
