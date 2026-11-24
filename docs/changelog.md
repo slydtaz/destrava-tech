@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.2 — 2026-11-23 (PREPARADO — publicação autorizada no mesmo fluxo)
+
+- Tema claro/escuro agora sobrevive à navegação cliente: o estado é passado ao documento entrante em `astro:before-swap` e reaplicado em `astro:after-swap`, sem flash.
+- Os 24 SVGs de retângulos/círculos viraram traços, arcos e chevrons com `stroke` vindo dos tokens; o SVG passa a ser inline para herdar o tema. Logo, badge, marcadores e exemplo animado também foram trocados.
+- Movimento perceptível: transição de página de 200 ms para 280 ms, revelação de cards/cabeçalhos com scroll-driven animations e fallback por `IntersectionObserver`, barra de progresso de leitura em todas as páginas. `prefers-reduced-motion` mantém o estado final visível.
+- Utilidades novas: sumário e botão "copiar link" nos guias, filtro por pilar nos índices PT/EN/ES e botão "voltar ao topo" em todas as páginas, com textos nos três idiomas.
+- Sitemap: o Google confirmou a leitura correta das 60 páginas; nenhum arquivo foi alterado.
+- Build limpo (61 páginas) e commits locais `fb4f49c`, `26e6e7c`, `51813f4`, `35e5fe4`.
+
 ## 0.2.1 — 2026-11-23 (PUBLICADO 🟢 — correção de interface)
 
 Deploy `dpl_4K16tto4FUt3G7yL9Br8t5JHE4vB`, aliasado a https://destrava-tech-rho.vercel.app; tamanhos confirmados no ar: 144 px nas páginas fixas, 352 px na capa, 112 px nos guias.

@@ -2,6 +2,26 @@
 
 Data: 2026-11-23 · Ambiente: Windows, Node v24.19.0, Astro 5 · Navegador de teste: Chromium 157 (Playwright)
 
+## QA da interface viva — 0.2.2 (2026-11-23)
+
+Executado sobre `npm run preview` do build local de `35e5fe4` (61 páginas), em Chromium via `agent-browser`. Nenhuma dependência, pacote, plugin ou skill de projeto nova; `SITE.adsEnabled` continua `false`.
+
+| Verificação | Resultado | Evidência |
+|---|---|---|
+| Build final | ✅ | `npm run build` exit 0, 61 páginas, `git diff --check` limpo |
+| Tema persistente | ✅ | `dt-theme='dark'` em `/` → `/sobre/` → `/` e em `/en/`, `/es/`: `data-theme='dark'`, fundo `rgb(9, 9, 11)`; logo, traços e badge seguem os tokens |
+| Ilustrações | ✅ | 5 SVGs inline, 0 `<img>`, 0 `<rect>`/`<circle>`; 352 px na capa e 144 px nas páginas fixas; `stroke` claro `rgb(24,24,27)` → escuro `rgb(250,250,250)` |
+| Transição e revelação | ✅ | CSS compilado com 280 ms em `::view-transition-*`; `animationTimeline: 'view()'` e `animationName: 'reveal-up'` nos cards; fallback `has-reveal-fallback` esconde (`opacity: 0`) e restaura com `.is-visible` |
+| Barra de progresso | ✅ | 1 instância em todas as páginas; `scaleX(0)` no topo → `scaleX(1)` no fim do scroll |
+| `prefers-reduced-motion` | ✅ | `animationName: 'none'`, `opacity: 1`, sem classe de fallback; estado final visível |
+| Filtro por pilar | ✅ | 5 botões / 4 seções em PT, EN e ES; `whatsapp` → `aria-pressed='true'` e 3 seções ocultas; `all` → nenhuma oculta |
+| Sumário (ToC) | ✅ | 11 links em `/guias/golpe-do-pix-sinais-de-alerta/`; primeiro `href='#por-que-o-pix-atrai-tantos-golpes'` com alvo existente; títulos localizados em EN/ES |
+| Copiar link | ✅ | Clique atualiza o rótulo e o `aria-live` para "Link copiado" / "Link copied" |
+| Voltar ao topo | ✅ | Oculto no topo, visível em `scrollY=800`, 44×44 px, rolagem volta a `y=0` |
+| Paridade i18n | ✅ | Mesmas 8 chaves novas em `pt.ts`, `en.ts` e `es.ts`; `/en/` e `/es/` com textos próprios |
+| Console | ✅ | 0 erros em todas as navegações |
+| Sitemap | ✅ | Google leu as 60 páginas; nenhuma alteração de arquivo |
+
 ## QA final da expansão — Task 19 (2026-11-23)
 
 Executado sobre `npm run preview` do build local de `efe45a2` (61 páginas), em Chromium 157 via Playwright. Nenhuma dependência, pacote, plugin ou skill nova. Nenhuma requisição a origem externa.

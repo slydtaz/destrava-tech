@@ -39,10 +39,12 @@ O arquivo de verificação do Google, `ads.txt`, `robots.txt` e `favicon.svg` v�
 | O quê | Link | Situação |
 |---|---|---|
 | 💰 AdSense | https://adsense.google.com/ | Configurado e com revisão solicitada — aguardando decisão do Google |
-| 🔍 Search Console | https://search.google.com/search-console | Propriedade verificada; falta enviar o sitemap e pedir indexação da home |
+| 🔍 Search Console | https://search.google.com/search-console | Propriedade verificada; **sitemap lido pelo Google com as 60 páginas**; falta pedir indexação da home e aguardar |
 | 📋 Regras do AdSense | https://support.google.com/adsense/answer/9724 | Consulta |
 
-Verificação de propriedade **não** indexa o site: ela só prova ao Google que você controla a URL. Depois dela, abra o Search Console → **Inspecionar qualquer URL** → cole `https://destrava-tech-rho.vercel.app/` → **Solicitar indexação**; e em **Sitemaps** envie `sitemap-index.xml`. Métodos extras de verificação (tag HTML, Analytics, Tag Manager, DNS) são apenas **redundância de posse**, não etapa de indexação. Ver detalhes em `docs/pending-actions.md`.
+Verificação de propriedade **não** indexa o site: ela só prova ao Google que você controla a URL. O sitemap já foi **lido com sucesso pelo Google (60 páginas)** — não há mais nada a enviar em *Sitemaps*. Falta apenas abrir o Search Console → **Inspecionar qualquer URL** → cole `https://destrava-tech-rho.vercel.app/` → **Solicitar indexação** e aguardar. Métodos extras de verificação (tag HTML, Analytics, Tag Manager, DNS) são apenas **redundância de posse**, não etapa de indexação. Ver detalhes em `docs/pending-actions.md`.
+
+`https://destrava-tech-rho.vercel.app/sitemap-index.xml` pode parecer "HTML puro" no navegador: é XML cru exibido como texto, comportamento normal. Ele só aponta para `sitemap-0.xml`, onde estão as 60 URLs; o Google confirmou a leitura completa.
 
 ## Gerenciadores locais (Service Hub — já rodando)
 
