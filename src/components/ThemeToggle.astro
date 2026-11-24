@@ -54,8 +54,11 @@ const darkLabel = t(lang, 'theme.dark');
       button.title = isDark ? labelDark : labelLight;
     };
 
+    const currentTheme = (): 'light' | 'dark' =>
+      document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+
     const onClick = (): void => {
-      const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      const next = currentTheme() === 'dark' ? 'light' : 'dark';
       document.documentElement.dataset.theme = next;
       try {
         localStorage.setItem(STORAGE_KEY, next);
@@ -74,11 +77,31 @@ const darkLabel = t(lang, 'theme.dark');
   // de page-load sobrevive ao swap e registrá-lo duas vezes daria duplo toggle.
   if (!globals[readyKey]) {
     globals[readyKey] = true;
-    document.addEventListener('astro:page-load', setupThemeToggle);
-    document.addEventListener('astro:before-swap', () => {
+
+    // O ClientRouter troca os atributos do <html>; o script inline do <head>
+    // não roda na navegação client-side. Passar o tema ao documento entrante
+    // é a forma documentada pelo Astro de preservar estado entre páginas.
+    document.addEventListener('astro:before-swap', (event: Event) => {
+      const incoming = (event as Event & { newDocument?: Document }).newDocument;
+      const theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+      if (incoming?.documentElement) incoming.documentElement.dataset.theme = theme;
       cleanup?.();
       cleanup = null;
     });
+
+    // Reaplica antes da pintura para evitar flash de tema claro.
+    document.addEventListener('astro:after-swap', () => {
+      const saved = (() => {
+        try {
+          return localStorage.getItem(STORAGE_KEY);
+        } catch {
+          return null;
+        }
+      })();
+      document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : 'light';
+    });
+
+    document.addEventListener('astro:page-load', setupThemeToggle);
 
     // Cobre o carregamento inicial caso o evento já tenha disparado.
     if (document.readyState !== 'loading') setupThemeToggle();
