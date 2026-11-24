@@ -81,6 +81,7 @@ const offLabel = t(lang, 'motion.off');
         // Preferência mantida em memória quando o armazenamento está bloqueado.
       }
       sync();
+      window.dispatchEvent(new CustomEvent('dt:motionchange', { detail: next }));
     };
 
     button.addEventListener('click', onClick);

@@ -48,6 +48,8 @@ export function setupReveal(): void {
   };
 
   document.addEventListener('astro:page-load', apply);
+  // O botão de animações pode mudar o estado depois do carregamento.
+  window.addEventListener('dt:motionchange', apply);
   document.addEventListener('astro:before-swap', () => {
     cleanup();
     cleanup = () => {};
