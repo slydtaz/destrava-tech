@@ -4,7 +4,7 @@
 
 Deploy `dpl_7bvyYkgAEeM19Kpsc4YYBKeTUFgy`, aliasado a https://destrava-tech-rho.vercel.app, executado com autorização explícita do proprietário em 2026-11-24. A 0.2.2 (`dpl_45hn5XCYCMqLizgqmvE2EVQs2VMu`) foi a versão anterior no ar.
 
-Verificação feita no ar após o deploy: HTTP 200 com `data-motion` e `data-motion-toggle` no HTML, `sitemap-0.xml` com 60 URLs e 180 alternates, botão alternando `on` → `off` com `aria-pressed='false'` e `opacity: 1` no conteúdo, axe-core 4.12.1 com zero violações e 36 verificações aprovadas, console limpo e zero requisição externa. Commit final do código verificado: `eab0f35`; commits seguintes são só documentação.
+Verificação feita no ar após o deploy: HTTP 200 com `data-motion-toggle` no HTML e `data-motion` aplicado pelo script inicial antes da pintura, `sitemap-0.xml` com 60 URLs e 180 alternates, botão alternando `on` → `off` com `aria-pressed='false'` e `opacity: 1` no conteúdo, axe-core 4.12.1 com zero violações e 36 verificações aprovadas, console limpo e zero requisição externa. Commit final do código verificado: `eab0f35`; commits seguintes são só documentação.
 
 - Os 24 SVGs e os decores feitos à mão foram trocados por ícones da Lucide copiados inline como texto: sem pacote, CDN ou requisição em runtime. Traços usam `--color-primary` e um detalhe `--color-accent`, acompanhando claro/escuro. Avisos ISC (Lucide) e MIT (Feather) em `docs/third-party-credits.md`.
 - Causa de "não vejo animações" investigada: no ar as animações funcionavam; com `prefers-reduced-motion: reduce` o CSS as desligava de propósito. Por decisão do proprietário, **animações agora ligadas por padrão**, sobrescrevendo a preferência do sistema; o botão no header permite desligar.
