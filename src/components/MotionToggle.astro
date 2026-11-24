@@ -46,7 +46,8 @@ const offLabel = t(lang, 'motion.off');
 <script>
   const STORAGE_KEY = 'dt-motion';
   const readyKey = '__dtMotionToggleReady';
-  const globals = window as unknown as Record<string, boolean | undefined>;
+  const prefKey = '__dtMotionPreference';
+  const globals = window as unknown as Record<string, boolean | string | undefined>;
   let cleanup: (() => void) | null = null;
 
   function setupMotionToggle(): void {
@@ -55,6 +56,9 @@ const offLabel = t(lang, 'motion.off');
 
     const button = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
     if (!button) return;
+
+    const rootMotion = document.documentElement.dataset.motion;
+    if (rootMotion === 'on' || rootMotion === 'off') globals[prefKey] = rootMotion;
 
     const labelOn = button.dataset.labelOn ?? 'Animações ligadas';
     const labelOff = button.dataset.labelOff ?? 'Animações desligadas';
@@ -70,10 +74,11 @@ const offLabel = t(lang, 'motion.off');
     const onClick = (): void => {
       const next = isOn() ? 'off' : 'on';
       document.documentElement.dataset.motion = next;
+      globals[prefKey] = next;
       try {
         localStorage.setItem(STORAGE_KEY, next);
       } catch {
-        // Preferência não persistida quando o armazenamento está bloqueado.
+        // Preferência mantida em memória quando o armazenamento está bloqueado.
       }
       sync();
     };
@@ -99,9 +104,11 @@ const offLabel = t(lang, 'motion.off');
       try {
         saved = localStorage.getItem(STORAGE_KEY);
       } catch {
-        // Mantém o padrão ligado.
+        // Usa a preferência em memória quando o armazenamento está bloqueado.
       }
-      document.documentElement.dataset.motion = saved === 'off' ? 'off' : 'on';
+      const memory = globals[prefKey];
+      const motion = memory === 'on' || memory === 'off' ? memory : saved;
+      document.documentElement.dataset.motion = motion === 'off' ? 'off' : 'on';
     });
 
     document.addEventListener('astro:page-load', setupMotionToggle);
