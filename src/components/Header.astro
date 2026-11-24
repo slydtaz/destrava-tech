@@ -3,6 +3,7 @@ import { localizedPath, t } from '../i18n';
 import type { Lang } from '../i18n';
 import LanguageSelect from './LanguageSelect.astro';
 import ThemeToggle from './ThemeToggle.astro';
+import MotionToggle from './MotionToggle.astro';
 
 interface Props {
   currentPath: string;
@@ -39,6 +40,7 @@ const isCurrent = (href: string): 'page' | 'location' | undefined => {
     </a>
     <LanguageSelect lang={lang} currentPath={currentPath} />
     <ThemeToggle lang={lang} />
+    <MotionToggle lang={lang} />
     <nav class="site-nav" aria-label={t(lang, 'nav.main')}>
       <button
         class="menu-button"

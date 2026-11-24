@@ -1,0 +1,142 @@
+---
+import { t } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'pt' } = Astro.props;
+const toggleLabel = t(lang, 'motion.toggle');
+const onLabel = t(lang, 'motion.on');
+const offLabel = t(lang, 'motion.off');
+---
+
+<button
+  type="button"
+  class="motion-toggle"
+  aria-label={toggleLabel}
+  aria-pressed="true"
+  title={toggleLabel}
+  data-motion-toggle
+  data-label-on={onLabel}
+  data-label-off={offLabel}
+>
+  <svg class="icon-motion-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="m5 3 14 9-14 9V3Z"></path>
+  </svg>
+  <svg class="icon-motion-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+    <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+  </svg>
+</button>
+
+<script>
+  const STORAGE_KEY = 'dt-motion';
+  const readyKey = '__dtMotionToggleReady';
+  const globals = window as unknown as Record<string, boolean | undefined>;
+  let cleanup: (() => void) | null = null;
+
+  function setupMotionToggle(): void {
+    cleanup?.();
+    cleanup = null;
+
+    const button = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+    if (!button) return;
+
+    const labelOn = button.dataset.labelOn ?? 'Animações ligadas';
+    const labelOff = button.dataset.labelOff ?? 'Animações desligadas';
+
+    const isOn = (): boolean => document.documentElement.dataset.motion !== 'off';
+
+    const sync = (): void => {
+      const on = isOn();
+      button.setAttribute('aria-pressed', String(on));
+      button.title = on ? labelOn : labelOff;
+    };
+
+    const onClick = (): void => {
+      const next = isOn() ? 'off' : 'on';
+      document.documentElement.dataset.motion = next;
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch {
+        // Preferência não persistida quando o armazenamento está bloqueado.
+      }
+      sync();
+    };
+
+    button.addEventListener('click', onClick);
+    sync();
+    cleanup = () => button.removeEventListener('click', onClick);
+  }
+
+  if (!globals[readyKey]) {
+    globals[readyKey] = true;
+
+    document.addEventListener('astro:before-swap', (event: Event) => {
+      const incoming = (event as Event & { newDocument?: Document }).newDocument;
+      const motion = document.documentElement.dataset.motion === 'off' ? 'off' : 'on';
+      if (incoming?.documentElement) incoming.documentElement.dataset.motion = motion;
+      cleanup?.();
+      cleanup = null;
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+      let saved: string | null = null;
+      try {
+        saved = localStorage.getItem(STORAGE_KEY);
+      } catch {
+        // Mantém o padrão ligado.
+      }
+      document.documentElement.dataset.motion = saved === 'off' ? 'off' : 'on';
+    });
+
+    document.addEventListener('astro:page-load', setupMotionToggle);
+
+    if (document.readyState !== 'loading') setupMotionToggle();
+  }
+</script>
+
+<style>
+  .motion-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 44px;
+    block-size: 44px;
+    padding: 0;
+    font: inherit;
+    color: var(--color-primary);
+    background: var(--color-card);
+    border: 1px solid var(--color-border-control);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+
+  .motion-toggle:hover {
+    border-color: var(--color-primary);
+  }
+
+  .motion-toggle:focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 3px;
+  }
+
+  .motion-toggle svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+
+  .icon-motion-off {
+    display: none;
+  }
+
+  .motion-toggle[aria-pressed='false'] .icon-motion-on {
+    display: none;
+  }
+
+  .motion-toggle[aria-pressed='false'] .icon-motion-off {
+    display: block;
+  }
+</style>

@@ -62,6 +62,18 @@ const ogLocale: Record<Lang, string> = { pt: 'pt_BR', en: 'en_US', es: 'es_ES' }
         }
         document.documentElement.dataset.theme = theme;
       })();
+      // Animações ligadas por padrão, conforme decisão do proprietário.
+      // Aplica antes da pintura para não haver mudança visível de estado.
+      (() => {
+        let motion = 'on';
+        try {
+          const saved = localStorage.getItem('dt-motion');
+          if (saved === 'on' || saved === 'off') motion = saved;
+        } catch {
+          // localStorage bloqueado: mantém o padrão ligado.
+        }
+        document.documentElement.dataset.motion = motion;
+      })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>

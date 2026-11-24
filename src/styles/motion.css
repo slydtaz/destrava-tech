@@ -1,4 +1,6 @@
-/* Skeleton honesto — Task 4 acrescenta as regras de transição e movimento. */
+/* Skeleton honesto + transição, entrada, leitura e microestados.
+   O estado de movimento vive em :root[data-motion], aplicado antes da pintura.
+   Padrão = 'on' por decisão do proprietário; 'off' mantém tudo visível. */
 
 .nav-skeleton {
   position: fixed;
@@ -30,16 +32,14 @@
   height: 8rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes skeleton-pulse {
-    50% {
-      opacity: 0.45;
-    }
+@keyframes skeleton-pulse {
+  50% {
+    opacity: 0.45;
   }
+}
 
-  .nav-skeleton-block {
-    animation: skeleton-pulse 1.2s ease-in-out infinite;
-  }
+:root[data-motion='on'] .nav-skeleton-block {
+  animation: skeleton-pulse 1.2s ease-in-out infinite;
 }
 
 @media (forced-colors: active) {
@@ -48,45 +48,42 @@
   }
 }
 
-/* ---------- Task 4: transição, entrada, leitura e microestados ----------
+/* ---------- Transição, entrada, leitura e microestados ----------
    Só opacity/translate/transform/border-color. Nada fica em opacity:0
-   quando prefers-reduced-motion: reduce está ativo. */
+   quando data-motion='off'. */
 
-@media (prefers-reduced-motion: no-preference) {
-  @keyframes page-out {
-    from {
-      opacity: 1;
-      translate: 0 0;
-    }
-    to {
-      opacity: 0;
-      translate: 0 -6px;
-    }
+@keyframes page-out {
+  from {
+    opacity: 1;
+    translate: 0 0;
   }
+  to {
+    opacity: 0;
+    translate: 0 -6px;
+  }
+}
 
-  @keyframes page-in {
-    from {
-      opacity: 0;
-      translate: 6px 0;
-    }
-    to {
-      opacity: 1;
-      translate: 0 0;
-    }
+@keyframes page-in {
+  from {
+    opacity: 0;
+    translate: 6px 0;
   }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
 
-  ::view-transition-old(root) {
-    animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-out;
-  }
+:root[data-motion='on']::view-transition-old(root) {
+  animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-out;
+}
 
-  ::view-transition-new(root) {
-    animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-in;
-  }
+:root[data-motion='on']::view-transition-new(root) {
+  animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-in;
+}
 
-  .hero,
-  .article-header {
-    animation: 240ms cubic-bezier(.2, 0, 0, 1) backwards page-in;
-  }
+:root[data-motion='on'] :is(.hero, .article-header) {
+  animation: 240ms cubic-bezier(.2, 0, 0, 1) backwards page-in;
 }
 
 /* Barra de leitura: elemento separado da transição (usa transform, não translate). */
@@ -110,17 +107,15 @@
 }
 
 @supports (animation-timeline: scroll()) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reading-progress {
-      display: block;
-      transform-origin: left;
-      animation: progress-grow linear both;
-      animation-timeline: scroll(root block);
-    }
+  :root[data-motion='on'] .reading-progress {
+    display: block;
+    transform-origin: left;
+    animation: progress-grow linear both;
+    animation-timeline: scroll(root block);
   }
 }
 
-/* Popover do menu: entrada curta; o global.css neutraliza a duração em reduce. */
+/* Popover do menu: entrada curta; desligada quando data-motion='off'. */
 .site-menu:popover-open {
   opacity: 1;
   translate: 0 0;
@@ -135,6 +130,11 @@
   }
 }
 
+:root[data-motion='off'] .site-menu:popover-open {
+  transition: none;
+  transition-behavior: normal;
+}
+
 /* Layout largo: a lista é navegação inline, sem animação de popover. */
 .site-header.is-wide .site-menu {
   opacity: 1;
@@ -143,20 +143,22 @@
   transition-behavior: normal;
 }
 
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+@media (hover: hover) {
   /* O hover de `.card` em global.css tem especificidade maior; sem estes
      dois seletores o recuo de 1px seria sobrescrito enquanto o botão é pressionado. */
-  .card:has(a:hover):active,
-  a.card:hover:active,
-  .card:active,
-  .button:active {
+  :root[data-motion='on'] :is(
+    .card:has(a:hover):active,
+    a.card:hover:active,
+    .card:active,
+    .button:active
+  ) {
     transform: translateY(1px);
   }
 }
 
 /* ---------- Revelação ao rolar ----------
    O estado final é visível por padrão; o movimento só melhora conteúdo já legível.
-   Sem parallax e sem scroll-scrub sob prefers-reduced-motion: reduce. */
+   Sem parallax e sem scroll-scrub quando data-motion='off'. */
 
 .reveal,
 .card,
@@ -177,44 +179,36 @@
 }
 
 @supports ((animation-timeline: view()) and (animation-range: entry)) {
-  @media (prefers-reduced-motion: no-preference) {
-    .reveal,
-    .card,
-    .section-head {
-      /* `animation` vem primeiro: a abreviatura redefine animation-timeline.
-         `backwards` libera o `transform` do hover depois que a entrada termina. */
-      animation: reveal-up 280ms ease backwards;
-      animation-timeline: view();
-      animation-range: entry 0% cover 30%;
-    }
+  :root[data-motion='on'] :is(.reveal, .card, .section-head) {
+    /* `animation` vem primeiro: a abreviatura redefine animation-timeline.
+       `backwards` libera o `transform` do hover depois que a entrada termina. */
+    animation: reveal-up 280ms ease backwards;
+    animation-timeline: view();
+    animation-range: entry 0% cover 30%;
   }
 }
 
 /* Navegador sem scroll-driven animations: o script reveal.ts aplica a classe
    no <html> e marca cada elemento como visível quando ele entra na viewport. */
-html.has-reveal-fallback .reveal:not(.is-visible),
-html.has-reveal-fallback .card:not(.is-visible),
-html.has-reveal-fallback .section-head:not(.is-visible) {
+html.has-reveal-fallback :is(.reveal:not(.is-visible), .card:not(.is-visible), .section-head:not(.is-visible)) {
   opacity: 0;
   transform: translateY(12px);
 }
 
-html.has-reveal-fallback .reveal,
-html.has-reveal-fallback .card,
-html.has-reveal-fallback .section-head {
+html.has-reveal-fallback :is(.reveal, .card, .section-head) {
   transition: opacity 280ms ease, transform 280ms ease;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .reveal,
-  .card,
-  .section-head,
-  html.has-reveal-fallback .reveal,
-  html.has-reveal-fallback .card,
-  html.has-reveal-fallback .section-head {
-    opacity: 1;
-    transform: none;
-    animation: none;
-    transition: none;
-  }
+/* Movimento desligado: estado final visível, sem animação e sem transição. */
+:root[data-motion='off'] :is(.reveal, .card, .section-head),
+:root[data-motion='off'].has-reveal-fallback :is(.reveal, .card, .section-head),
+:root[data-motion='off'].has-reveal-fallback :is(.reveal:not(.is-visible), .card:not(.is-visible), .section-head:not(.is-visible)) {
+  opacity: 1;
+  transform: none;
+  animation: none;
+  transition: none;
+}
+
+:root[data-motion='off'] :is(.hero, .article-header, .nav-skeleton-block, .reading-progress) {
+  animation: none;
 }

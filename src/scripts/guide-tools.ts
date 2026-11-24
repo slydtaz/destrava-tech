@@ -83,12 +83,12 @@ export function setupGuideTools(): void {
 
     const back = document.querySelector<HTMLButtonElement>('[data-back-to-top]');
     if (back) {
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const motionOff = (): boolean => document.documentElement.dataset.motion === 'off';
       const onScroll = (): void => {
         back.hidden = window.scrollY < 400;
       };
       const onClick = (): void => {
-        window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' });
+        window.scrollTo({ top: 0, behavior: motionOff() ? 'auto' : 'smooth' });
       };
       window.addEventListener('scroll', onScroll, { passive: true });
       back.addEventListener('click', onClick);

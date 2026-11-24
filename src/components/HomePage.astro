@@ -304,74 +304,70 @@ const howSteps = [t(lang, 'home.how1'), t(lang, 'home.how2'), t(lang, 'home.how3
   }
 
   /* Estado final sempre legível. O movimento só melhora o que já pode ser lido. */
-  @media (prefers-reduced-motion: no-preference) {
-    @keyframes word-in {
-      from {
-        opacity: 0;
-        transform: translateY(8px);
-      }
-      to {
-        opacity: 1;
-        transform: none;
-      }
+  @keyframes word-in {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
     }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
 
-    .cover-word {
-      animation: word-in 160ms ease both;
-      animation-delay: calc(var(--i, 0) * 15ms);
+  :global(:root[data-motion='on']) .cover-word {
+    animation: word-in 160ms ease both;
+    animation-delay: calc(var(--i, 0) * 15ms);
+  }
+
+  @keyframes swap-out {
+    from {
+      opacity: 1;
+      transform: none;
+    }
+    to {
+      opacity: 0.4;
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes swap-in {
+    from {
+      opacity: 0.4;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @keyframes draw-line {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
     }
   }
 
   @supports ((animation-timeline: view()) and (animation-range: entry)) {
-    @media (prefers-reduced-motion: no-preference) {
-      @keyframes swap-out {
-        from {
-          opacity: 1;
-          transform: none;
-        }
-        to {
-          opacity: 0.4;
-          transform: translateY(-4px);
-        }
-      }
+    :global(:root[data-motion='on']) .swap-from {
+      animation: swap-out 200ms ease both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
 
-      @keyframes swap-in {
-        from {
-          opacity: 0.4;
-          transform: translateY(4px);
-        }
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
+    :global(:root[data-motion='on']) .swap-to {
+      animation: swap-in 200ms ease both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 40%;
+    }
 
-      @keyframes draw-line {
-        from {
-          transform: scaleX(0);
-        }
-        to {
-          transform: scaleX(1);
-        }
-      }
-
-      .swap-from {
-        animation: swap-out 200ms ease both;
-        animation-timeline: view();
-        animation-range: entry 0% cover 40%;
-      }
-
-      .swap-to {
-        animation: swap-in 200ms ease both;
-        animation-timeline: view();
-        animation-range: entry 0% cover 40%;
-      }
-
-      .how-line {
-        animation: draw-line 200ms ease both;
-        animation-timeline: view();
-        animation-range: entry 0% cover 30%;
-      }
+    :global(:root[data-motion='on']) .how-line {
+      animation: draw-line 200ms ease both;
+      animation-timeline: view();
+      animation-range: entry 0% cover 30%;
     }
   }
 </style>

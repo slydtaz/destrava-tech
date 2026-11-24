@@ -23,6 +23,10 @@ const dict = {
   'theme.light': 'Tema claro',
   'theme.dark': 'Tema escuro',
 
+  'motion.toggle': 'Alternar animações',
+  'motion.on': 'Animações ligadas',
+  'motion.off': 'Animações desligadas',
+
   'lang.label': 'Idioma',
   'lang.pt': 'Português',
   'lang.en': 'Inglês',

@@ -51,7 +51,7 @@ const { label, variant = 'line' } = Astro.props;
     min-block-size: 2rem;
   }
 
-  /* Estados finais: presentes no CSS mesmo sem JS e sob prefers-reduced-motion. */
+  /* Estados finais: presentes no CSS mesmo sem JS e com data-motion='off'. */
   .animated-example-line {
     display: block;
     inline-size: 100%;
@@ -80,35 +80,33 @@ const { label, variant = 'line' } = Astro.props;
     margin-block-end: 0;
   }
 
-  @media (prefers-reduced-motion: no-preference) {
-    .animated-example--line .animated-example-line {
-      animation: example-line-in 200ms ease both;
+  @keyframes example-line-in {
+    from {
+      opacity: 0;
+      transform: scaleX(0);
     }
+    to {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
 
-    .animated-example--steps .animated-example-step {
-      animation: example-step-in 200ms ease both;
+  @keyframes example-step-in {
+    from {
+      opacity: 0;
+      transform: translateX(-8px);
     }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
 
-    @keyframes example-line-in {
-      from {
-        opacity: 0;
-        transform: scaleX(0);
-      }
-      to {
-        opacity: 1;
-        transform: scaleX(1);
-      }
-    }
+  :global(:root[data-motion='on']) .animated-example--line .animated-example-line {
+    animation: example-line-in 200ms ease both;
+  }
 
-    @keyframes example-step-in {
-      from {
-        opacity: 0;
-        transform: translateX(-8px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
+  :global(:root[data-motion='on']) .animated-example--steps .animated-example-step {
+    animation: example-step-in 200ms ease both;
   }
 </style>

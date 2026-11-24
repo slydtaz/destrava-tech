@@ -1,6 +1,6 @@
 // Fallback de revelação ao rolar para navegadores sem scroll-driven animations.
 // Com suporte a `animation-timeline: view()`, o CSS faz a animação e este módulo
-// não esconde nada. Sob prefers-reduced-motion, nada é escondido em nenhum caso.
+// não esconde nada. Com data-motion='off', nada é escondido em nenhum caso.
 
 type Cleanup = () => void;
 
@@ -13,13 +13,13 @@ export function setupReveal(): void {
     cleanup();
     cleanup = () => {};
 
-    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const motionOff = document.documentElement.dataset.motion === 'off';
     const cssScroll =
       typeof CSS !== 'undefined' &&
       typeof CSS.supports === 'function' &&
       CSS.supports('animation-timeline: view()');
 
-    if (reduce.matches || cssScroll) {
+    if (motionOff || cssScroll) {
       document.documentElement.classList.remove('has-reveal-fallback');
       return;
     }
