@@ -90,9 +90,15 @@ const howSteps = [t(lang, 'home.how1'), t(lang, 'home.how2'), t(lang, 'home.how3
       <div class="how-flow">
         <div class="how-track" aria-hidden="true">
           <span class="how-line"></span>
-          <span class="how-node"></span>
-          <span class="how-node"></span>
-          <span class="how-node"></span>
+          <span class="how-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"></path></svg>
+          </span>
+          <span class="how-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"></path></svg>
+          </span>
+          <span class="how-node">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m9 18 6-6-6-6"></path></svg>
+          </span>
         </div>
         <ol class="how-steps">
           {howSteps.map((step) => <li>{step}</li>)}
@@ -266,11 +272,15 @@ const howSteps = [t(lang, 'home.how1'), t(lang, 'home.how2'), t(lang, 'home.how3
   .how-node {
     inline-size: 0.9rem;
     block-size: 0.9rem;
-    background: var(--color-accent);
-    /* Marcador em seta, no lugar do círculo. */
-    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    color: var(--color-accent);
     justify-self: center;
     align-self: center;
+  }
+
+  .how-node svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
   }
 
   .how-steps {

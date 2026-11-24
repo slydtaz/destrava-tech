@@ -95,10 +95,18 @@ const jsonLd = {
           class="copy-link"
           type="button"
           data-copy-link
+          data-copy-icon
           data-label-original={t(lang, 'article.copyLink')}
           data-label-copied={t(lang, 'article.copied')}
           data-label-failed={t(lang, 'article.copyFailed')}
         >
+          <svg class="copy-icon-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="copy-icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
           <span data-copy-label>{t(lang, 'article.copyLink')}</span>
         </button>
         <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>

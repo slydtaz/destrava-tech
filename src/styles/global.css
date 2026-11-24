@@ -956,6 +956,20 @@ a.card:hover {
   border-color: var(--color-destructive);
 }
 
+.copy-link svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+.copy-icon-check,
+.copy-link[data-state='ok'] .copy-icon-link {
+  display: none;
+}
+
+.copy-link[data-state='ok'] .copy-icon-check {
+  display: block;
+}
+
 .toc {
   max-inline-size: var(--measure);
   margin-block-end: var(--space-8);

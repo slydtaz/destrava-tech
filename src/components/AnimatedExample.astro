@@ -14,9 +14,18 @@ const { label, variant = 'line' } = Astro.props;
   <div class="animated-example-visual" aria-hidden="true">
     {
       variant === 'line' ? (
-        <span class="animated-example-line"></span>
+        <span class="animated-example-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </span>
       ) : (
-        <span class="animated-example-step"></span>
+        <span class="animated-example-step">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        </span>
       )
     }
   </div>
@@ -55,10 +64,8 @@ const { label, variant = 'line' } = Astro.props;
   .animated-example-line {
     display: block;
     inline-size: 100%;
-    block-size: 12px;
-    background: var(--color-accent);
-    /* Seta segmentada, no lugar da barra arredondada. */
-    clip-path: polygon(0 30%, 80% 30%, 80% 0, 100% 50%, 80% 100%, 80% 70%, 0 70%);
+    max-inline-size: 5rem;
+    color: var(--color-accent);
     opacity: 1;
     transform: scaleX(1);
     transform-origin: left;
@@ -68,12 +75,16 @@ const { label, variant = 'line' } = Astro.props;
     display: block;
     inline-size: 2rem;
     block-size: 2rem;
-    background: var(--color-accent);
-    /* Losango, no lugar do quadrado. */
-    rotate: 45deg;
-    clip-path: polygon(50% 0, 100% 50%, 50% 100%, 0 50%);
+    color: var(--color-accent);
     opacity: 1;
     transform: translateX(0);
+  }
+
+  .animated-example-line svg,
+  .animated-example-step svg {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
   }
 
   .animated-example-content > :global(:last-child) {
