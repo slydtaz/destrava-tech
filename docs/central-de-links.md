@@ -1,7 +1,7 @@
 # 🎛️ Central de Links — Destrava Tech
 
 Modo de gerenciamento escolhido pelo proprietário: **Central de links** (acompanhar tudo diretamente pelos painéis).
-Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 — versão 0.2.0 (expansão completa), publicada com autorização explícita do proprietário.
+Atualizado: 2026-11-23 · Status do site no ar: **PUBLICADO** 🟢 — versão 0.2.2 (interface viva), publicada com autorização explícita do proprietário.
 
 ## O site
 
@@ -30,7 +30,7 @@ O arquivo de verificação do Google, `ads.txt`, `robots.txt` e `favicon.svg` v�
 | O quê | Link | Para quê |
 |---|---|---|
 | 📊 Dashboard do projeto | https://vercel.com/slydtx/destrava-tech | Visitas, desempenho, erros |
-| 🚀 Último deploy | https://vercel.com/slydtx/destrava-tech/4K16tto4FUt3G7yL9Br8t5JHE4vB | Correção 0.2.1 das ilustrações (`dpl_4K16tto4FUt3G7yL9Br8t5JHE4vB`) |
+| 🚀 Último deploy | https://vercel.com/slydtx/destrava-tech/45hn5XCYCMqLizgqmvE2EVQs2VMu | Interface viva 0.2.2 (`dpl_45hn5XCYCMqLizgqmvE2EVQs2VMu`) |
 | ⚙️ Configurações | https://vercel.com/slydtx/destrava-tech/settings | Domínio próprio, proteção, etc. |
 | 📈 Analytics | https://vercel.com/slydtx/destrava-tech/analytics | Visitas (ativar Web Analytics grátis se quiser — sem cookies) |
 

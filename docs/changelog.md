@@ -1,6 +1,8 @@
 # Changelog
 
-## 0.2.2 — 2026-11-23 (PREPARADO — publicação autorizada no mesmo fluxo)
+## 0.2.2 — 2026-11-23 (PUBLICADO 🟢)
+
+Deploy `dpl_45hn5XCYCMqLizgqmvE2EVQs2VMu`, aliasado a https://destrava-tech-rho.vercel.app. Validação no ar: 200 em `/`, `/guias/`, guia PT, `/en/guias/`, `/es/guias/`, `sitemap-index.xml`, `sitemap-0.xml` e `robots.txt`; tema escuro persistiu entre páginas e idiomas, 5 SVGs inline sem `<img>`, barra de progresso, filtro e sumário presentes; console limpo.
 
 - Tema claro/escuro agora sobrevive à navegação cliente: o estado é passado ao documento entrante em `astro:before-swap` e reaplicado em `astro:after-swap`, sem flash.
 - Os 24 SVGs de retângulos/círculos viraram traços, arcos e chevrons com `stroke` vindo dos tokens; o SVG passa a ser inline para herdar o tema. Logo, badge, marcadores e exemplo animado também foram trocados.
