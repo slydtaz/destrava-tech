@@ -34,7 +34,7 @@ Conclusão: a preferência de movimento reduzido do sistema/navegador do proprie
 
 - Lucide usa licença **ISC** (confirmada em `raw.githubusercontent.com/lucide-icons/lucide/main/LICENSE`, 2026-11-23). Alguns ícones são derivados do Feather e usam **MIT**; ambos os avisos precisam constar no crédito.
 - `Illustration.astro` já injeta SVG inline via `import.meta.glob(..., { query: '?raw' })` — reaproveitar esse mecanismo.
-- WCAG 2.2 AA: ícones decorativos com `aria-hidden`, alvos ≥ 44 px preservados, contraste dos tokens, foco visível. `prefers-reduced-motion` deixa de ser o padrão por decisão explícita do proprietário; o botão oferece a saída e o estado final do conteúdo continua sempre visível.
+- WCAG 2.2 AA: ícones decorativos com `aria-hidden`, contraste dos tokens, foco visível; botão novo e controles de 44 px, com exceção documentada do seletor de idioma em telas ≤ 30 rem, reduzido para 36 px para caber no header sem overflow (acima do mínimo WCAG 2.2 de 24 px). `prefers-reduced-motion` deixa de ser o padrão por decisão explícita do proprietário; o botão oferece a saída e o estado final do conteúdo continua sempre visível.
 - Cada mudança termina com `npm run build` limpo e commit local. Deploy **não** autorizado nesta rodada.
 
 ## Abordagens
@@ -61,7 +61,7 @@ Conclusão: a preferência de movimento reduzido do sistema/navegador do proprie
 - Novo `MotionToggle.astro` no header, ao lado do alternador de tema, com ícone Lucide e alvo ≥ 44 px, `aria-pressed` e rótulo localizado (`motion.toggle`, `motion.on`, `motion.off` em PT/EN/ES).
 - Estado em `localStorage['dt-motion']`: ausente = **ligado por padrão** (decisão do proprietário); `'off'` = desligar; `'on'` = religar explicitamente. Atributo `data-motion` no `<html>`, preservado pelo ClientRouter nos eventos `astro:before-swap` / `astro:after-swap`, igual ao tema.
 - O padrão ligado sobrescreve `prefers-reduced-motion: reduce`. Isso é uma escolha consciente do proprietário, registrada acima; o botão permite desligar a qualquer momento.
-- O controle afeta todas as animações do site: transição de página (280 ms), revelação ao rolar, barra de progresso, skeleton, popover do menu, hover e as entradas da home.
+- O controle afeta todas as animações do site: transição de página (280 ms), revelação ao rolar, barra de progresso, skeleton, popover do menu, hover e as entradas da home. A regra injetada pelo ClientRouter do Astro sob `prefers-reduced-motion` usa `animation: none !important` nas pseudo-elementos de transição; as regras `data-motion='on'` usam `!important` para vencer essa regra quando o proprietário liga as animações. Textos animados não usam `opacity` abaixo de 1.
 - Reestruturação do CSS: trocar as media queries `prefers-reduced-motion` por seletores baseados em `data-motion`, mantendo o estado final sempre visível quando desligado.
 
 ## Decisões do construtor

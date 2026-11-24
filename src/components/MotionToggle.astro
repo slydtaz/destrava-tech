@@ -31,6 +31,18 @@ const offLabel = t(lang, 'motion.off');
   </svg>
 </button>
 
+{/* Corrige o estado acessível antes da pintura: o script do <head> já aplicou
+    data-motion, mas o SSR não sabe o valor de localStorage. */}
+<script is:inline>
+  (() => {
+    const button = document.querySelector('[data-motion-toggle]');
+    if (!button) return;
+    const on = document.documentElement.dataset.motion !== 'off';
+    button.setAttribute('aria-pressed', String(on));
+    button.title = on ? (button.dataset.labelOn ?? '') : (button.dataset.labelOff ?? '');
+  })();
+</script>
+
 <script>
   const STORAGE_KEY = 'dt-motion';
   const readyKey = '__dtMotionToggleReady';
@@ -128,15 +140,18 @@ const offLabel = t(lang, 'motion.off');
     block-size: 1.25rem;
   }
 
+  /* O atributo da raiz é aplicado antes da pintura; o ARIA é corrigido depois
+     pelo script. Basear o ícone na raiz evita mostrar "ligado" por um frame
+     para quem já tinha desligado. */
   .icon-motion-off {
     display: none;
   }
 
-  .motion-toggle[aria-pressed='false'] .icon-motion-on {
+  :global(:root[data-motion='off']) .motion-toggle .icon-motion-on {
     display: none;
   }
 
-  .motion-toggle[aria-pressed='false'] .icon-motion-off {
+  :global(:root[data-motion='off']) .motion-toggle .icon-motion-off {
     display: block;
   }
 </style>

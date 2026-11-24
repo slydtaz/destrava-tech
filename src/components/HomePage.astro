@@ -330,20 +330,23 @@ const howSteps = [t(lang, 'home.how1'), t(lang, 'home.how2'), t(lang, 'home.how3
     animation-delay: calc(var(--i, 0) * 15ms);
   }
 
+  /* Texto nunca abaixo de opacity 1: com fill 'both' em scroll-driven
+     animation, o valor final fica preso enquanto o elemento está visível e
+     0,4 derrubaria o contraste abaixo de AA. O movimento basta. */
   @keyframes swap-out {
     from {
       opacity: 1;
       transform: none;
     }
     to {
-      opacity: 0.4;
+      opacity: 1;
       transform: translateY(-4px);
     }
   }
 
   @keyframes swap-in {
     from {
-      opacity: 0.4;
+      opacity: 1;
       transform: translateY(4px);
     }
     to {

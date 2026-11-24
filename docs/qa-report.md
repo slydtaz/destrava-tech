@@ -15,11 +15,12 @@ Executado sobre `npm run preview` do build local de `80e3adf` (61 páginas), em 
 | Decores | ✅ | Logo `zap`, marcadores `chevron-right`, exemplo `arrow-right`/`check`, voltar ao topo `arrow-up`, copiar link `link`/`check`; zero `clip-path: polygon` nos componentes |
 | Alinhamento | ✅ | 5 ilustrações inline com `dx=0` e `dw=0`; 3 marcadores com `dx=0, dy=0`; logo 26×26 px |
 | Botão de animações | ✅ | 44×44 px, `aria-pressed`, `data-motion`, ícones `play`/`pause`; padrão `on` mesmo com `prefers-reduced-motion: reduce` |
-| Movimento ligado | ✅ | Sob reduced motion emulado: `data-motion='on'`, `.card` com `animationName: 'reveal-up'` e barra `display: block` |
+| Movimento ligado | ✅ | Sob reduced motion emulado: `data-motion='on'`, `.card` com `animationName: 'reveal-up'`, barra `display: block` e transição de página com `animation ... !important` vencendo a regra injetada pelo ClientRouter |
 | Movimento desligado | ✅ | Após clique: `data-motion='off'`, `animationName: 'none'`, `opacity: 1` em `.card` e `.section-head` — nada invisível |
 | Persistência | ✅ | `off` preservado em `/`, `/en/guias/`, `/es/sobre/` e artigo PT; `dt-theme='dark'` + `dt-motion='off'` sobreviveram a duas navegações com fundo `rgb(9,9,11)` |
 | Responsividade | ✅ | `scrollWidth === clientWidth` em 320, 390, 768 e 1280 px; ajuste fino no header em 320 px |
 | Foco e teclado | ✅ | 1º Tab = link "Pular para o conteúdo", `outline: solid 3px` |
+| Contraste dos textos animados | ✅ | `.swap-from` e `.swap-to` mantêm `opacity: 1` em todo o ciclo; movimento apenas por `translate`, sem queda de contraste |
 | Console e rede | ✅ | 0 erros; 0 requisições a origem externa nas quatro páginas medidas |
 | Deploy | ⏸ | Não autorizado nesta rodada — nenhum ID novo, alias inalterado |
 

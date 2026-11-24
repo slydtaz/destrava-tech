@@ -2,7 +2,7 @@
 
 ## Lucide Icons
 
-Os ícones deste projeto foram copiados do projeto [Lucide](https://lucide.dev/) como texto SVG e adaptados localmente: removemos `width`/`height` fixos, trocamos `stroke="currentColor"` pelos tokens `--color-primary` e `--color-accent` do tema e marcamos os SVGs como decorativos (`aria-hidden="true"`, `focusable="false"`). Não há pacote, CDN ou requisição em runtime.
+Os ícones deste projeto foram copiados do projeto [Lucide](https://lucide.dev/) como texto SVG e adaptados localmente: removemos `width`/`height` fixos, trocamos os traços `stroke="currentColor"` pelos tokens `--color-primary` e `--color-accent` do tema e marcamos os SVGs como decorativos (`aria-hidden="true"`, `focusable="false"`). Um preenchimento `fill="currentColor"` foi preservado em `guide-senhas-fortes-gerenciador-de-senhas.svg`; ele herda a cor do tema pelo CSS. Não há pacote, CDN ou requisição em runtime.
 
 Ícones utilizados nas ilustrações: `trending-up`, `shield-check`, `message-circle`, `smartphone`, `sparkles`, `users`, `mail`, `lock-keyhole`, `file-text`, `compass`, `globe`, `bot`, `battery-charging`, `shield-x`, `octagon-x`, `message-circle-check`, `graduation-cap`, `languages`, `hard-drive`, `key-round`, `scan-face`, `settings-2`, `wifi`.
 

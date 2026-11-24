@@ -74,12 +74,22 @@
   }
 }
 
+/* O ClientRouter injeta `@media (prefers-reduced-motion) { ::view-transition-*
+   { animation: none !important } }`. Sem `!important` aqui, a regra do Astro
+   venceria o padrão ligado e a transição continuaria desligada sob reduce. */
 :root[data-motion='on']::view-transition-old(root) {
-  animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-out;
+  animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-out !important;
 }
 
 :root[data-motion='on']::view-transition-new(root) {
-  animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-in;
+  animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-in !important;
+}
+
+/* Sem movimento, desliga também o cross-fade padrão do navegador. */
+:root[data-motion='off']::view-transition-group(root),
+:root[data-motion='off']::view-transition-old(root),
+:root[data-motion='off']::view-transition-new(root) {
+  animation: none !important;
 }
 
 :root[data-motion='on'] :is(.hero, .article-header) {
