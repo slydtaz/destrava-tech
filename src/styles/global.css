@@ -592,7 +592,9 @@ a.card:hover {
   color: var(--color-accent-text);
   background: color-mix(in srgb, var(--color-accent) 10%, white);
   border: 1px solid color-mix(in srgb, var(--color-accent) 35%, white);
-  border-radius: 999px;
+  /* Etiqueta com canto cortado, no lugar da pílula arredondada. */
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 91% 100%, 0 100%);
+  padding-block: 0.25rem 0.35rem;
 }
 
 /* No escuro o badge precisa de fundo escuro: misturar com branco daria

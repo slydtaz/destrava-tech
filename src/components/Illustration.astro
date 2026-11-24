@@ -6,14 +6,24 @@ interface Props {
   alt?: string;
   /** Classes adicionais no wrapper, somadas a `reveal` e `illustration`. */
   class?: string;
-  /** `true` usa loading="eager" para a capa; o padrão é lazy. */
+  /** Mantido por compatibilidade; SVGs inline não precisam de loading. */
   eager?: boolean;
   /** Largura máxima da ilustração, em rem. Padrão 9rem (144px); a capa usa 22rem (352px). */
   size?: number;
 }
 
-const { src, alt, class: className, eager = false, size = 9 } = Astro.props;
+const { src, alt, class: className, eager: _eager = false, size = 9 } = Astro.props;
 const decorative = !alt;
+
+// SVG inline é necessário para que as variáveis do tema cheguem aos traços:
+// uma <img> externa não herda CSS do documento.
+const sources = import.meta.glob('/public/illustrations/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+const fileName = src.split('/').pop() ?? '';
+const svg = sources[`/public/illustrations/${fileName}`] ?? '';
 ---
 
 <div
@@ -21,26 +31,17 @@ const decorative = !alt;
   style={`--illustration-size: ${size}rem`}
   aria-hidden={decorative ? 'true' : undefined}
 >
-  <img
-    src={src}
-    alt={alt ?? ''}
-    width="150"
-    height="150"
-    loading={eager ? 'eager' : 'lazy'}
-    decoding="async"
-  />
+  <Fragment set:html={svg} />
 </div>
 
 <style>
   .illustration {
     display: block;
-    overflow: hidden;
-    border-radius: var(--radius);
     /* Sem este limite, a ilustração herdava a largura do container (até 1152px). */
     inline-size: min(100%, var(--illustration-size, 9rem));
   }
 
-  .illustration img {
+  .illustration :global(svg) {
     display: block;
     inline-size: 100%;
     block-size: auto;

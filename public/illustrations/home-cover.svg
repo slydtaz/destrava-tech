@@ -1,8 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
-<rect width="120" height="120" fill="#09090B"/>
-<circle cx="76" cy="44" r="26" fill="#EC4899"/>
-<rect x="20" y="18" width="12" height="84" fill="#FAFAFA"/>
-<rect x="40" y="70" width="44" height="8" fill="#FAFAFA"/>
-<rect x="40" y="86" width="28" height="8" fill="#94A3B8"/>
-<rect x="100" y="70" width="8" height="24" fill="#EC4899"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true" focusable="false" width="150" height="150">
+<path d="M18 84 L44 58 L62 74 L94 42" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-primary);stroke-width:7"/><path d="M74 42 L94 42 L94 62" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-accent);stroke-width:7"/><path d="M18 100 H54" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-muted-foreground);stroke-width:3"/><path d="M66 26 H96" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-accent);stroke-width:3"/>
 </svg>

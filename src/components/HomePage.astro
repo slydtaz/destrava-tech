@@ -264,11 +264,11 @@ const howSteps = [t(lang, 'home.how1'), t(lang, 'home.how2'), t(lang, 'home.how3
   }
 
   .how-node {
-    inline-size: 0.75rem;
-    block-size: 0.75rem;
-    border-radius: 50%;
+    inline-size: 0.9rem;
+    block-size: 0.9rem;
     background: var(--color-accent);
-    box-shadow: 0 0 0 3px var(--color-background);
+    /* Marcador em seta, no lugar do círculo. */
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
     justify-self: center;
     align-self: center;
   }

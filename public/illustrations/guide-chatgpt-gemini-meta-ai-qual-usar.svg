@@ -1,8 +1,3 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true">
-<rect width="120" height="120" fill="#09090B"/>
-<path d="M24 60h72" stroke="#94A3B8" stroke-width="4"/>
-<circle cx="24" cy="60" r="12" fill="#FAFAFA"/>
-<circle cx="60" cy="60" r="12" fill="#EC4899"/>
-<circle cx="96" cy="60" r="12" fill="none" stroke="#FAFAFA" stroke-width="5"/>
-<rect x="24" y="88" width="72" height="4" fill="#EC4899"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true" focusable="false" width="150" height="150">
+<path d="M30 16 H78 L98 36 V106 H30 Z" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-primary);stroke-width:5"/><path d="M78 16 V36 H98" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-accent);stroke-width:4"/><path d="M42 52 H84" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-accent);stroke-width:4"/><path d="M42 70 H76" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-muted-foreground);stroke-width:4"/><path d="M42 88 H76" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-muted-foreground);stroke-width:4"/><path d="M86 56 L100 70 L86 84" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-accent);stroke-width:4"/>
 </svg>
