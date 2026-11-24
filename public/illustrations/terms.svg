@@ -1,3 +1,17 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" aria-hidden="true" focusable="false" width="150" height="150">
-<path d="M30 16 H78 L98 36 V106 H30 Z" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-primary);stroke-width:6"/><path d="M78 16 V36 H98" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-accent);stroke-width:5"/><path d="M42 52 H86" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-accent);stroke-width:4"/><path d="M42 68 H84" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-muted-foreground);stroke-width:4"/><path d="M42 84 H72" fill="none" stroke-linecap="round" stroke-linejoin="round" style="stroke:var(--color-muted-foreground);stroke-width:4"/>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  aria-hidden="true"
+  focusable="false"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="var(--color-primary)"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z" />
+  <path d="M14 2v5a1 1 0 0 0 1 1h5" />
+  <path d="M10 9H8" />
+  <path d="M16 13H8" />
+  <path d="M16 17H8" stroke="var(--color-accent)" />
 </svg>
