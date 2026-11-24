@@ -76,16 +76,16 @@
   }
 
   ::view-transition-old(root) {
-    animation: 200ms cubic-bezier(.2, 0, 0, 1) both page-out;
+    animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-out;
   }
 
   ::view-transition-new(root) {
-    animation: 200ms cubic-bezier(.2, 0, 0, 1) both page-in;
+    animation: 280ms cubic-bezier(.2, 0, 0, 1) both page-in;
   }
 
   .hero,
   .article-header {
-    animation: 180ms cubic-bezier(.2, 0, 0, 1) both page-in;
+    animation: 240ms cubic-bezier(.2, 0, 0, 1) backwards page-in;
   }
 }
 
@@ -154,41 +154,67 @@
   }
 }
 
-/* ---------- Task 13: revelação de ilustrações ----------
+/* ---------- Revelação ao rolar ----------
    O estado final é visível por padrão; o movimento só melhora conteúdo já legível.
    Sem parallax e sem scroll-scrub sob prefers-reduced-motion: reduce. */
 
-.reveal {
+.reveal,
+.card,
+.section-head {
   opacity: 1;
   transform: none;
 }
 
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @supports ((animation-timeline: view()) and (animation-range: entry)) {
   @media (prefers-reduced-motion: no-preference) {
-    @keyframes reveal-up {
-      from {
-        opacity: 0;
-        transform: translateY(12px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .reveal {
-      /* `animation` vem primeiro: a abreviatura redefine animation-timeline. */
-      animation: reveal-up 200ms ease both;
+    .reveal,
+    .card,
+    .section-head {
+      /* `animation` vem primeiro: a abreviatura redefine animation-timeline.
+         `backwards` libera o `transform` do hover depois que a entrada termina. */
+      animation: reveal-up 280ms ease backwards;
       animation-timeline: view();
       animation-range: entry 0% cover 30%;
     }
   }
 }
 
+/* Navegador sem scroll-driven animations: o script reveal.ts aplica a classe
+   no <html> e marca cada elemento como visível quando ele entra na viewport. */
+html.has-reveal-fallback .reveal:not(.is-visible),
+html.has-reveal-fallback .card:not(.is-visible),
+html.has-reveal-fallback .section-head:not(.is-visible) {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+html.has-reveal-fallback .reveal,
+html.has-reveal-fallback .card,
+html.has-reveal-fallback .section-head {
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal,
+  .card,
+  .section-head,
+  html.has-reveal-fallback .reveal,
+  html.has-reveal-fallback .card,
+  html.has-reveal-fallback .section-head {
     opacity: 1;
     transform: none;
     animation: none;
+    transition: none;
   }
 }
