@@ -1,25 +1,25 @@
-﻿# Wiki â€” destrava-tech
+# Wiki — destrava-tech
 
-## PropÃ³sito
+## Propósito
 
-Registro local e versionado de decisÃµes, proveniÃªncia e operaÃ§Ã£o do projeto destrava-tech. Esta Ã© a wiki canÃ´nica do repositÃ³rio.
+Registro local e versionado de decisões, proveniência e operação do projeto destrava-tech. Esta é a wiki canônica do repositório.
 
-## ProveniÃªncia
+## Proveniência
 
 - Fonte local: C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria
 - Projeto Vercel: destrava-tech / prj_0G7mhYBOAVP8nQvit3mxSnU2pHfr
-- RepositÃ³rio GitHub: slydtaz/destrava-tech
-- Branch de produÃ§Ã£o: main
+- Repositório GitHub: slydtaz/destrava-tech
+- Branch de produção: main
 - HEAD local: 87a113f20bbe5f8439114fce0827351ea7bdb8bf
 
-Fonte editÃ¡vel recuperada em: `C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria`.
+Fonte editável recuperada em: `C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria`.
 
-## HistÃ³rico recente
+## Histórico recente
 
-Os SHAs recuperados dos metadados da Vercel estÃ£o listados em [DEPLOY_HISTORY.md](DEPLOY_HISTORY.md). Quando `gitDirty: 1` aparece, o SHA Ã© apenas uma pista de proveniÃªncia â€” nÃ£o garante que a Ã¡rvore de cÃ³digo corresponda exatamente ao deploy.
+Os SHAs recuperados dos metadados da Vercel estão listados em [DEPLOY_HISTORY.md](DEPLOY_HISTORY.md). Quando `gitDirty: 1` aparece, o SHA é apenas uma pista de proveniência — não garante que a árvore de código corresponda exatamente ao deploy.
 
-## ConvenÃ§Ãµes
+## Convenções
 
-- NÃ£o versionar `.env`, tokens, chaves ou valores de variÃ¡veis de ambiente.
-- NÃ£o publicar este repositÃ³rio sem nova autorizaÃ§Ã£o explÃ­cita.
-- AlteraÃ§Ãµes de documentaÃ§Ã£o devem usar o template `doc_change`.
+- Não versionar `.env`, tokens, chaves ou valores de variáveis de ambiente.
+- Não publicar este repositório sem nova autorização explícita.
+- Alterações de documentação devem usar o template `doc_change`.
