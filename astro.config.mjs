@@ -8,6 +8,7 @@ export default defineConfig({
   site: 'https://destrava-tech-rho.vercel.app',
   integrations: [
     sitemap({
+      xslURL: '/sitemap.xsl',
       i18n: {
         defaultLocale: 'pt-BR',
         locales: { 'pt-BR': 'pt-BR', en: 'en', es: 'es' },

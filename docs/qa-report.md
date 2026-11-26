@@ -2,6 +2,43 @@
 
 Data: 2026-11-23 · Ambiente: Windows, Node v24.19.0, Astro 5 · Navegador de teste: Chromium 157 (Playwright)
 
+## Auditoria dos serviços do MCP Search Console — 2026-11-24
+
+Feita com as ferramentas de leitura do servidor `search-console` depois do login do proprietário. Nenhuma ferramenta de escrita foi chamada; o proprietário optou por **não** configurar o Bing nesta rodada.
+
+| Serviço | Configuração | Evidência |
+|---|---|---|
+| Google Search Console | ✅ correto | Propriedade `https://destrava-tech-rho.vercel.app/` com `siteOwner`; 1 site na conta; nenhuma propriedade duplicada |
+| Sitemap | ✅ correto | `sitemap-index.xml` sem erros/avisos, 60 URLs submetidas, `isPending: false`; última leitura em 24/11 00:23 UTC, antes da 0.2.4; no ar 60 `<loc>`/180 `hreflang` e `xml-stylesheet` |
+| Indexação | ✅ parcial (normal) | Home, `/privacidade/` e `/en/`: `PASS`, “Submitted and indexed”, canonical próprio. `/es/`: “Discovered - currently not indexed”. `/guias/`: “URL is unknown to Google”. Nenhum erro de robots/canonical |
+| GA4 | ✅ conectado | Propriedade `565763914` respondeu; `realtime` reportou 3 usuários ativos — o GTM `GTM-WLRH4RGN` está enviando eventos. O ID `G-FJN8PJVT8Y` vem do contêiner, não do HTML |
+| AdSense | ✅ conectado, não ativo | Conta `pub-1903855512494155` em nome da responsável adulta, estado `READY`; mesmo publisher de `ads.txt`; `$0,00` em pagamentos, sem bloqueio, apenas aviso genérico de política. `SITE.adsEnabled` continua `false` |
+| Bing | ⚠️ não configurado | `sites_list`/`sitemaps_list` com `engine: bing` retornam “No bing accounts found. Please run setup.” Decisão do proprietário: deixar sem Bing |
+| Dados de busca | ⚠️ sem tráfego | `analytics_query` em 30 dias e `seo_audit` vazios; `site_health_check` marca “critical” apenas por ausência de tráfego, não por falha técnica |
+| Indexing API | ⚠️ indisponível | `indexing_status` retorna 403 “Web Search Indexing API has not been used”. Não é necessário: a home já está indexada e o Google lê o sitemap |
+| PageSpeed | ❌ não verificado | Limite da cota gratuita da API excedido; requer `PAGESPEED_API_KEY` para nova tentativa |
+| Schema | ⚠️ ausente | `schema_validate`: “No structured data (JSON-LD) found”. Opcional, não bloqueia indexação |
+
+Conclusão: **não havia nada a adicionar** no Google — a propriedade, o sitemap, o GA4 e o AdSense já estavam configurados corretamente. Nenhuma propriedade duplicada foi criada.
+
+## QA do GTM e do sitemap estilizado — 0.2.4 (2026-11-24)
+
+Build final `7dbf7a5` (61 páginas), publicado como `dpl_87AdpEZevrEvdkRBpT7SNfhaPApD` e conferido no ar no alias canônico. Revisão independente do branch sem achados.
+
+| Verificação | Resultado | Evidência |
+|---|---|---|
+| Build e diff | ✅ | `npm run build` exit 0, 61 páginas; `git diff --check` limpo nos quatro commits |
+| GTM no código | ✅ | Trecho idêntico ao enviado em `Base.astro`; 61/61 HTML com `GTM-WLRH4RGN`; ausência de `gtm.start` e `<noscript>` |
+| GTM no ar | ✅ | `dataLayer` é array no navegador, primeiro script é `gtm.js?id=GTM-WLRH4RGN`, script antes de `name="viewport"` |
+| Rotas no ar | ✅ | 200 em `/`, `/guias/`, `/privacidade/`, `/en/`, `/es/` e nas privacidades EN/ES; 404 personalizado com GTM |
+| Sitemap no ar | ✅ | `sitemap-0.xml` 200 com 60 `<loc>`/180 `<xhtml:link>`; `sitemap-index.xml` 200 com `xml-stylesheet`; `/sitemap.xsl` 200 |
+| XSL | ⚠️ | Transformação válida (60 entradas, 180 badges); Chrome 158 removeu XSLT e mostra o XML cru — registrado nas pendências |
+| Textos legais | ✅ | Frases antigas removidas e texto novo presente nas três Privacidades no ar |
+| Arquivos fixos no ar | ✅ | Verificação do Google 200 com a linha exata; `robots.txt` e `ads.txt` 200; `ads.txt` inalterado |
+| Console | ✅ | Zero mensagens no navegador |
+| Anúncios | ✅ | `SITE.adsEnabled: false`; banner de consentimento inalterado na lógica |
+| Observação | ⚠️ | O contêiner do proprietário disparou `page_view` do GA4 (`G-FJN8PJVT8Y`) no ar; veja pendência 19 |
+
 ## QA dos ícones Lucide e do botão de animações — 0.2.3 (2026-11-23 a 2026-11-24)
 
 Executado sobre `npm run preview` do build local do código final desta rodada, commit `eab0f35` (61 páginas), em Chromium via `agent-browser`. As verificações de `c615b4e` foram refeitas depois das correções de revisão, e o build final passou também após os ajustes de persistência e de fallback de revelação. Os commits seguintes desta rodada são só documentação e não alteram o código verificado. Após autorização explícita, o mesmo código foi publicado em 2026-11-24 como deploy `dpl_7bvyYkgAEeM19Kpsc4YYBKeTUFgy` e conferido no ar (linha "Deploy" abaixo). Zero dependência, pacote, CDN, requisição externa ou alteração de sitemap; `SITE.adsEnabled` continua `false`.

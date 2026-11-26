@@ -89,7 +89,7 @@ const dict = {
   'home.trust1': 'Contenido directo. Cada guía está escrita para responder una pregunta real e incluye pasos que puedes comprobar.',
   'home.trust2': 'Fuentes citadas. Cuando una guía afirma algo sobre seguridad o reglas de aplicaciones, señala la fuente oficial para que puedas comprobarlo.',
   'home.trust3': 'Fecha de actualización visible. La tecnología cambia rápido; siempre sabes cuándo se actualizó la guía por última vez.',
-  'home.trust4Text': 'Respeto a tu privacidad. El sitio no pide registro ni usa cookies; el servidor solo registra datos técnicos de acceso. Consulta la ',
+  'home.trust4Text': 'Respeto a tu privacidad. El sitio no pide registro; el servidor registra datos técnicos de acceso y se carga Google Tag Manager para medir el uso. Consulta la ',
   'home.trust4Link': 'Política de Privacidad',
 
   'notfound.kicker': 'Error 404',

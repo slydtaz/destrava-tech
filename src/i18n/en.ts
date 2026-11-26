@@ -89,7 +89,7 @@ const dict = {
   'home.trust1': 'Straightforward content. Each guide is written to answer a real question and includes steps you can check.',
   'home.trust2': 'Sources cited. When a guide makes a claim about security or app rules, it points to the official source so you can check it.',
   'home.trust3': 'Update date shown. Technology changes fast; you always know when the guide was last updated.',
-  'home.trust4Text': 'Respect for your privacy. The site does not ask for sign-up and does not use cookies; the server records only technical access data. See the ',
+  'home.trust4Text': 'Respect for your privacy. The site does not ask for sign-up; the server records technical access data and Google Tag Manager is loaded to measure usage. See the ',
   'home.trust4Link': 'Privacy Policy',
 
   'notfound.kicker': 'Error 404',

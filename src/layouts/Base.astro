@@ -36,6 +36,12 @@ const ogLocale: Record<Lang, string> = { pt: 'pt_BR', en: 'en_US', es: 'es_ES' }
 <html lang={lang === 'pt' ? 'pt-BR' : lang}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-WLRH4RGN"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
     <script is:inline>
       // Aplica o tema antes de qualquer CSS para evitar flash de tema claro.
       // is:inline é essencial: Astro não pode mover este script para o bundle.

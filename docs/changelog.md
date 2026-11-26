@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.4 — 2026-11-24 (PUBLICADA 🟢)
+
+Deploy `dpl_87AdpEZevrEvdkRBpT7SNfhaPApD`, production, alias canônico inalterado em https://destrava-tech-rho.vercel.app, executado com autorização explícita do proprietário em 2026-11-24. A 0.2.3 (`dpl_7bvyYkgAEeM19Kpsc4YYBKeTUFgy`) foi a versão anterior no ar.
+
+Verificação no ar: HTTP 200 em home, guias, privacidade PT/EN/ES e nos dois XML; 404 personalizado com GTM; `sitemap-0.xml` com 60 URLs e 180 alternates e a linha `xml-stylesheet` apontando para `/sitemap.xsl` no mesmo domínio; folha XSL 200; arquivo de verificação do Google 200 com a linha exata; `robots.txt` e `ads.txt` 200; `ads.txt` segue com o publisher de previsão. No navegador, `dataLayer` existe, o primeiro script é `gtm.js?id=GTM-WLRH4RGN`, console sem mensagens e texto novo da Privacidade presente. Nenhum push ou merge; commits locais.
+
+- Google Tag Manager `GTM-WLRH4RGN` inserido no `<head>` de `src/layouts/Base.astro` com o trecho enviado pelo proprietário, exatamente como enviado. As 61 páginas geradas contêm o contêiner; não foi inventado `gtm.start`, `<noscript>` ou pageview. As tags dentro do contêiner são configuradas na conta do proprietário.
+- `sitemap-index.xml` e `sitemap-0.xml` passam a declarar `<?xml-stylesheet type="text/xsl" href="/sitemap.xsl"?>` pelo `xslURL` do `@astrojs/sitemap`. A folha `public/sitemap.xsl` é local, sem pacote/CDN/rota nova, usa cores literais do design system, cobre claro e escuro e mantém 60 URLs e 180 alternates `hreflang` intactos.
+- Textos de privacidade corrigidos em PT/EN/ES, na home e nas três páginas de Privacidade: passam a dizer que o Google Tag Manager é carregado para medir o uso, em vez de negar rastreamento. `SITE.adsEnabled` continua `false` e o banner de consentimento segue desligado.
+- Verificação: `npm run build` exit 0 com 61 páginas, 61 HTML com o contêiner, 60 `<loc>`/180 `<xhtml:link>`, `git diff --check` limpo. Commits locais: `9cf9938`, `559e5fe`, `5ec83c3` e o commit de documentação desta entrada.
+- **Limitação descoberta:** o Chrome 158 (17/11/2026) desativou XSLT no Stable. No Chromium de teste os XML abriram no visualizador nativo e a folha não foi requisitada; a transformação foi validada com `System.Xml.Xsl.XslCompiledTransform` (índice → 1 entrada; `sitemap-0.xml` → 60 entradas e 180 badges de idioma). Firefox e Safari ainda aplicam a folha; o Google lê o XML cru normalmente. Fazer a aparência funcionar no Chrome exigiria outra abordagem, fora do desenho aprovado.
+
 ## 0.2.3 - 2026-11-24 (PUBLICADO 🟢)
 
 Deploy `dpl_7bvyYkgAEeM19Kpsc4YYBKeTUFgy`, aliasado a https://destrava-tech-rho.vercel.app, executado com autorização explícita do proprietário em 2026-11-24. A 0.2.2 (`dpl_45hn5XCYCMqLizgqmvE2EVQs2VMu`) foi a versão anterior no ar.

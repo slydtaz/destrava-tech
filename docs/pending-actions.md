@@ -1,6 +1,6 @@
 # Ações pendentes — quem faz o quê
 
-Atualizado: 2026-11-23
+Atualizado: 2026-11-24
 
 ## Você (proprietário) — antes de enviar ao AdSense
 
@@ -36,6 +36,15 @@ Atualizado: 2026-11-23
 16. **PENDENTE — Search Console:** a verificação de propriedade já foi feita pelo proprietário, mas ela apenas prova posse; **não** coloca o site na busca. ✅ **FEITO (2026-11-23):** (a) o Google leu `sitemap-index.xml` e confirmou as **60 páginas** — não é preciso reenviar; o aspecto de "HTML puro" era apenas XML cru no navegador. **Faltam:** (b) *Inspecionar qualquer URL* → home → *Solicitar indexação*; (c) aguardar dias/semanas. Métodos extras de verificação (tag HTML, Analytics, Tag Manager, DNS) são apenas reserva de posse, não etapa de indexação. Até 2026-11-23 a URL canônica `-rho` não aparecia nos resultados de busca consultados; existe outro projeto com nome parecido em `destrava-tech.vercel.app`.
 
 15. **PENDENTE (limpeza — requer sua confirmação) — excluir o projeto Vercel `slydtx/interface-motion`.** O CLI criou esse projeto por engano no primeiro deploy porque o worktree ainda não estava vinculado ao `destrava-tech`; ele contém apenas uma cópia da versão 0.2.0 e não afeta o site no ar. A exclusão é irreversível e o próprio CLI exige aprovação humana (`vercel project rm interface-motion --confirm-name interface-motion`). Se preferir, deixe o projeto lá.
+
+## Rodada 0.2.4 (2026-11-24 — publicada)
+
+Deploy `dpl_87AdpEZevrEvdkRBpT7SNfhaPApD`, production, alias inalterado, publicado com autorização explícita; validação no ar em `docs/qa-report.md`. Nenhum push ou merge.
+
+17. ✅ **FEITO (2026-11-24) — login do Google no MCP Search Console:** o proprietário concluiu `npx search-console-mcp setup`; `search-console-mcp diagnostics` agora reporta Google (`macedoartur1250@gmail.com`, 1 site), AdSense (`pub-1903855512494155`) e GA4 (propriedade `565763914`) conectados. **Atenção:** o pacote guarda o config em cache na memória, então o processo do MCP iniciado antes do setup continuava dizendo `No google accounts found`. É obrigatório **reiniciar o OpenCode** depois do setup; a skill `service-hub-connector` 0.1.0-alpha.3 registra isso. As ferramentas ficam somente leitura por padrão: `sitemaps_submit`, `sitemaps_delete`, `sites_manage`, `accounts_manage` e `indexing_submit` exigem autorização explícita de escrita.
+20. **INFORMAÇÃO — leitura real feita pelo CLI do MCP (2026-11-24):** propriedade `https://destrava-tech-rho.vercel.app/` como `siteOwner`; home com `verdict PASS`, “Submitted and indexed”, canonical igual à URL, rastreio em 23/11, sitemap reconhecido e busca mobile; `sitemap-index.xml` sem erros/avisos, 60 URLs submetidas e última leitura em 24/11 00:23 UTC (antes da 0.2.4 — por isso “indexed: 0” no índice é dado antigo); sem dados de consultas nos últimos 7 dias; Bing não conectado. Nenhum segredo foi exibido ou enviado ao chat.
+18. **INFORMAÇÃO — XSLT no Chrome:** o Chrome 158 (17/11/2026) desativou XSLT no Stable. Os XML do sitemap continuam legíveis e o Google lê o conteúdo cru; a folha `/sitemap.xsl` só é aplicada em navegadores que ainda suportam XSLT (Firefox/Safari). Se a aparência no Chrome for importante, é preciso escolher outra abordagem — não feita nesta rodada porque o desenho aprovado exclui nova rota e pacote.
+19. **NOVO — decisão do proprietário sobre analytics/consentimento:** ao conferir o ar após a 0.2.4, o contêiner `GTM-WLRH4RGN` da conta do proprietário disparou um `page_view` do GA4 (`G-FJN8PJVT8Y`) para `google-analytics.com`. O código do site apenas carrega o GTM, como autorizado; a tag veio da configuração do contêiner. O banner LGPD continua desligado porque `SITE.adsEnabled` é `false`. Se esse evento de analytics deve exigir consentimento, a decisão e a configuração do contêiner/banner são do responsável adulto — não afirmar conformidade sem essa decisão.
 
 ## Custos
 
