@@ -6,6 +6,8 @@ Fonte editável recuperada em: `C:\Users\MARY\OneDrive\Desktop\agents code works
 
 | URL | target | SHA | message/intent | date | source |
 |---|---|---|---|---|---|
+| destrava-tech-8gkfndyhd-slydtx.vercel.app | production | 54461665a3cec850e8d2fc7e87ba510630e9d362 | docs: add wiki, deploy history, issue templates and recovered source | 2026-11-26 | Vercel deploy metadata |
+| destrava-tech-r9naomgzt-slydtx.vercel.app | preview | 513948b08182ac2cc8fadafb621bc657ee8ac6de | docs: add wiki, deploy history, issue templates and recovered source | 2026-11-26 | Vercel deploy metadata |
 | destrava-tech-i8442bik4-slydtx.vercel.app | production | 7ab0eabd834e1536c379ed26f64576fcba75d0c7 | docs: add wiki, deploy history, issue templates and recovered source | 2026-11-26 | Vercel deploy metadata |
 | destrava-tech-jly90cfxa-slydtx.vercel.app | preview | fbe2d6c2bc3a741ce5155d3cacc5854de6d169d7 | docs: add wiki, deploy history, issue templates and recovered source | 2026-11-26 | Vercel deploy metadata |
 | destrava-tech-b6i28qeir-slydtx.vercel.app | preview | — | — | 2026-11-26 | Vercel deploy metadata |
