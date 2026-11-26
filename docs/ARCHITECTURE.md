@@ -8,7 +8,7 @@ Projeto interface-motion implantado na Vercel sob o time slydtx. Stack detectada
 
 - **Entrada**: requisições HTTP para https://interface-motion-2xcrecnun-slydtx.vercel.app.
 - **Código**: Fonte editável recuperada em: `C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria\.worktrees\interface-motion`.
-- **Configuração de deploy**: gerenciada pelo projeto Vercel $(@{projectName=interface-motion; projectId=prj_344jbro0xezpYQShEr2uAzLdNPdt; localPath=C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria\.worktrees\interface-motion; gitRepo=slydtaz/destrava-tech; gitBranch=interface-motion; headSha=08cebba40dadb04501ada7e4946f6e62489c08e3; vercelShas=System.Object[]; framework=astro; productionUrl=https://interface-motion-2xcrecnun-slydtx.vercel.app}.projectId) e pelo repositório $(@{projectName=interface-motion; projectId=prj_344jbro0xezpYQShEr2uAzLdNPdt; localPath=C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria\.worktrees\interface-motion; gitRepo=slydtaz/destrava-tech; gitBranch=interface-motion; headSha=08cebba40dadb04501ada7e4946f6e62489c08e3; vercelShas=System.Object[]; framework=astro; productionUrl=https://interface-motion-2xcrecnun-slydtx.vercel.app}.gitRepo).
+- **Configuração de deploy**: gerenciada pelo projeto Vercel `prj_344jbro0xezpYQShEr2uAzLdNPdt` e pelo repositório `slydtaz/destrava-tech`.
 - **Saída**: deployment na Vercel, com histórico versionado em docs/DEPLOY_HISTORY.md.
 
 ## Notas por stack

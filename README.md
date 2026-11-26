@@ -2,7 +2,7 @@
 
 Projeto Vercel no time slydtx, conectado ao repositório GitHub slydtaz conforme documentado aqui.
 
-- Projeto Vercel: `interface-motion` ($(@{projectName=interface-motion; projectId=prj_344jbro0xezpYQShEr2uAzLdNPdt; localPath=C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria\.worktrees\interface-motion; gitRepo=slydtaz/destrava-tech; gitBranch=interface-motion; headSha=08cebba40dadb04501ada7e4946f6e62489c08e3; vercelShas=System.Object[]; framework=astro; productionUrl=https://interface-motion-2xcrecnun-slydtx.vercel.app}.projectId))
+- Projeto Vercel: `interface-motion` (prj_344jbro0xezpYQShEr2uAzLdNPdt)
 - Framework: astro
 - URL de produção: https://interface-motion-2xcrecnun-slydtx.vercel.app
 - Repositório: slydtaz/destrava-tech
