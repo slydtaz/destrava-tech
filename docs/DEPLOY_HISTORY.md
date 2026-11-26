@@ -6,6 +6,8 @@ Fonte editável recuperada em: `C:\Users\MARY\OneDrive\Desktop\agents code works
 
 | URL | target | SHA | message/intent | date | source |
 |---|---|---|---|---|---|
+| interface-motion-nak7exp74-slydtx.vercel.app | preview | 54461665a3cec850e8d2fc7e87ba510630e9d362 | docs: add wiki, deploy history, issue templates and recovered source | 2026-11-26 | Vercel deploy metadata |
+| interface-motion-n3tefoib8-slydtx.vercel.app | production | 513948b08182ac2cc8fadafb621bc657ee8ac6de | docs: add wiki, deploy history, issue templates and recovered source | 2026-11-26 | Vercel deploy metadata |
 | interface-motion-bcroyxlpg-slydtx.vercel.app | preview | 7ab0eabd834e1536c379ed26f64576fcba75d0c7 | docs: add wiki, deploy history, issue templates and recovered source | 2026-11-26 | Vercel deploy metadata |
 | interface-motion-5yw9ih3fx-slydtx.vercel.app | production | fbe2d6c2bc3a741ce5155d3cacc5854de6d169d7 | docs: add wiki, deploy history, issue templates and recovered source | 2026-11-26 | Vercel deploy metadata |
 | interface-motion-lymdij531-slydtx.vercel.app | preview | — | — | 2026-11-26 | Vercel deploy metadata |
