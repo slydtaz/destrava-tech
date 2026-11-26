@@ -1,25 +1,25 @@
-﻿# Wiki â€” interface-motion
+# Wiki — interface-motion
 
-## PropÃ³sito
+## Propósito
 
-Registro local e versionado de decisÃµes, proveniÃªncia e operaÃ§Ã£o do projeto interface-motion. Esta Ã© a wiki canÃ´nica do repositÃ³rio.
+Registro local e versionado de decisões, proveniência e operação do projeto interface-motion. Esta é a wiki canônica do repositório.
 
-## ProveniÃªncia
+## Proveniência
 
 - Fonte local: C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria\.worktrees\interface-motion
 - Projeto Vercel: interface-motion / prj_344jbro0xezpYQShEr2uAzLdNPdt
-- RepositÃ³rio GitHub: slydtaz/destrava-tech
-- Branch de produÃ§Ã£o: interface-motion
+- Repositório GitHub: slydtaz/destrava-tech
+- Branch de produção: interface-motion
 - HEAD local: 08cebba40dadb04501ada7e4946f6e62489c08e3
 
-Fonte editÃ¡vel recuperada em: `C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria\.worktrees\interface-motion`.
+Fonte editável recuperada em: `C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria\.worktrees\interface-motion`.
 
-## HistÃ³rico recente
+## Histórico recente
 
-Os SHAs recuperados dos metadados da Vercel estÃ£o listados em [DEPLOY_HISTORY.md](DEPLOY_HISTORY.md). Quando `gitDirty: 1` aparece, o SHA Ã© apenas uma pista de proveniÃªncia â€” nÃ£o garante que a Ã¡rvore de cÃ³digo corresponda exatamente ao deploy.
+Os SHAs recuperados dos metadados da Vercel estão listados em [DEPLOY_HISTORY.md](DEPLOY_HISTORY.md). Quando `gitDirty: 1` aparece, o SHA é apenas uma pista de proveniência — não garante que a árvore de código corresponda exatamente ao deploy.
 
-## ConvenÃ§Ãµes
+## Convenções
 
-- NÃ£o versionar `.env`, tokens, chaves ou valores de variÃ¡veis de ambiente.
-- NÃ£o publicar este repositÃ³rio sem nova autorizaÃ§Ã£o explÃ­cita.
-- AlteraÃ§Ãµes de documentaÃ§Ã£o devem usar o template `doc_change`.
+- Não versionar `.env`, tokens, chaves ou valores de variáveis de ambiente.
+- Não publicar este repositório sem nova autorização explícita.
+- Alterações de documentação devem usar o template `doc_change`.
