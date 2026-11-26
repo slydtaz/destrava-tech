@@ -1,0 +1,123 @@
+---
+interface Props {
+  /** Rótulo visível do exemplo. */
+  label: string;
+  /** `line` desenha uma linha; `steps` revela um marcador de passo. Padrão: `line`. */
+  variant?: 'line' | 'steps';
+}
+
+const { label, variant = 'line' } = Astro.props;
+---
+
+<div class:list={['animated-example', `animated-example--${variant}`]}>
+  <span class="animated-example-label">{label}</span>
+  <div class="animated-example-visual" aria-hidden="true">
+    {
+      variant === 'line' ? (
+        <span class="animated-example-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M5 12h14"></path>
+            <path d="m12 5 7 7-7 7"></path>
+          </svg>
+        </span>
+      ) : (
+        <span class="animated-example-step">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+        </span>
+      )
+    }
+  </div>
+  <div class="animated-example-content">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .animated-example {
+    display: grid;
+    gap: var(--space-2);
+    margin-block: var(--space-6);
+    padding: var(--space-4) var(--space-6);
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-inline-start: 4px solid var(--color-accent);
+    border-radius: var(--radius);
+  }
+
+  .animated-example-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-accent-text);
+  }
+
+  .animated-example-visual {
+    display: flex;
+    align-items: center;
+    min-block-size: 2rem;
+  }
+
+  /* Estados finais: presentes no CSS mesmo sem JS e com data-motion='off'. */
+  .animated-example-line {
+    display: block;
+    inline-size: 100%;
+    max-inline-size: 5rem;
+    color: var(--color-accent);
+    opacity: 1;
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .animated-example-step {
+    display: block;
+    inline-size: 2rem;
+    block-size: 2rem;
+    color: var(--color-accent);
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .animated-example-line svg,
+  .animated-example-step svg {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+  }
+
+  .animated-example-content > :global(:last-child) {
+    margin-block-end: 0;
+  }
+
+  @keyframes example-line-in {
+    from {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    to {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes example-step-in {
+    from {
+      opacity: 0;
+      transform: translateX(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  :global(:root[data-motion='on']) .animated-example--line .animated-example-line {
+    animation: example-line-in 200ms ease both;
+  }
+
+  :global(:root[data-motion='on']) .animated-example--steps .animated-example-step {
+    animation: example-step-in 200ms ease both;
+  }
+</style>

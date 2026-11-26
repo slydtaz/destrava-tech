@@ -7,6 +7,7 @@ const guias = defineCollection({
     title: z.string(),
     description: z.string(),
     pillar: z.enum(['seguranca', 'whatsapp', 'ia', 'celular']),
+    lang: z.enum(['pt', 'en', 'es']),
     updated: z.coerce.date(),
     sources: z
       .array(z.object({ name: z.string(), url: z.string().url() }))

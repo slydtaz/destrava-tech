@@ -37,6 +37,42 @@
   --measure: 68ch;
   --radius: 0.5rem;
   --header-height: 4.25rem;
+
+  /* Borda reforçada só para controles: a borda decorativa não atinge 3:1. */
+  --color-border-control: #71717a;
+}
+
+/* ---------- Tema escuro ----------
+   O atributo é aplicado pelo script inline no <head>, antes de qualquer CSS. */
+[data-theme='dark'] {
+  --color-primary: #fafafa;
+  --color-on-primary: #09090b;
+  --color-secondary: #94a3b8;
+  --color-on-secondary: #09090b;
+  --color-accent: #ec4899;
+  --color-on-accent: #000000;
+  /* Rosa claro: 7.51:1 sobre #09090b (o #be185d claro daria ~2:1). */
+  --color-accent-text: #f472b6;
+  --color-background: #09090b;
+  --color-foreground: #fafafa;
+  --color-card: #18181b;
+  --color-card-foreground: #fafafa;
+  --color-muted: #27272a;
+  --color-muted-foreground: #94a3b8;
+  --color-border: #3f3f46;
+  --color-destructive: #f87171;
+  --color-ring: #ffffff;
+  --color-border-control: #64748b;
+}
+
+/* Superfícies claras dentro do tema escuro (consent-bar usa primary como fundo)
+   e texto sobre o accent precisam de ajustes próprios. */
+[data-theme='dark'] .button:hover {
+  color: #09090b;
+}
+
+[data-theme='dark'] .consent-bar a {
+  color: #be185d;
 }
 
 /* ---------- Reset básico ---------- */
@@ -49,19 +85,24 @@
 html {
   container-type: scroll-state;
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-height) + var(--space-4));
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
+/* Âncoras de seção param abaixo do header sticky. */
+section[id] {
+  scroll-margin-top: calc(var(--header-height) + var(--space-4));
+}
+
+:root[data-motion='off'] {
+  scroll-behavior: auto;
+}
+
+:root[data-motion='off'] *,
+:root[data-motion='off'] *::before,
+:root[data-motion='off'] *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
 }
 
 body {
@@ -241,6 +282,91 @@ a:hover {
   border-color: var(--color-primary);
 }
 
+/* ---------- Alternador de tema ---------- */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  font: inherit;
+  color: var(--color-primary);
+  background: var(--color-card);
+  border: 1px solid var(--color-border-control);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-primary);
+}
+
+.theme-toggle:focus-visible {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 3px;
+}
+
+.theme-toggle svg {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
+}
+
+.theme-toggle .icon-moon {
+  display: none;
+}
+
+[data-theme='dark'] .theme-toggle .icon-sun {
+  display: none;
+}
+
+[data-theme='dark'] .theme-toggle .icon-moon {
+  display: block;
+}
+
+/* ---------- Seletor de idioma ---------- */
+.language-select ul {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.language-select a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-inline-size: 44px;
+  min-block-size: 44px;
+  padding: 0 var(--space-1);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-secondary);
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+}
+
+.language-select a:hover {
+  border-color: var(--color-border-control);
+  color: var(--color-primary);
+}
+
+.language-select a:focus-visible {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 2px;
+}
+
+.language-select a[aria-current='true'] {
+  color: var(--color-primary);
+  background: var(--color-muted);
+  border-color: var(--color-primary);
+}
+
 .site-nav {
   anchor-name: --menu-button;
 }
@@ -290,7 +416,7 @@ a:hover {
   color: var(--color-primary);
 }
 
-.site-menu a[aria-current='page'] {
+.site-menu a:is([aria-current='page'], [aria-current='location']) {
   background: var(--color-primary);
   color: var(--color-on-primary);
 }
@@ -338,7 +464,7 @@ main {
   padding-block: var(--space-8) var(--space-16);
 }
 
-main:focus {
+main:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -402,12 +528,28 @@ main:focus {
   background: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: var(--radius);
+  position: relative;
   transition: border-color 180ms ease, transform 180ms ease;
 }
 
-.card:hover {
+/* O título é o único link do card; o ::after torna o card inteiro clicável. */
+.card h3 a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+/* O card do artigo tem um único link no título; o card do pilar é ele mesmo
+   um <a>, por isso o seletor direto também precisa entrar aqui. */
+.card:has(a:hover),
+a.card:hover {
   border-color: var(--color-primary);
   transform: translateY(-2px);
+}
+
+.card:has(a:focus-visible) {
+  outline: 3px solid var(--color-ring);
+  outline-offset: 3px;
 }
 
 .card h3 {
@@ -447,9 +589,18 @@ main:focus {
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--color-accent-text);
-  background: color-mix(in srgb, var(--color-accent) 12%, white);
+  background: color-mix(in srgb, var(--color-accent) 10%, white);
   border: 1px solid color-mix(in srgb, var(--color-accent) 35%, white);
-  border-radius: 999px;
+  /* Etiqueta com canto cortado, no lugar da pílula arredondada. */
+  clip-path: polygon(0 0, 100% 0, 100% 70%, 91% 100%, 0 100%);
+  padding-block: 0.25rem 0.35rem;
+}
+
+/* No escuro o badge precisa de fundo escuro: misturar com branco daria
+   texto rosa claro sobre rosa claro. */
+[data-theme='dark'] .badge {
+  background: color-mix(in srgb, var(--color-accent) 18%, black);
+  border-color: color-mix(in srgb, var(--color-accent) 35%, black);
 }
 
 .pillar-card {
@@ -496,6 +647,13 @@ main:focus {
 .button.secondary:hover {
   background: var(--color-muted);
   color: var(--color-primary);
+}
+
+/* Botões lado a lado em telas estreitas (404 e afins). */
+.error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
 /* ---------- Artigo ---------- */
@@ -558,6 +716,9 @@ main:focus {
 }
 
 .article-body table {
+  display: block;
+  overflow-x: auto;
+  max-inline-size: 100%;
   border-collapse: collapse;
   inline-size: 100%;
   margin-block: 1em;
@@ -651,6 +812,15 @@ main:focus {
   color: var(--color-secondary);
 }
 
+/* Links que ficam sozinhos em uma linha: área de toque mínima de 24px. */
+.section-head > a,
+.sources a,
+.footer-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 24px;
+}
+
 /* ---------- Banner de consentimento (LGPD) ----------
    Só renderiza quando SITE.adsEnabled = true.
    Barra pequena, não-modal (< 15% da viewport), com botões claros. */
@@ -706,13 +876,39 @@ main:focus {
   .menu-button {
     border: 1px solid CanvasText;
   }
-  .site-menu a[aria-current='page'] {
+  .site-menu a:is([aria-current='page'], [aria-current='location']) {
     outline: 2px solid Highlight;
   }
 }
 
 /* ---------- Responsivo ---------- */
+/* Em telas estreitas, marca e palavra "Menu" ficam disponíveis apenas para
+   leitores de tela: os controles de 44 px continuam cabíveis no header. O
+   seletor de idioma encolhe para 36 px (ainda acima do mínimo WCAG de 24 px). */
+@media (max-width: 30rem) {
+  .header-inner {
+    gap: var(--space-1);
+  }
+  .language-select a {
+    min-inline-size: 36px;
+    padding-inline: 2px;
+  }
+  .site-logo .logo-text,
+  .menu-button .menu-text {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 40rem) {
+  main {
+    padding-block-end: var(--space-8);
+  }
   .section {
     padding-block: var(--space-8);
   }
@@ -722,4 +918,123 @@ main:focus {
   .footer-grid {
     flex-direction: column;
   }
+}
+
+/* ---------- Utilidades de leitura ---------- */
+.pillar-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-end: var(--space-6);
+}
+
+.pillar-filter button,
+.copy-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-block-size: 44px;
+  padding: var(--space-2) var(--space-4);
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-primary);
+  background: var(--color-card);
+  border: 1px solid var(--color-border-control);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.pillar-filter button[aria-pressed='true'],
+.copy-link[data-state='ok'] {
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.copy-link[data-state='error'] {
+  color: var(--color-destructive);
+  border-color: var(--color-destructive);
+}
+
+.copy-link {
+  gap: var(--space-2);
+}
+
+.copy-link svg {
+  inline-size: 1rem;
+  block-size: 1rem;
+}
+
+.copy-icon-check,
+.copy-link[data-state='ok'] .copy-icon-link {
+  display: none;
+}
+
+.copy-link[data-state='ok'] .copy-icon-check {
+  display: block;
+}
+
+.toc {
+  max-inline-size: var(--measure);
+  margin-block-end: var(--space-8);
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-inline-start: 4px solid var(--color-accent);
+  border-radius: var(--radius);
+}
+
+.toc h2 {
+  font-size: 1.1rem;
+  margin-block-end: var(--space-2);
+}
+
+.toc ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--space-1);
+}
+
+.toc a {
+  display: inline-block;
+  padding-block: 0.2rem;
+  text-decoration: none;
+}
+
+.toc a:hover {
+  text-decoration: underline;
+}
+
+.toc .toc-depth-3 {
+  padding-inline-start: var(--space-4);
+  font-size: 0.92rem;
+}
+
+.back-to-top {
+  position: fixed;
+  inset-block-end: var(--space-6);
+  inset-inline-end: var(--space-6);
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 44px;
+  block-size: 44px;
+  padding: 0;
+  color: var(--color-on-primary);
+  background: var(--color-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.back-to-top[hidden] {
+  display: none;
+}
+
+.back-to-top svg {
+  inline-size: 1.25rem;
+  block-size: 1.25rem;
 }

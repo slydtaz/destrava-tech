@@ -1,0 +1,326 @@
+{
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\.graphify_detect.json": {
+    "mtime": 1795454577.563937,
+    "seen": 1795455202.8437932,
+    "ast_hash": "427826b801ff8bba965fc96d8ba1dede",
+    "semantic_hash": "427826b801ff8bba965fc96d8ba1dede"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\astro.config.mjs": {
+    "mtime": 1795449139.6229973,
+    "seen": 1795455202.843814,
+    "ast_hash": "f31cd09d9b138171c27c323a45f3b19b",
+    "semantic_hash": "f31cd09d9b138171c27c323a45f3b19b"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\package.json": {
+    "mtime": 1795449139.6527703,
+    "seen": 1795455202.843819,
+    "ast_hash": "770afbbec252256e2b0f9d2ea39358c1",
+    "semantic_hash": "770afbbec252256e2b0f9d2ea39358c1"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\portfolio-registry.json": {
+    "mtime": 1795449139.654773,
+    "seen": 1795455202.8438222,
+    "ast_hash": "7a2d0ece3f7b10a92f5c308179f3036f",
+    "semantic_hash": "7a2d0ece3f7b10a92f5c308179f3036f"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\components\\AdSlot.astro": {
+    "mtime": 1795449139.6607785,
+    "seen": 1795455202.8438268,
+    "ast_hash": "4750c0c30d2b0e6bffc96a8b67c593a4",
+    "semantic_hash": "4750c0c30d2b0e6bffc96a8b67c593a4"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\components\\ArticleCard.astro": {
+    "mtime": 1795449378.3522856,
+    "seen": 1795455202.8438303,
+    "ast_hash": "b6141cf33b16f132219f58b47c4e5975",
+    "semantic_hash": "b6141cf33b16f132219f58b47c4e5975"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\components\\ConsentBar.astro": {
+    "mtime": 1795449139.662779,
+    "seen": 1795455202.8438337,
+    "ast_hash": "ad4d9a76cfdc5d0a08e2425d7e7c2d09",
+    "semantic_hash": "ad4d9a76cfdc5d0a08e2425d7e7c2d09"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\components\\Footer.astro": {
+    "mtime": 1795449139.663792,
+    "seen": 1795455202.843836,
+    "ast_hash": "8eca05d9124e326f286e2e2f309cbba0",
+    "semantic_hash": "8eca05d9124e326f286e2e2f309cbba0"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\components\\Header.astro": {
+    "mtime": 1795449367.5288124,
+    "seen": 1795455202.8438387,
+    "ast_hash": "e5c335313c1032f03ce6a72e8ab80065",
+    "semantic_hash": "e5c335313c1032f03ce6a72e8ab80065"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\components\\NavigationSkeleton.astro": {
+    "mtime": 1795451450.6392882,
+    "seen": 1795455202.8438413,
+    "ast_hash": "551cf94cd55a33c27ac2d6e0b382a0fd",
+    "semantic_hash": "551cf94cd55a33c27ac2d6e0b382a0fd"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content.config.ts": {
+    "mtime": 1795449139.6673107,
+    "seen": 1795455202.8438444,
+    "ast_hash": "8b4fa1f0172ee2e54a7d682d4a1055e2",
+    "semantic_hash": "8b4fa1f0172ee2e54a7d682d4a1055e2"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\layouts\\Base.astro": {
+    "mtime": 1795451913.1509953,
+    "seen": 1795455202.8438475,
+    "ast_hash": "f2c6c5ff027db370d23f3db79c6fd125",
+    "semantic_hash": "f2c6c5ff027db370d23f3db79c6fd125"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\pages\\404.astro": {
+    "mtime": 1795449419.819987,
+    "seen": 1795455202.8438506,
+    "ast_hash": "24dbb515bd02f37497283a5038b69f4b",
+    "semantic_hash": "24dbb515bd02f37497283a5038b69f4b"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\pages\\contato.astro": {
+    "mtime": 1795451292.610646,
+    "seen": 1795455202.8438528,
+    "ast_hash": "1bdd434b8ccf1a6dbf0929513e16ef5c",
+    "semantic_hash": "1bdd434b8ccf1a6dbf0929513e16ef5c"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\pages\\guias\\[...id].astro": {
+    "mtime": 1795452326.8834145,
+    "seen": 1795455202.8438551,
+    "ast_hash": "d34ddebb4638344fbf16ef6bffd39034",
+    "semantic_hash": "d34ddebb4638344fbf16ef6bffd39034"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\pages\\guias\\index.astro": {
+    "mtime": 1795449139.68469,
+    "seen": 1795455202.8438578,
+    "ast_hash": "84b7f91ed54d8bde23c5ca2250422279",
+    "semantic_hash": "84b7f91ed54d8bde23c5ca2250422279"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\pages\\index.astro": {
+    "mtime": 1795452315.7911742,
+    "seen": 1795455202.8438601,
+    "ast_hash": "2dc04cd3161c210e3188724699f79c9d",
+    "semantic_hash": "2dc04cd3161c210e3188724699f79c9d"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\pages\\privacidade.astro": {
+    "mtime": 1795451292.7112021,
+    "seen": 1795455202.8438642,
+    "ast_hash": "8efbe72ee995444500543ba9ef37ae9c",
+    "semantic_hash": "8efbe72ee995444500543ba9ef37ae9c"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\pages\\sobre.astro": {
+    "mtime": 1795451292.6116464,
+    "seen": 1795455202.8438668,
+    "ast_hash": "b8cdc0e7410891e826b182d12c0835d0",
+    "semantic_hash": "b8cdc0e7410891e826b182d12c0835d0"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\pages\\termos.astro": {
+    "mtime": 1795451292.6406734,
+    "seen": 1795455202.8438697,
+    "ast_hash": "6c4070555e6ea134588cd992e3cc1507",
+    "semantic_hash": "6c4070555e6ea134588cd992e3cc1507"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\scripts\\site-navigation.ts": {
+    "mtime": 1795451768.801863,
+    "seen": 1795455202.8438728,
+    "ast_hash": "e446e9e4855f1c2be0a5ff2165f6d3ef",
+    "semantic_hash": "e446e9e4855f1c2be0a5ff2165f6d3ef"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\scripts\\skeleton.ts": {
+    "mtime": 1795450287.3723698,
+    "seen": 1795455202.8438756,
+    "ast_hash": "1c09e775d0b82c962a0d1fc27f672f51",
+    "semantic_hash": "1c09e775d0b82c962a0d1fc27f672f51"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\scripts\\table-scroll.ts": {
+    "mtime": 1795450598.2817752,
+    "seen": 1795455202.8438797,
+    "ast_hash": "b3270aea914604bf4e6990f8233384cf",
+    "semantic_hash": "b3270aea914604bf4e6990f8233384cf"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\site.config.ts": {
+    "mtime": 1795451292.610646,
+    "seen": 1795455202.843882,
+    "ast_hash": "5ab3802e45fa55be8485b8b505cf478d",
+    "semantic_hash": "5ab3802e45fa55be8485b8b505cf478d"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\README.md": {
+    "mtime": 1795449139.6219964,
+    "seen": 1795455202.8438847,
+    "ast_hash": "f97bad251ec566b71872854c21e5c99c",
+    "semantic_hash": "f97bad251ec566b71872854c21e5c99c"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\design-system\\destrava-tech\\MASTER.md": {
+    "mtime": 1795449139.6339169,
+    "seen": 1795455202.8438873,
+    "ast_hash": "b618eb6374d3db1a7bb5609ac201fc4b",
+    "semantic_hash": "b618eb6374d3db1a7bb5609ac201fc4b"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\central-de-links.md": {
+    "mtime": 1795449139.6359181,
+    "seen": 1795455202.84389,
+    "ast_hash": "ac03e940a77cb62f483916cb283e14e5",
+    "semantic_hash": "ac03e940a77cb62f483916cb283e14e5"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\changelog.md": {
+    "mtime": 1795449139.6369195,
+    "seen": 1795455202.8438926,
+    "ast_hash": "6919a145486aedffe7d4e015c4989754",
+    "semantic_hash": "6919a145486aedffe7d4e015c4989754"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\decisions\\ADR-001-plataforma.md": {
+    "mtime": 1795449139.6379201,
+    "seen": 1795455202.8438947,
+    "ast_hash": "c6031c347f11e7d175f405ac252ea118",
+    "semantic_hash": "c6031c347f11e7d175f405ac252ea118"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\evidence-ledger.md": {
+    "mtime": 1795449139.6389208,
+    "seen": 1795455202.843897,
+    "ast_hash": "659cf92b4e0b2686344f53a606129ffc",
+    "semantic_hash": "659cf92b4e0b2686344f53a606129ffc"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\pending-actions.md": {
+    "mtime": 1795452621.9307115,
+    "seen": 1795455202.8438995,
+    "ast_hash": "dc27e6a6aa63d3cbc0d346259624fece",
+    "semantic_hash": "dc27e6a6aa63d3cbc0d346259624fece"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\product-brief-prd.md": {
+    "mtime": 1795449139.641924,
+    "seen": 1795455202.843902,
+    "ast_hash": "24429b6442cb7340b9c4b48f7ea3b55e",
+    "semantic_hash": "24429b6442cb7340b9c4b48f7ea3b55e"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\qa-report.md": {
+    "mtime": 1795449139.6429248,
+    "seen": 1795455202.8439045,
+    "ast_hash": "5956102aab58ac8a611ef4d9fa0566c6",
+    "semantic_hash": "5956102aab58ac8a611ef4d9fa0566c6"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\superpowers\\plans\\2026-11-23-interface-motion.md": {
+    "mtime": 1795449139.6459153,
+    "seen": 1795455202.843907,
+    "ast_hash": "bfe189e0f491187729892e037ab9ca6a",
+    "semantic_hash": "bfe189e0f491187729892e037ab9ca6a"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\superpowers\\specs\\2026-11-23-expansao-conteudo-idiomas-tema-design.md": {
+    "mtime": 1795454247.152244,
+    "seen": 1795455202.8439093,
+    "ast_hash": "baa6eaa01d4725b4f72eab12cbfd9157",
+    "semantic_hash": "baa6eaa01d4725b4f72eab12cbfd9157"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\docs\\superpowers\\specs\\2026-11-23-interface-motion-design.md": {
+    "mtime": 1795449139.648208,
+    "seen": 1795455202.843912,
+    "ast_hash": "738a5adc609cbc0c104dd0c59e6dcd3d",
+    "semantic_hash": "738a5adc609cbc0c104dd0c59e6dcd3d"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\public\\ads.txt": {
+    "mtime": 1795450437.35751,
+    "seen": 1795455202.8439143,
+    "ast_hash": "91b6859e106249d596fdb9d2203f069c",
+    "semantic_hash": "91b6859e106249d596fdb9d2203f069c"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\public\\googlee2e464378dc22f96.html": {
+    "mtime": 1795453250.5667393,
+    "seen": 1795455202.843917,
+    "ast_hash": "39760fb52ea5fec38efc35d4c4106bfd",
+    "semantic_hash": "39760fb52ea5fec38efc35d4c4106bfd"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\public\\robots.txt": {
+    "mtime": 1795449139.657775,
+    "seen": 1795455202.8439188,
+    "ast_hash": "5643ee69877ca9fbfab30bb4592827df",
+    "semantic_hash": "5643ee69877ca9fbfab30bb4592827df"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\chatgpt-gemini-meta-ai-qual-usar.md": {
+    "mtime": 1795449139.6693113,
+    "seen": 1795455202.8439217,
+    "ast_hash": "a4820b2881b3a65f8b52b3c9ddb06e90",
+    "semantic_hash": "a4820b2881b3a65f8b52b3c9ddb06e90"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\dados-moveis-e-bateria-7-ajustes.md": {
+    "mtime": 1795449139.6703124,
+    "seen": 1795455202.843924,
+    "ast_hash": "452d63b72a4c3401a60477c4034a2eab",
+    "semantic_hash": "452d63b72a4c3401a60477c4034a2eab"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\golpe-do-pix-sinais-de-alerta.md": {
+    "mtime": 1795449139.671314,
+    "seen": 1795455202.8439262,
+    "ast_hash": "214ef055a6aca317e910dfd9cbd18ea8",
+    "semantic_hash": "214ef055a6aca317e910dfd9cbd18ea8"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\golpe-do-whatsapp-como-se-proteger.md": {
+    "mtime": 1795449139.6736379,
+    "seen": 1795455202.8439288,
+    "ast_hash": "88731dbf4413e164806bb35d79a183c3",
+    "semantic_hash": "88731dbf4413e164806bb35d79a183c3"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\ia-para-estudar-sem-colar.md": {
+    "mtime": 1795449139.6746352,
+    "seen": 1795455202.8439329,
+    "ast_hash": "149e11b49b240fce39ae2db41c58e104",
+    "semantic_hash": "149e11b49b240fce39ae2db41c58e104"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\liberar-espaco-celular-sem-perder-nada.md": {
+    "mtime": 1795449139.6756363,
+    "seen": 1795455202.8439353,
+    "ast_hash": "13a4bc3689b0bc3f547c562acaa7ee2e",
+    "semantic_hash": "13a4bc3689b0bc3f547c562acaa7ee2e"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\meta-ai-no-whatsapp-como-usar.md": {
+    "mtime": 1795449139.6756363,
+    "seen": 1795455202.8439379,
+    "ast_hash": "c092f808d6a45e855958bc5d18fa228f",
+    "semantic_hash": "c092f808d6a45e855958bc5d18fa228f"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\senhas-fortes-gerenciador-de-senhas.md": {
+    "mtime": 1795449139.6766372,
+    "seen": 1795455202.84394,
+    "ast_hash": "81ddda5fbec6853b1cf2fec9f81348c3",
+    "semantic_hash": "81ddda5fbec6853b1cf2fec9f81348c3"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\verificacao-em-duas-etapas-whatsapp-google.md": {
+    "mtime": 1795449139.6776378,
+    "seen": 1795455202.8439424,
+    "ast_hash": "e402df5f9f129f142fc6a4b15371edd7",
+    "semantic_hash": "e402df5f9f129f142fc6a4b15371edd7"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\src\\content\\guias\\whatsapp-privacidade-8-ajustes.md": {
+    "mtime": 1795449139.678639,
+    "seen": 1795455202.8439453,
+    "ast_hash": "62be7993f7a49dfbb01714cf5b48677a",
+    "semantic_hash": "62be7993f7a49dfbb01714cf5b48677a"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\baseline-article-desktop.png": {
+    "mtime": 1795449139.6249156,
+    "seen": 1795455202.8439474,
+    "ast_hash": "bf2e7989130614d375598726bb96c8e5",
+    "semantic_hash": "bf2e7989130614d375598726bb96c8e5"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\baseline-guides-desktop.png": {
+    "mtime": 1795449139.6279113,
+    "seen": 1795455202.84395,
+    "ast_hash": "9ec17a0a93c9e4282ebbf60f0d3e32fe",
+    "semantic_hash": "9ec17a0a93c9e4282ebbf60f0d3e32fe"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\baseline-home-desktop.png": {
+    "mtime": 1795449139.629913,
+    "seen": 1795455202.8439536,
+    "ast_hash": "5f05b5b3a6393c35d0084bdd4b96a497",
+    "semantic_hash": "5f05b5b3a6393c35d0084bdd4b96a497"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\baseline-home-mobile.png": {
+    "mtime": 1795449139.6319158,
+    "seen": 1795455202.843957,
+    "ast_hash": "0e2f0df74ca600080ae3c55d54498296",
+    "semantic_hash": "0e2f0df74ca600080ae3c55d54498296"
+  },
+  "C:\\Users\\MARY\\OneDrive\\Desktop\\agents code workspace\\STARTUPS\\startup-secundaria\\.worktrees\\interface-motion\\public\\favicon.svg": {
+    "mtime": 1795449139.656774,
+    "seen": 1795455202.8439593,
+    "ast_hash": "e03e5f5535dffd71b21ed407e78452d6",
+    "semantic_hash": "e03e5f5535dffd71b21ed407e78452d6"
+  }
+}

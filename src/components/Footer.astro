@@ -1,21 +1,38 @@
 ---
 import { SITE } from '../site.config';
+import { localizedPath, t } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
 const year = new Date().getFullYear();
+const rights = t(lang, 'footer.rights').replace('{year}', String(year));
+
+const links = [
+  { href: '/guias/', key: 'footer.guides' },
+  { href: '/sobre/', key: 'footer.about' },
+  { href: '/contato/', key: 'footer.contact' },
+  { href: '/privacidade/', key: 'footer.privacy' },
+  { href: '/termos/', key: 'footer.terms' },
+] as const;
 ---
 
 <footer class="site-footer">
   <div class="container footer-grid">
     <div>
       <strong>{SITE.name}</strong>
-      <p>Tecnologia explicada sem complicação.<br />© {year} — Guias com data de atualização e fontes citadas.</p>
+      <p>{t(lang, 'footer.tagline')}<br />{rights}</p>
     </div>
-    <nav class="footer-nav" aria-label="Rodapé">
+    <nav class="footer-nav" aria-label={t(lang, 'footer.nav')}>
       <ul>
-        <li><a href="/guias/">Guias</a></li>
-        <li><a href="/sobre/">Sobre</a></li>
-        <li><a href="/contato/">Contato</a></li>
-        <li><a href="/privacidade/">Privacidade</a></li>
-        <li><a href="/termos/">Termos</a></li>
+        {
+          links.map((link) => (
+            <li><a href={localizedPath(lang, link.href)}>{t(lang, link.key)}</a></li>
+          ))
+        }
       </ul>
     </nav>
   </div>

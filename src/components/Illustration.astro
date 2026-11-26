@@ -1,0 +1,49 @@
+---
+interface Props {
+  /** Caminho local, ex.: /illustrations/pillar-ia.svg */
+  src: string;
+  /** Texto alternativo real. Ausente/vazio torna a imagem decorativa (aria-hidden no wrapper). */
+  alt?: string;
+  /** Classes adicionais no wrapper, somadas a `reveal` e `illustration`. */
+  class?: string;
+  /** Mantido por compatibilidade; SVGs inline não precisam de loading. */
+  eager?: boolean;
+  /** Largura máxima da ilustração, em rem. Padrão 9rem (144px); a capa usa 22rem (352px). */
+  size?: number;
+}
+
+const { src, alt, class: className, eager: _eager = false, size = 9 } = Astro.props;
+const decorative = !alt;
+
+// SVG inline é necessário para que as variáveis do tema cheguem aos traços:
+// uma <img> externa não herda CSS do documento.
+const sources = import.meta.glob('/public/illustrations/*.svg', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+}) as Record<string, string>;
+const fileName = src.split('/').pop() ?? '';
+const svg = sources[`/public/illustrations/${fileName}`] ?? '';
+---
+
+<div
+  class:list={['reveal', 'illustration', className]}
+  style={`--illustration-size: ${size}rem`}
+  aria-hidden={decorative ? 'true' : undefined}
+>
+  <Fragment set:html={svg} />
+</div>
+
+<style>
+  .illustration {
+    display: block;
+    /* Sem este limite, a ilustração herdava a largura do container (até 1152px). */
+    inline-size: min(100%, var(--illustration-size, 9rem));
+  }
+
+  .illustration :global(svg) {
+    display: block;
+    inline-size: 100%;
+    block-size: auto;
+  }
+</style>

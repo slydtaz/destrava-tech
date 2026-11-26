@@ -1,115 +1,141 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import '@fontsource-variable/public-sans';
 import '@fontsource-variable/libre-bodoni';
 import '../styles/global.css';
+import '../styles/motion.css';
 import Header from '../components/Header.astro';
+import NavigationSkeleton from '../components/NavigationSkeleton.astro';
 import Footer from '../components/Footer.astro';
 import ConsentBar from '../components/ConsentBar.astro';
 import { SITE } from '../site.config';
+import { LANGS, alternateUrl, t } from '../i18n';
+import type { Lang } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
   jsonLd?: Record<string, unknown>;
+  lang?: Lang;
+  path?: string;
 }
 
-const { title, description, jsonLd } = Astro.props;
+const {
+  title,
+  description,
+  jsonLd,
+  lang = 'pt',
+  path = Astro.url.pathname,
+} = Astro.props;
 const canonical = new URL(Astro.url.pathname, SITE.url).href;
 const fullTitle = title === SITE.name ? title : `${title} | ${SITE.name}`;
+const ogLocale: Record<Lang, string> = { pt: 'pt_BR', en: 'en_US', es: 'es_ES' };
 ---
 
 <!doctype html>
-<html lang="pt-BR">
+<html lang={lang === 'pt' ? 'pt-BR' : lang}>
   <head>
     <meta charset="utf-8" />
+    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-WLRH4RGN"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+    </script>
+    <script is:inline>
+      // Aplica o tema antes de qualquer CSS para evitar flash de tema claro.
+      // is:inline é essencial: Astro não pode mover este script para o bundle.
+      (() => {
+        let theme = 'light';
+        try {
+          let saved = null;
+          try {
+            saved = localStorage.getItem('dt-theme');
+          } catch {
+            // localStorage bloqueado (modo privado / política do navegador).
+          }
+          if (saved === 'dark' || saved === 'light') {
+            theme = saved;
+          } else {
+            try {
+              theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            } catch {
+              // Sem matchMedia, mantém o fallback claro.
+            }
+          }
+        } catch {
+          theme = 'light';
+        }
+        document.documentElement.dataset.theme = theme;
+      })();
+      // Animações ligadas por padrão, conforme decisão do proprietário.
+      // Aplica antes da pintura para não haver mudança visível de estado.
+      (() => {
+        let motion = 'on';
+        try {
+          const saved = localStorage.getItem('dt-motion');
+          if (saved === 'on' || saved === 'off') motion = saved;
+        } catch {
+          // localStorage bloqueado: mantém o padrão ligado.
+        }
+        document.documentElement.dataset.motion = motion;
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="alternate" hreflang="x-default" href={alternateUrl('pt', path)} />
+    {
+      LANGS.map((l) => (
+        <link rel="alternate" hreflang={l === 'pt' ? 'pt-BR' : l} href={alternateUrl(l, path)} />
+      ))
+    }
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={SITE.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
-    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:locale" content={ogLocale[lang]} />
     <meta name="generator" content={Astro.generator} />
+    <ClientRouter fallback="swap" />
     {jsonLd && <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />}
   </head>
   <body>
-    <a href="#content" class="skip-link visually-hidden">Pular para o conteúdo</a>
-    <Header currentPath={Astro.url.pathname} />
+    <div class="reading-progress" aria-hidden="true"></div>
+    <a href="#content" class="skip-link visually-hidden">{t(lang, 'skip.link')}</a>
+    <Header lang={lang} currentPath={path} />
+    <NavigationSkeleton />
     <main id="content" tabindex="-1">
       <slot />
     </main>
-    <Footer />
-    <ConsentBar />
+    <Footer lang={lang} />
+    <ConsentBar lang={lang} />
+    <button
+      class="back-to-top"
+      type="button"
+      data-back-to-top
+      aria-label={t(lang, 'ui.backToTop')}
+      title={t(lang, 'ui.backToTop')}
+      hidden
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <path d="m5 12 7-7 7 7"></path>
+        <path d="M12 19V5"></path>
+      </svg>
+    </button>
     <script>
-      // Navegação: mede se a linha cabe inline; senão usa popover nativo.
-      // Guia modern-web-guidance (navbar): um único <nav>, popover só no layout recolhido.
-      const header = document.querySelector<HTMLElement>('.site-header');
-      const inner = header?.querySelector<HTMLElement>('.header-inner');
-      const menu = document.getElementById('site-menu');
-      if (header && inner && menu) {
-        // Polyfill carregado SOMENTE se o navegador não tem popover nativo.
-        if (!Object.hasOwn(HTMLElement.prototype, 'popover')) {
-          import('@oddbird/popover-polyfill');
-        }
-        let lastWidth = 0;
-        const sync = () => {
-          const wasOpen = menu.matches(':is(:popover-open, .\\:popover-open)');
-          header.classList.add('is-measuring');
-          header.classList.add('is-wide');
-          menu.removeAttribute('popover');
-          const wide = inner.scrollWidth <= inner.clientWidth;
-          if (!wide) {
-            header.classList.remove('is-wide');
-            menu.setAttribute('popover', 'auto');
-            if (wasOpen) menu.showPopover();
-          }
-          requestAnimationFrame(() => header.classList.remove('is-measuring'));
-        };
-        const ro = new ResizeObserver(() => {
-          const w = inner.clientWidth;
-          const collapsed = !header.classList.contains('is-wide');
-          // Recolhido: só re-mede quando a largura cresce (evita thrashing).
-          if (collapsed && w <= lastWidth) {
-            lastWidth = w;
-            return;
-          }
-          lastWidth = w;
-          sync();
-        });
-        ro.observe(inner);
-        ro.observe(menu);
-        sync();
-      }
+      import { setupPageLifecycle } from '../scripts/site-navigation';
+      import { setupSkeleton } from '../scripts/skeleton';
+      import { setupReveal } from '../scripts/reveal';
+      import { setupGuideTools } from '../scripts/guide-tools';
 
-      // Esconder header ao rolar para baixo — fallback JS.
-      // Roda SEMPRE: navegadores podem suportar container-type: scroll-state mas
-      // ainda não suportar a query 'scrolled' (verificado no Chromium 157), e nesse
-      // caso a regra CSS nunca esconderia o header. O JS e a regra CSS aplicam o
-      // mesmo transform, então coexistem sem conflito nos navegadores completos.
-      {
-        const bar = document.querySelector<HTMLElement>('.site-header');
-        if (bar) {
-          let lastY = scrollY;
-          addEventListener(
-            'scroll',
-            () => {
-              const y = Math.max(
-                0,
-                Math.min(scrollY, document.documentElement.scrollHeight - innerHeight)
-              );
-              if (y === lastY) return;
-              bar.classList.toggle('is-hidden', y > lastY && y > bar.offsetHeight);
-              lastY = y;
-            },
-            { passive: true }
-          );
-        }
-      }
+      setupPageLifecycle();
+      setupSkeleton();
+      setupReveal();
+      setupGuideTools();
     </script>
   </body>
 </html>

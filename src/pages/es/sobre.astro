@@ -1,0 +1,70 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
+import Illustration from '../../components/Illustration.astro';
+import { SITE } from '../../site.config';
+import { localizedPath, type Lang } from '../../i18n';
+
+const lang: Lang = 'es';
+---
+
+<Base
+  title="Acerca de"
+  description="Quién está detrás de Destrava Tech, cómo se escriben las guías y cómo ponerte en contacto."
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', Astro.url.pathname)} />
+
+    <section class="hero">
+      <Illustration src="/illustrations/about.svg" />
+      <span class="kicker">Acerca del sitio</span>
+      <h1>Por qué existe Destrava Tech</h1>
+      <p class="lead">
+        Muchas personas se traban con la tecnología no por falta de capacidad, sino por falta
+        de una explicación decente. Este sitio existe para desbloquear.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>Qué encontrarás aquí</h2>
+        <p>
+          Guías prácticas en lenguaje sencillo sobre seguridad digital, WhatsApp,
+          inteligencia artificial y celular. Cada guía nace de una pregunta real —de las que
+          escuchamos de amigos y familiares— y está escrita para seguirse paso a paso, sin
+          jerga.
+        </p>
+
+        <h2>Cómo se produce el contenido</h2>
+        <p>
+          Las guías se escriben con ayuda de herramientas de inteligencia artificial, con
+          pasos que puedes comprobar y fuentes citadas cuando una guía afirma algo sobre
+          estafas, reglas de aplicaciones o seguridad (preferiblemente oficiales), para que
+          puedas verificarlo por ti mismo.
+        </p>
+        <p>
+          La tecnología cambia rápido. Por eso cada guía muestra la fecha de su última
+          actualización. Si encuentras un paso distinto en tu dispositivo, <a href={localizedPath(lang, '/contato/')}>avísanos</a>
+          — lo corregimos y actualizamos la fecha.
+        </p>
+
+        <h2>Independencia</h2>
+        <p>
+          Destrava Tech es un proyecto independiente. No estamos vinculados a Google, Meta,
+          bancos ni fabricantes de celulares. En el futuro, el sitio podría mostrar anuncios
+          de Google AdSense para mantenerse gratuito — siempre identificados como publicidad
+          y respetando tu privacidad y la legislación brasileña (LGPD).
+        </p>
+
+        <h2>Quién es el responsable</h2>
+        <p>
+          Este es un proyecto joven, dirigido por un estudiante de tecnología con el apoyo de
+          un adulto responsable. El nombre completo del responsable se publicará tras la
+          revisión final. Contacto: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>

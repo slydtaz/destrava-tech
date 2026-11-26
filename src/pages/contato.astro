@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Illustration from '../components/Illustration.astro';
 import { SITE } from '../site.config';
 ---
 
@@ -9,6 +10,7 @@ import { SITE } from '../site.config';
 >
   <div class="container">
     <section class="hero">
+      <Illustration src="/illustrations/contact.svg" />
       <span class="kicker">Contato</span>
       <h1>Fale com a gente</h1>
       <p class="lead">
@@ -20,8 +22,7 @@ import { SITE } from '../site.config';
       <div class="legal-body">
         <h2>E-mail</h2>
         <p>
-          <span class="placeholder-mark">[PREENCHER antes de publicar: e-mail de contato do
-          responsável]</span>
+          <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>
         </p>
         <p>
           Respondemos assim que possível. Para pedidos sobre seus dados pessoais

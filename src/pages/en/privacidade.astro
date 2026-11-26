@@ -1,0 +1,99 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
+import Illustration from '../../components/Illustration.astro';
+import { SITE } from '../../site.config';
+import { localizedPath, type Lang } from '../../i18n';
+
+const lang: Lang = 'en';
+---
+
+<Base
+  title="Privacy Policy"
+  description="How Destrava Tech handles personal data: minimal collection, no sign-up, and rules for future ads (LGPD)."
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', Astro.url.pathname)} />
+
+    <section class="hero">
+      <Illustration src="/illustrations/privacy.svg" />
+      <span class="kicker">Legal document · draft</span>
+      <h1>Privacy Policy</h1>
+      <p class="lead">
+        Last updated: November 23, 2026. This document is a draft and will be reviewed by
+        the project's legal representative before definitive publication.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>1. Who is the data controller</h2>
+        <p>
+          The {SITE.name} website is an independent project. The controller of personal data
+          is the project's legal representative. The full name, city and state will be
+          published after the final review; the contact email is
+          <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
+        </p>
+
+        <h2>2. What data we collect today</h2>
+        <p>
+          <strong>No identifiable personal data.</strong> The site has no sign-up, forms,
+          comments or newsletter. Google Tag Manager is loaded to measure site usage; the
+          container is configured in the owner's account.
+        </p>
+        <p>
+          Like any website, the hosting server records technical access data (such as IP
+          address, date/time and page accessed) in operational logs, used only for security
+          and the operation of the service. These logs are managed by the hosting provider
+          Vercel Inc. (<a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer" target="_blank">Vercel's privacy policy</a>).
+        </p>
+
+        <h2>3. Fonts and typography</h2>
+        <p>
+          The fonts are hosted by the site itself. We make no calls to external font servers
+          or social networks to display this page. Google Tag Manager is loaded separately to
+          measure usage.
+        </p>
+
+        <h2>4. Ads (future phase)</h2>
+        <p>
+          When the site is approved for Google AdSense, ads may be displayed. At that stage:
+        </p>
+        <ul>
+          <li>A cookie notice will ask for your consent <strong>before</strong> any advertising cookie is used, in line with the LGPD;</li>
+          <li>You can decline and continue browsing normally;</li>
+          <li>Google may use cookies to personalize ads, as described in <a href="https://policies.google.com/technologies/ads?hl=en" rel="noopener noreferrer" target="_blank">Google's advertising policy</a>;</li>
+          <li>This policy will be updated with the full list of cookies and purposes before activation.</li>
+        </ul>
+
+        <h2>5. Your rights (LGPD, art. 18)</h2>
+        <p>
+          You can request confirmation of processing, access, correction, anonymization,
+          portability or deletion of personal data, as well as information about sharing.
+          Since we do not collect identifiable personal data at this stage, there is normally
+          no data to delete — but you can ask at any time.
+        </p>
+        <p>
+          Support channel: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>,
+          subject “Privacy”.
+        </p>
+
+        <h2>6. Children and teenagers</h2>
+        <p>
+          The content is free and educational, suitable for all ages. We do not intentionally
+          collect data from children. If you are a guardian and believe a child has sent us
+          data, contact us for immediate deletion.
+        </p>
+
+        <h2>7. Changes</h2>
+        <p>
+          This policy may change as the site evolves (for example, when ads are enabled). The
+          date at the top indicates the last review. Relevant changes will be highlighted on
+          this page.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>

@@ -1,5 +1,6 @@
 ---
-import { PILLARS, type PillarKey } from '../site.config';
+import type { PillarKey } from '../site.config';
+import { localizedPath, t, type Lang } from '../i18n';
 
 interface Props {
   id: string;
@@ -7,14 +8,20 @@ interface Props {
   description: string;
   pillar: PillarKey;
   updated: Date;
+  /** Idioma do card; usado apenas para montar o href quando `href` não é informado. */
+  lang?: Lang;
+  /** URL final do card. Padrão: `/guias/<id>/` no idioma informado. */
+  href?: string;
 }
-const { id, title, description, pillar, updated } = Astro.props;
-const fmt = new Intl.DateTimeFormat('pt-BR', { dateStyle: 'long' });
+const { id, title, description, pillar, updated, lang = 'pt', href } = Astro.props;
+const cardHref = href ?? localizedPath(lang, `/guias/${id}/`);
+const locales: Record<Lang, string> = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' };
+const fmt = new Intl.DateTimeFormat(locales[lang], { dateStyle: 'long', timeZone: 'UTC' });
 ---
 
 <li class="card">
-  <span class="badge">{PILLARS[pillar].label}</span>
-  <h3><a href={`/guias/${id}/`}>{title}</a></h3>
+  <span class="badge">{t(lang, `pillar.${pillar}`)}</span>
+  <h3><a href={cardHref}>{title}</a></h3>
   <p>{description}</p>
-  <p class="card-meta">Atualizado em <time datetime={updated.toISOString().slice(0, 10)}>{fmt.format(updated)}</time></p>
+  <p class="card-meta">{t(lang, 'article.updated')} <time datetime={updated.toISOString().slice(0, 10)}>{fmt.format(updated)}</time></p>
 </li>

@@ -1,0 +1,165 @@
+---
+import { t } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'pt' } = Astro.props;
+const toggleLabel = t(lang, 'motion.toggle');
+const onLabel = t(lang, 'motion.on');
+const offLabel = t(lang, 'motion.off');
+---
+
+<button
+  type="button"
+  class="motion-toggle"
+  aria-label={toggleLabel}
+  aria-pressed="true"
+  title={toggleLabel}
+  data-motion-toggle
+  data-label-on={onLabel}
+  data-label-off={offLabel}
+>
+  <svg class="icon-motion-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="m5 3 14 9-14 9V3Z"></path>
+  </svg>
+  <svg class="icon-motion-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <rect x="6" y="5" width="4" height="14" rx="1"></rect>
+    <rect x="14" y="5" width="4" height="14" rx="1"></rect>
+  </svg>
+</button>
+
+{/* Corrige o estado acessível antes da pintura: o script do <head> já aplicou
+    data-motion, mas o SSR não sabe o valor de localStorage. */}
+<script is:inline>
+  (() => {
+    const button = document.querySelector('[data-motion-toggle]');
+    if (!button) return;
+    const on = document.documentElement.dataset.motion !== 'off';
+    button.setAttribute('aria-pressed', String(on));
+    button.title = on ? (button.dataset.labelOn ?? '') : (button.dataset.labelOff ?? '');
+  })();
+</script>
+
+<script>
+  const STORAGE_KEY = 'dt-motion';
+  const readyKey = '__dtMotionToggleReady';
+  const prefKey = '__dtMotionPreference';
+  const globals = window as unknown as Record<string, boolean | string | undefined>;
+  let cleanup: (() => void) | null = null;
+
+  function setupMotionToggle(): void {
+    cleanup?.();
+    cleanup = null;
+
+    const button = document.querySelector<HTMLButtonElement>('[data-motion-toggle]');
+    if (!button) return;
+
+    const rootMotion = document.documentElement.dataset.motion;
+    if (rootMotion === 'on' || rootMotion === 'off') globals[prefKey] = rootMotion;
+
+    const labelOn = button.dataset.labelOn ?? 'Animações ligadas';
+    const labelOff = button.dataset.labelOff ?? 'Animações desligadas';
+
+    const isOn = (): boolean => document.documentElement.dataset.motion !== 'off';
+
+    const sync = (): void => {
+      const on = isOn();
+      button.setAttribute('aria-pressed', String(on));
+      button.title = on ? labelOn : labelOff;
+    };
+
+    const onClick = (): void => {
+      const next = isOn() ? 'off' : 'on';
+      document.documentElement.dataset.motion = next;
+      globals[prefKey] = next;
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch {
+        // Preferência mantida em memória quando o armazenamento está bloqueado.
+      }
+      sync();
+      window.dispatchEvent(new CustomEvent('dt:motionchange', { detail: next }));
+    };
+
+    button.addEventListener('click', onClick);
+    sync();
+    cleanup = () => button.removeEventListener('click', onClick);
+  }
+
+  if (!globals[readyKey]) {
+    globals[readyKey] = true;
+
+    document.addEventListener('astro:before-swap', (event: Event) => {
+      const incoming = (event as Event & { newDocument?: Document }).newDocument;
+      const motion = document.documentElement.dataset.motion === 'off' ? 'off' : 'on';
+      if (incoming?.documentElement) incoming.documentElement.dataset.motion = motion;
+      cleanup?.();
+      cleanup = null;
+    });
+
+    document.addEventListener('astro:after-swap', () => {
+      let saved: string | null = null;
+      try {
+        saved = localStorage.getItem(STORAGE_KEY);
+      } catch {
+        // Usa a preferência em memória quando o armazenamento está bloqueado.
+      }
+      const memory = globals[prefKey];
+      const motion = memory === 'on' || memory === 'off' ? memory : saved;
+      document.documentElement.dataset.motion = motion === 'off' ? 'off' : 'on';
+    });
+
+    document.addEventListener('astro:page-load', setupMotionToggle);
+
+    if (document.readyState !== 'loading') setupMotionToggle();
+  }
+</script>
+
+<style>
+  .motion-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 44px;
+    block-size: 44px;
+    padding: 0;
+    font: inherit;
+    color: var(--color-primary);
+    background: var(--color-card);
+    border: 1px solid var(--color-border-control);
+    border-radius: var(--radius);
+    cursor: pointer;
+  }
+
+  .motion-toggle:hover {
+    border-color: var(--color-primary);
+  }
+
+  .motion-toggle:focus-visible {
+    outline: 3px solid var(--color-ring);
+    outline-offset: 3px;
+  }
+
+  .motion-toggle svg {
+    inline-size: 1.25rem;
+    block-size: 1.25rem;
+  }
+
+  /* O atributo da raiz é aplicado antes da pintura; o ARIA é corrigido depois
+     pelo script. Basear o ícone na raiz evita mostrar "ligado" por um frame
+     para quem já tinha desligado. */
+  .icon-motion-off {
+    display: none;
+  }
+
+  :global(:root[data-motion='off']) .motion-toggle .icon-motion-on {
+    display: none;
+  }
+
+  :global(:root[data-motion='off']) .motion-toggle .icon-motion-off {
+    display: block;
+  }
+</style>

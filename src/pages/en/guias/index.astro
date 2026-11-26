@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../../layouts/Base.astro';
+import ArticleCard from '../../../components/ArticleCard.astro';
+import TranslationNotice from '../../../components/TranslationNotice.astro';
+import { PILLARS, type PillarKey } from '../../../site.config';
+import { localizedPath, slugFromId, t, type Lang } from '../../../i18n';
+
+const lang: Lang = 'en';
+const guias = (await getCollection('guias', ({ data }) => !data.draft && data.lang === lang)).sort(
+  (a, b) => b.data.updated.valueOf() - a.data.updated.valueOf()
+);
+const pillarKeys = Object.keys(PILLARS) as PillarKey[];
+---
+
+<Base title={t(lang, 'guides.title')} description={t(lang, 'guides.lead')} lang={lang}>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', '/guias/')} />
+
+    <section class="hero">
+      <span class="kicker">{t(lang, 'guides.kicker')}</span>
+      <h1>{t(lang, 'guides.title')}</h1>
+      <p class="lead">{t(lang, 'guides.lead')}</p>
+    </section>
+
+    <nav class="pillar-filter" aria-label={t(lang, 'guides.filterLabel')}>
+      <button type="button" data-pillar-filter="all" aria-pressed="true">
+        {t(lang, 'guides.filterAll')}
+      </button>
+      {
+        pillarKeys
+          .filter((key) => guias.some((g) => g.data.pillar === key))
+          .map((key) => (
+            <button type="button" data-pillar-filter={key} aria-pressed="false">
+              {t(lang, `pillar.${key}`)}
+            </button>
+          ))
+      }
+    </nav>
+
+    {
+      pillarKeys.map((key) => {
+        const items = guias.filter((g) => g.data.pillar === key);
+        if (items.length === 0) return null;
+        return (
+          <section class="section" id={key} data-pillar-section={key} aria-labelledby={`h-${key}`}>
+            <div class="section-head">
+              <h2 id={`h-${key}`}>{t(lang, `pillar.${key}`)}</h2>
+              <p>{t(lang, `pillar.${key}.description`)}</p>
+            </div>
+            <ul class="card-grid">
+              {items.map((g) => (
+                <ArticleCard
+                  id={slugFromId(g.id)}
+                  title={g.data.title}
+                  description={g.data.description}
+                  pillar={g.data.pillar}
+                  updated={g.data.updated}
+                  lang={lang}
+                />
+              ))}
+            </ul>
+          </section>
+        );
+      })
+    }
+  </div>
+</Base>

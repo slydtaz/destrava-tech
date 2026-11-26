@@ -1,0 +1,194 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import ArticleCard from './ArticleCard.astro';
+import AdSlot from './AdSlot.astro';
+import Illustration from './Illustration.astro';
+import AnimatedExample from './AnimatedExample.astro';
+import TranslationNotice from './TranslationNotice.astro';
+import { SITE } from '../site.config';
+import { localizedPath, slugFromId, t, type Lang } from '../i18n';
+
+interface Props {
+  entry: CollectionEntry<'guias'>;
+  lang: Lang;
+}
+
+const { entry, lang } = Astro.props;
+const { Content, headings } = await render(entry);
+const toc = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
+const { title, description, pillar, updated, sources } = entry.data;
+const slug = slugFromId(entry.id);
+const locales: Record<Lang, string> = { pt: 'pt-BR', en: 'en-US', es: 'es-ES' };
+const fmt = new Intl.DateTimeFormat(locales[lang], { dateStyle: 'long', timeZone: 'UTC' });
+const dateIso = updated.toISOString().slice(0, 10);
+
+const exampleKey = {
+  seguranca: 'example.seguranca',
+  whatsapp: 'example.whatsapp',
+  ia: 'example.ia',
+  celular: 'example.celular',
+} as const;
+const exampleVariant = pillar === 'seguranca' || pillar === 'ia' ? 'steps' : 'line';
+
+// Apenas guias do idioma atual: o mesmo filtro evita links errados nos relacionados.
+const guias = await getCollection('guias', ({ data }) => !data.draft && data.lang === lang);
+const related = guias
+  .filter((g) => g.id !== entry.id && g.data.pillar === pillar)
+  .slice(0, 3);
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: title,
+  description,
+  dateModified: dateIso,
+  inLanguage: locales[lang],
+  author: { '@type': 'Organization', name: SITE.name },
+  publisher: { '@type': 'Organization', name: SITE.name },
+  mainEntityOfPage: new URL(Astro.url.pathname, SITE.url).href,
+};
+---
+
+<Base
+  title={title}
+  description={description}
+  jsonLd={jsonLd}
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    {
+      lang !== 'pt' && (
+        <TranslationNotice lang={lang} ptHref={localizedPath('pt', `/guias/${slug}/`)} />
+      )
+    }
+
+    {
+      toc.length > 1 && (
+        <nav class="toc" aria-labelledby="toc-title">
+          <h2 id="toc-title">{t(lang, 'article.toc')}</h2>
+          <ol>
+            {toc.map((heading) => (
+              <li class={`toc-depth-${heading.depth}`}>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </nav>
+      )
+    }
+
+    <article>
+      <header class="article-header">
+        <span class="badge">{t(lang, `pillar.${pillar}`)}</span>
+        <h1>{title}</h1>
+        <div class="article-meta">
+          <span>
+            {t(lang, 'article.updated')}
+            <time datetime={dateIso}>{fmt.format(updated)}</time>
+          </span>
+          <span>·</span>
+          <span>{SITE.name}</span>
+        </div>
+        <button
+          class="copy-link"
+          type="button"
+          data-copy-link
+          data-copy-icon
+          data-label-original={t(lang, 'article.copyLink')}
+          data-label-copied={t(lang, 'article.copied')}
+          data-label-failed={t(lang, 'article.copyFailed')}
+        >
+          <svg class="copy-icon-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+            <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+          </svg>
+          <svg class="copy-icon-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+            <path d="M20 6 9 17l-5-5"></path>
+          </svg>
+          <span data-copy-label>{t(lang, 'article.copyLink')}</span>
+        </button>
+        <span class="visually-hidden" role="status" aria-live="polite" data-copy-status></span>
+        <div class="article-visual">
+          <Illustration src={`/illustrations/guide-${slug}.svg`} />
+        </div>
+      </header>
+
+      <div class="article-body">
+        <Content />
+      </div>
+
+      <AnimatedExample label={t(lang, 'article.example')} variant={exampleVariant}>
+        <p>{t(lang, exampleKey[pillar])}</p>
+      </AnimatedExample>
+
+      <section class="sources" aria-labelledby="fontes">
+        <h2 id="fontes">
+          {sources && sources.length > 0 ? t(lang, 'article.sources') : t(lang, 'article.aboutSources')}
+        </h2>
+        {
+          sources && sources.length > 0 ? (
+            <ul>
+              {sources.map((s) => (
+                <li>
+                  <a href={s.url} rel="noopener noreferrer" target="_blank">
+                    {s.name}<span class="visually-hidden"> ({t(lang, 'article.newTab')})</span>
+                  </a>
+                  {lang !== 'pt' && (
+                    <span class="source-language"> ({t(lang, 'article.sourceLanguage')})</span>
+                  )}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>{t(lang, 'article.sourcesFallback')}</p>
+          )
+        }
+        <p>
+          {t(lang, 'article.stepsNote')}{' '}
+          <a href={localizedPath(lang, '/contato/')}>{t(lang, 'article.reportLink')}</a>.
+        </p>
+      </section>
+
+      <AdSlot slot="artigo-fim" />
+    </article>
+
+    {
+      related.length > 0 && (
+        <section class="related section" aria-labelledby="relacionados">
+          <div class="section-head">
+            <h2 id="relacionados">{t(lang, 'article.related')}</h2>
+          </div>
+          <ul class="card-grid">
+            {related.map((g) => {
+              const relatedSlug = slugFromId(g.id);
+              return (
+                <ArticleCard
+                  id={relatedSlug}
+                  title={g.data.title}
+                  description={g.data.description}
+                  pillar={g.data.pillar}
+                  updated={g.data.updated}
+                  lang={lang}
+                  href={localizedPath(lang, `/guias/${relatedSlug}/`)}
+                />
+              );
+            })}
+          </ul>
+        </section>
+      )
+    }
+  </div>
+</Base>
+
+<style>
+  .article-visual {
+    max-inline-size: 7rem;
+    margin-block-start: var(--space-4);
+  }
+
+  .source-language {
+    color: var(--color-muted-foreground);
+  }
+</style>

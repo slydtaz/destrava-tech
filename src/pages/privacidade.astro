@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import Illustration from '../components/Illustration.astro';
 import { SITE } from '../site.config';
 ---
 
@@ -9,6 +10,7 @@ import { SITE } from '../site.config';
 >
   <div class="container">
     <section class="hero">
+      <Illustration src="/illustrations/privacy.svg" />
       <span class="kicker">Documento legal · rascunho</span>
       <h1>Política de Privacidade</h1>
       <p class="lead">
@@ -22,16 +24,16 @@ import { SITE } from '../site.config';
         <h2>1. Quem é o controlador dos dados</h2>
         <p>
           O site {SITE.name} é um projeto independente. O controlador dos dados pessoais é
-          o responsável legal pelo projeto:
-          <span class="placeholder-mark">[PREENCHER: nome completo do responsável adulto,
-          cidade/UF e e-mail de contato do encarregado]</span>.
+          o responsável legal pelo projeto. O nome completo, a cidade e o estado serão
+          publicados após a revisão final; o e-mail de contato é
+          <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>.
         </p>
 
         <h2>2. Quais dados coletamos hoje</h2>
         <p>
           <strong>Nenhum dado pessoal identificável.</strong> O site não tem cadastro,
-          formulários, comentários nem newsletter. Não usamos cookies de rastreamento nem
-          ferramentas de analytics de terceiros nesta fase.
+          formulários, comentários nem newsletter. O Google Tag Manager é carregado para medir
+          o uso; a configuração do contêiner fica na conta do proprietário.
         </p>
         <p>
           Como qualquer site, o servidor de hospedagem registra dados técnicos de acesso
@@ -43,7 +45,8 @@ import { SITE } from '../site.config';
         <h2>3. Fontes e tipografia</h2>
         <p>
           As fontes tipográficas são hospedadas pelo próprio site. Não fazemos chamadas a
-          servidores externos de fontes nem a redes sociais para exibir esta página.
+          servidores externos de fontes nem a redes sociais para exibir esta página. O Google
+          Tag Manager é carregado à parte para medir o uso.
         </p>
 
         <h2>4. Anúncios (fase futura)</h2>
@@ -66,8 +69,8 @@ import { SITE } from '../site.config';
           normalmente não há dados a excluir — mas você pode perguntar a qualquer momento.
         </p>
         <p>
-          Canal de atendimento: <span class="placeholder-mark">[PREENCHER: e-mail de
-          privacidade]</span>, assunto “Privacidade”.
+          Canal de atendimento: <a href={`mailto:${SITE.contactEmail}`}>{SITE.contactEmail}</a>,
+          assunto “Privacidade”.
         </p>
 
         <h2>6. Crianças e adolescentes</h2>

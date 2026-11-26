@@ -1,0 +1,39 @@
+---
+// Troca de idioma preserva o caminho atual: localizedPath remove um prefixo
+// de idioma já presente antes de aplicar o novo. Sem transition:persist,
+// cada página recebe o aria-current correto vindo do servidor.
+import { LANGS, localizedPath, t } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  currentPath: string;
+}
+
+const { lang, currentPath } = Astro.props;
+const languageNames: Record<Lang, string> = {
+  pt: t(lang, 'lang.pt'),
+  en: t(lang, 'lang.en'),
+  es: t(lang, 'lang.es'),
+};
+---
+
+<nav class="language-select" aria-label={t(lang, 'lang.label')}>
+  <ul>
+    {
+      LANGS.map((l) => (
+        <li>
+          <a
+            href={localizedPath(l, currentPath)}
+            hreflang={l}
+            lang={l}
+            title={languageNames[l]}
+            aria-current={l === lang ? 'true' : undefined}
+          >
+            {l.toUpperCase()}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

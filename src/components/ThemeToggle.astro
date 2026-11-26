@@ -1,0 +1,109 @@
+---
+import { t } from '../i18n';
+import type { Lang } from '../i18n';
+
+interface Props {
+  lang?: Lang;
+}
+
+const { lang = 'pt' } = Astro.props;
+const toggleLabel = t(lang, 'theme.toggle');
+const lightLabel = t(lang, 'theme.light');
+const darkLabel = t(lang, 'theme.dark');
+---
+
+<button
+  type="button"
+  class="theme-toggle"
+  aria-label={toggleLabel}
+  aria-pressed="false"
+  title={lightLabel}
+  data-label-light={lightLabel}
+  data-label-dark={darkLabel}
+>
+  <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false">
+    <circle cx="12" cy="12" r="4"></circle>
+    <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"></path>
+  </svg>
+  <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+    <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z"></path>
+  </svg>
+</button>
+
+<script>
+  // O módulo roda uma vez com ClientRouter: (re)registra o botão a cada
+  // astro:page-load e remove o listener antes de cada swap.
+  const STORAGE_KEY = 'dt-theme';
+  const readyKey = '__dtThemeToggleReady';
+  const globals = window as unknown as Record<string, boolean | undefined>;
+  let cleanup: (() => void) | null = null;
+
+  function setupThemeToggle(): void {
+    cleanup?.();
+    cleanup = null;
+
+    const button = document.querySelector<HTMLButtonElement>('.theme-toggle');
+    if (!button) return;
+
+    const labelLight = button.dataset.labelLight ?? 'Tema claro';
+    const labelDark = button.dataset.labelDark ?? 'Tema escuro';
+
+    const sync = (): void => {
+      const isDark = document.documentElement.dataset.theme === 'dark';
+      button.setAttribute('aria-pressed', String(isDark));
+      button.title = isDark ? labelDark : labelLight;
+    };
+
+    const currentTheme = (): 'light' | 'dark' =>
+      document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+
+    const onClick = (): void => {
+      const next = currentTheme() === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = next;
+      try {
+        localStorage.setItem(STORAGE_KEY, next);
+      } catch {
+        // Preferência não persistida quando o armazenamento está bloqueado.
+      }
+      sync();
+    };
+
+    button.addEventListener('click', onClick);
+    sync();
+    cleanup = () => button.removeEventListener('click', onClick);
+  }
+
+  // Guarda contra uma eventual reexecução do módulo após o swap: o listener
+  // de page-load sobrevive ao swap e registrá-lo duas vezes daria duplo toggle.
+  if (!globals[readyKey]) {
+    globals[readyKey] = true;
+
+    // O ClientRouter troca os atributos do <html>; o script inline do <head>
+    // não roda na navegação client-side. Passar o tema ao documento entrante
+    // é a forma documentada pelo Astro de preservar estado entre páginas.
+    document.addEventListener('astro:before-swap', (event: Event) => {
+      const incoming = (event as Event & { newDocument?: Document }).newDocument;
+      const theme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
+      if (incoming?.documentElement) incoming.documentElement.dataset.theme = theme;
+      cleanup?.();
+      cleanup = null;
+    });
+
+    // Reaplica antes da pintura para evitar flash de tema claro.
+    document.addEventListener('astro:after-swap', () => {
+      const saved = (() => {
+        try {
+          return localStorage.getItem(STORAGE_KEY);
+        } catch {
+          return null;
+        }
+      })();
+      document.documentElement.dataset.theme = saved === 'dark' || saved === 'light' ? saved : 'light';
+    });
+
+    document.addEventListener('astro:page-load', setupThemeToggle);
+
+    // Cobre o carregamento inicial caso o evento já tenha disparado.
+    if (document.readyState !== 'loading') setupThemeToggle();
+  }
+</script>

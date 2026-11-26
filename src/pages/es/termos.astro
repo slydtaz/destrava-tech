@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+import TranslationNotice from '../../components/TranslationNotice.astro';
+import Illustration from '../../components/Illustration.astro';
+import { SITE } from '../../site.config';
+import { localizedPath, type Lang } from '../../i18n';
+
+const lang: Lang = 'es';
+---
+
+<Base
+  title="Términos de Uso"
+  description="Reglas de uso de Destrava Tech: contenido educativo, sin garantía de resultados y límites de responsabilidad."
+  lang={lang}
+  path={Astro.url.pathname}
+>
+  <div class="container">
+    <TranslationNotice lang={lang} ptHref={localizedPath('pt', Astro.url.pathname)} />
+
+    <section class="hero">
+      <Illustration src="/illustrations/terms.svg" />
+      <span class="kicker">Documento legal · borrador</span>
+      <h1>Términos de Uso</h1>
+      <p class="lead">Última actualización: 23 de noviembre de 2026.</p>
+    </section>
+
+    <section class="section">
+      <div class="legal-body">
+        <h2>1. Qué es el sitio</h2>
+        <p>
+          {SITE.name} publica guías educativas de tecnología. El contenido es informativo y
+          no sustituye el soporte oficial de aplicaciones, bancos ni fabricantes.
+        </p>
+
+        <h2>2. Uso del contenido</h2>
+        <p>
+          Puedes leerlo, compartir enlaces y usar las instrucciones con fines personales.
+          No está permitido reproducir el texto completo en otro sitio sin autorización.
+        </p>
+
+        <h2>3. Sin garantías</h2>
+        <p>
+          Hacemos lo posible por mantener las guías correctas y actualizadas, pero las
+          aplicaciones cambian sin aviso. Los pasos pueden variar según la versión, el modelo
+          del dispositivo o la región. Usas las instrucciones bajo tu propia responsabilidad;
+          comprueba siempre antes de acciones sensibles (borrar datos, transferir dinero,
+          cambiar ajustes de seguridad).
+        </p>
+
+        <h2>4. Contenido de terceros</h2>
+        <p>
+          Citamos fuentes externas como referencia. No controlamos el contenido de esos
+          sitios y no nos responsabilizamos por él. Las marcas mencionadas (WhatsApp, Google,
+          Pix, etc.) pertenecen a sus respectivos dueños; no tenemos vínculo con ellas.
+        </p>
+
+        <h2>5. Privacidad</h2>
+        <p>
+          El tratamiento de datos sigue la <a href={localizedPath(lang, '/privacidade/')}>Política de Privacidad</a>.
+        </p>
+
+        <h2>6. Fuero y ley aplicable</h2>
+        <p>
+          Estos términos se rigen por las leyes de la República Federativa de Brasil,
+          incluidos la Ley de Internet y la LGPD.
+          El fuero competente se indicará después de la revisión jurídica de este documento.
+        </p>
+      </div>
+    </section>
+  </div>
+</Base>
