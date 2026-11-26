@@ -1,34 +1,26 @@
-# Destrava Tech
+﻿# destrava-tech
 
-Site de guias práticos de tecnologia em português simples — segurança digital, WhatsApp, IA e celular. Feito para ser monetizado com Google AdSense (conta no nome do responsável adulto, ainda pendente).
+Projeto Vercel no time slydtx, conectado ao repositÃ³rio GitHub slydtaz conforme documentado aqui.
 
-## Rodar localmente
+- Projeto Vercel: `destrava-tech` ($(@{projectName=destrava-tech; projectId=prj_0G7mhYBOAVP8nQvit3mxSnU2pHfr; localPath=C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria; gitRepo=slydtaz/destrava-tech; gitBranch=main; headSha=87a113f20bbe5f8439114fce0827351ea7bdb8bf; vercelShas=System.Object[]; framework=astro; productionUrl=https://destrava-tech-hd7oain34-slydtx.vercel.app}.projectId))
+- Framework: astro
+- URL de produÃ§Ã£o: https://destrava-tech-hd7oain34-slydtx.vercel.app
+- RepositÃ³rio: slydtaz/destrava-tech
+- Branch de produÃ§Ã£o: `main`.
 
-```bash
-npm install
-npm run dev       # desenvolvimento em http://localhost:4321
-npm run build     # gera o site estático em dist/
-npm run preview   # serve o dist/ para conferência
-```
+## Estado da fonte
 
-## Estrutura
+Fonte editÃ¡vel recuperada em: `C:\Users\MARY\OneDrive\Desktop\agents code workspace\STARTUPS\startup-secundaria`.
 
-- `src/content/guias/` — os artigos em Markdown (frontmatter: title, description, pillar, updated, sources).
-- `src/pages/` — páginas (home, lista de guias, artigo, sobre, contato, privacidade, termos, 404).
-- `src/components/` — Header (nav responsiva com popover nativo), Footer, ArticleCard, ConsentBar (LGPD, inativo), AdSlot (inativo).
-- `src/site.config.ts` — nome, URL, **adsEnabled** e e-mail de contato.
-- `docs/` — PRD, ADRs, evidências, QA, ações pendentes.
-- `portfolio-registry.json` — registro na Central de Gerenciamento.
-- `design-system/destrava-tech/MASTER.md` — design system (ui-ux-pro-max).
+The deploy history is in [docs/DEPLOY_HISTORY.md](docs/DEPLOY_HISTORY.md). Architecture notes are in [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md). The local wiki is [docs/WIKI.md](docs/WIKI.md).
 
-## AdSense — como ativar (só depois da aprovação da conta)
+## Visibilidade
 
-1. Conta AdSense criada e aprovada **no nome do responsável adulto** (18+).
-2. Preencher os placeholders legais (nome do responsável, e-mail) nas páginas.
-3. Configurar o código do publisher e `ads.txt` (ver `docs/pending-actions.md`).
-4. Ativar `SITE.adsEnabled` em `src/site.config.ts` — isso liga o banner de consentimento LGPD e os espaços de anúncio.
-5. O script do AdSense só deve carregar **após o consentimento** (TODO marcado em `ConsentBar.astro`).
+Todos os repositÃ³rios criados por esta iniciativa sÃ£o privados. Nenhum deve ser tornado pÃºblico sem instruÃ§Ã£o explÃ­cita e revisÃ£o de segredos.
 
-## Privacidade por padrão
+## Comandos
 
-Sem cadastro, sem analytics, sem cookies de terceiros, fontes hospedadas localmente. Nenhum dado pessoal coletado nesta fase.
+`npm install`
+`npm run build`
+
+Use `vercel list destrava-tech --json` para consultar o histÃ³rico de deployments.
